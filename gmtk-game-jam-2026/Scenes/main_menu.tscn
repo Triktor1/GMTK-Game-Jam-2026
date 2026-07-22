@@ -56,13 +56,13 @@ startScene = ExtResource("2_ce3w2")
 script = ExtResource("1_28flt")
 metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 
-[node name="OptionsButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=2043916165]
+[node name="LevelsButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=2043916165]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "Options"
+text = "Levels"
 
-[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/VBoxContainer/OptionsButton" unique_id=1621879276]
+[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/VBoxContainer/LevelsButton" unique_id=1621879276]
 script = ExtResource("1_28flt")
 metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 
