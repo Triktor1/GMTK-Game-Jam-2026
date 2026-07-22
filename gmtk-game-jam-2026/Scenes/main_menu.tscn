@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://chd1e6tufoex6"]
 
+[ext_resource type="Script" uid="uid://xiow4n8f6cmo" path="res://Scripts/button_effects_component.gd" id="1_28flt"]
+
 [node name="MainMenu" type="Control" unique_id=1866697238]
 layout_mode = 3
 anchors_preset = 15
@@ -45,14 +47,26 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Start"
 
+[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/VBoxContainer/StartButton" unique_id=491872195]
+script = ExtResource("1_28flt")
+metadata/_custom_type_script = "uid://xiow4n8f6cmo"
+
 [node name="OptionsButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=2043916165]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Options"
 
+[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/VBoxContainer/OptionsButton" unique_id=1621879276]
+script = ExtResource("1_28flt")
+metadata/_custom_type_script = "uid://xiow4n8f6cmo"
+
 [node name="ExitButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=432788262]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Exit"
+
+[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/VBoxContainer/ExitButton" unique_id=1581830448]
+script = ExtResource("1_28flt")
+metadata/_custom_type_script = "uid://xiow4n8f6cmo"
