@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cbn8bflkc4tym"]
+
+[ext_resource type="Script" uid="uid://7s05qduq3tu0" path="res://Autoloads/audio_manager.gd" id="1_ue73k"]
+
+[node name="AudioManager" type="Node" unique_id=947853879]
+script = ExtResource("1_ue73k")
+
+[node name="Clips" type="Node" parent="." unique_id=560044531]
+
+[node name="OneShots" type="Node" parent="." unique_id=851170696]
