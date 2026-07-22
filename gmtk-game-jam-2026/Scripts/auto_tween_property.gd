@@ -10,12 +10,12 @@ func _set(property: StringName, value: Variant) -> bool:
 	if property == target_property:
 		# Only animate if property changes
 		if get(property) == value: return false
-		animate()
+		_animate()
 		return false
 	return false
 
 # Animate once and return to original values
-func animate() -> void:
+func _animate() -> void:
 	pivot_offset = size / 2.0
 	if tween and tween.is_running():
 		tween.kill()
