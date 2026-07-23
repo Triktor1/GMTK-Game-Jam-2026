@@ -3,10 +3,25 @@
 [ext_resource type="Script" uid="uid://jhqwswu22aw6" path="res://Scripts/level.gd" id="1_iixi8"]
 [ext_resource type="Script" uid="uid://krhrj3qi4kys" path="res://Scripts/train.gd" id="1_tlcug"]
 [ext_resource type="Texture2D" uid="uid://xmbqegm15gqv" path="res://Assets/TrainSpriteSheet.png" id="2_3mqfk"]
+[ext_resource type="Texture2D" uid="uid://f2oenapdktcw" path="res://Assets/RailTile.png" id="2_jv26f"]
 [ext_resource type="SpriteFrames" uid="uid://c3off8h1hrimu" path="res://Assets/SpriteFrames/train_sprite_frames.tres" id="3_iixi8"]
 [ext_resource type="SpriteFrames" uid="uid://bh558eu2coxeg" path="res://Assets/SpriteFrames/tracks_sprite_frames.tres" id="3_xgxfi"]
 [ext_resource type="PackedScene" uid="uid://qc45y82fn63y" path="res://Scenes/pause_menu.tscn" id="5_cyadu"]
 [ext_resource type="Script" uid="uid://dpmqgvhr5mh8p" path="res://Scenes/Levels/trainCollisions.gd" id="6_5f3p6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rb0md"]
+texture = ExtResource("2_jv26f")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ng7rt"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_rb0md")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_seteq"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -26,7 +41,7 @@ script = ExtResource("1_iixi8")
 pause_menu = NodePath("pause_menu")
 
 [node name="Tracks" type="TileMapLayer" parent="." unique_id=1076060199]
-tile_set = SubResource("TileSet_6amc0")
+tile_set = SubResource("TileSet_ng7rt")
 
 [node name="Objects" type="TileMapLayer" parent="." unique_id=956508609]
 tile_map_data = PackedByteArray("AAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAAMAAMAAAAAAAAAAAAMAAQAAAAAAAAAAAAMAAUAAAAAAAAAAAAMAAYAAAAAAAAAAAAMAAcAAAAAAAAAAAD8/wgAAAAAAAAAAAD8/wcAAAAAAAAAAAD8/wYAAAAAAAAAAAD8/wUAAAAAAAAAAAD8/wQAAAAAAAAAAAD8/wMAAAAAAAAAAAD8/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD+/wIAAAAAAAAAAAD+/wMAAAAAAAAAAAD+/wQAAAAAAAAAAAD+/wUAAAAAAAAAAAD+/wYAAAAAAAAAAAD+/wcAAAAAAAAAAAD+/wgAAAAAAAAAAAA=")
@@ -66,4 +81,3 @@ train = NodePath("..")
 [node name="pause_menu" parent="." unique_id=1039053309 instance=ExtResource("5_cyadu")]
 process_mode = 3
 visible = false
-script = null
