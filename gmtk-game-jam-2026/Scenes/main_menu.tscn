@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://chd1e6tufoex6"]
 
-[ext_resource type="Script" uid="uid://drjhmc1t8d8cc" path="res://Scenes/start_button.gd" id="1_1ehe0"]
+[ext_resource type="Script" uid="uid://drjhmc1t8d8cc" path="res://Scripts/start_button.gd" id="1_1ehe0"]
 [ext_resource type="Script" uid="uid://xiow4n8f6cmo" path="res://Scripts/button_effects_component.gd" id="1_28flt"]
-[ext_resource type="Script" uid="uid://blvfpxicctk5s" path="res://Scenes/exit_button.gd" id="2_48xlc"]
+[ext_resource type="Script" uid="uid://blvfpxicctk5s" path="res://Scripts/exit_button.gd" id="2_48xlc"]
 [ext_resource type="PackedScene" uid="uid://cohhfihmfgh0b" path="res://Scenes/Levels/level_1.tscn" id="2_ce3w2"]
 
 [node name="MainMenu" type="Control" unique_id=1866697238]
