@@ -144,6 +144,7 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 		if !tile_data :
 			tilemap.set_cell(tile, 0, Vector2i(0, 0))
 			tile_data = tilemap.get_cell_tile_data(tile)
+			EventBus.emit("PlacedRail" , [])
 		
 		# Choose the track type
 		var track : Vector2i
