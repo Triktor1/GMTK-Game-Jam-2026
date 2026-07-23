@@ -3,7 +3,8 @@ extends Control
 
 @export var target_property: String = "propiedad"
 
-var cont: float = 0
+signal hola;
+
 var tween: Tween	
 
 func _set(property: StringName, value: Variant) -> bool:

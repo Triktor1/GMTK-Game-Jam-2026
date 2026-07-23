@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://drjhmc1t8d8cc" path="res://Scripts/start_button.gd" id="1_1ehe0"]
 [ext_resource type="Script" uid="uid://xiow4n8f6cmo" path="res://Scripts/button_effects_component.gd" id="1_28flt"]
+[ext_resource type="Script" uid="uid://jwpytl1sb417" path="res://Scripts/container_tween.gd" id="1_opfnp"]
 [ext_resource type="Script" uid="uid://blvfpxicctk5s" path="res://Scripts/exit_button.gd" id="2_48xlc"]
 [ext_resource type="PackedScene" uid="uid://cohhfihmfgh0b" path="res://Scenes/Levels/level_1.tscn" id="2_ce3w2"]
 [ext_resource type="Script" uid="uid://fsp2tku0qxj5" path="res://Scripts/menu_button.gd" id="4_n45e2"]
@@ -44,6 +45,7 @@ offset_top = 222.0
 offset_right = 777.0
 offset_bottom = 602.0
 theme_override_constants/separation = 40
+script = ExtResource("1_opfnp")
 
 [node name="StartButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1711177666]
 custom_minimum_size = Vector2(0, 100)

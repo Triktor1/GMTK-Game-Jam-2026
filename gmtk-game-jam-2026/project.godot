@@ -19,6 +19,12 @@ config/icon="res://icon.svg"
 
 AudioManager="*uid://cbn8bflkc4tym"
 GameManager="*uid://dws65p3ikbqmb"
+EventBus="*uid://dshcn2qonar70"
+
+[display]
+
+window/size/mode=3
+window/stretch/mode="viewport"
 
 [input]
 

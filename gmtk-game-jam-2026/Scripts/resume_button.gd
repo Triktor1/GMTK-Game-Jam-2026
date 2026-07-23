@@ -5,3 +5,4 @@ func _ready():
 
 func _on_pressed():
 	get_tree().call_group("level", "_on_resume_requested")
+	EventBus.emit("exit_pause")

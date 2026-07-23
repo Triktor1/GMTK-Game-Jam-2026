@@ -1,6 +1,6 @@
 extends Node2D
-
 #Pause Menu
+#signal paused_game
 @export var pause_menu: CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
@@ -21,6 +21,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("Pause"):
 		pause_menu.visible = !pause_menu.visible
 		if pause_menu.visible:
+			EventBus.emit("pause_game")
 			get_tree().paused = true
 		else:
 			get_tree().paused = false
