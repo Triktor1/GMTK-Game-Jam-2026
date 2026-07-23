@@ -28,74 +28,73 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var input_vector = Input.get_vector("Left", "Right", "Up", "Down")
 	var distanceCurr = global_position.distance_to(tilemap.map_to_local(currTile))
-	
+	var distanceNext = global_position.distance_to(tilemap.map_to_local(nextTile))
 	# Recieve inputs
 	# When we recieve a movement input, we want to know if
 	# we can move it inmediatly or not.
 	# If we cant move it inmediatly, we save the input until we arrive the next tile
 	if input_vector != Vector2.ZERO:
 		if input_vector.x == 0 and abs(input_vector.y) != abs(currDir.y):
-			if distanceCurr < fixDistance:
-				changeDir(Vector2i(0, input_vector.y))
-			else: 
-				saveDir = Vector2i(0, input_vector.y)
+			saveDir = Vector2i(0, input_vector.y)
 		elif input_vector.y == 0 and abs(input_vector.x) != abs(currDir.x):
-			if distanceCurr < fixDistance:
-				changeDir(Vector2i(input_vector.x, 0))
-			else: 
-				saveDir = Vector2i(input_vector.x, 0)
+			saveDir = Vector2i(input_vector.x, 0)
 	
-	#When we know player cant move until the next tile,
-	#we can put the next track always straight vertically or horizontally
-	if distanceCurr > fixDistance and NextVia:
-		var degress: int = 0
-		if currDir.y != 0: degress = 90
-		put_track(nextTile, true, degress)
+	#We can change direction if we arrive the new tile or
+	#we are some fixed distance away
+	if distanceCurr < fixDistance:
+		changeDir(saveDir)
 	
 	#When we reach the new Tile
-	# Updates current tile
+	# Updates current and next Tiles
 	# Allow the player to change direction
 	# Allow to put the next track
-	# And changes direction if we have a saved one
-	var distanceNext = global_position.distance_to(tilemap.map_to_local(nextTile))
-	if distanceNext < 2:
+	if distanceNext < fixDistance:
 		currTile = nextTile
 		canChangeDir = true
 		NextVia = true
+		nextTile = currTile + currDir
 		changeDir(saveDir)
 	
 	#Moves the train forward
 	global_position += Vector2(currDir) * speed * delta
+	
+	#Once we have moved, We can set up the next track.
+	#Thats if the distance to the current Tile is enought away
+	#so the player cant change the direction before the next tile
+	if distanceCurr > fixDistance and NextVia:
+		var degress: int = 0
+		if currDir.y != 0: degress = 90
+		put_track(nextTile, true, degress)
 
 # OTHER FUNCTIONS
 
 # Changes the train direction to the especify direction
-# only if the player is allowed to change it.
-# We try to change the direction every time we reach a new tile
-# So every time we reach a new Tile, we relocate the train and update next tile
-# If we have a save direction, we change the train direction, otherwise, we dont change it.
+# excepts null direction, cause the train is always moving
+# or if the player has already changed the direction on the same tile
 func changeDir(newDir: Vector2i) -> void:
-	if not canChangeDir: return
-	global_position = tilemap.map_to_local(currTile)
-	
+	if not canChangeDir or (newDir.x == 0 and newDir.y == 0): return
 	#To change direction, we update last directon and current direction
+	#Relocate the train
 	#Update the last track to make it curve
 	#We know player cant change Direction until the next tile, so we can put the next track
 	#Also changes the train sprite and resets saved direction
-	if (newDir.x != 0 || newDir.y != 0):
-		lastDir = currDir
-		currDir = newDir
-		
-		try_change_track(currTile)
-		
-		var degrees: int = 0
-		if currDir.y != 0: degrees = 90
-		put_track(currTile + currDir, true, degrees)
-		
-		change_sprite()
-		saveDir = Vector2i(0,0)
-		canChangeDir = false
-		
+	global_position = tilemap.map_to_local(currTile)
+	
+	lastDir = currDir
+	currDir = newDir
+	
+	# When we change direction, the last track changes to be a curve track
+	try_change_track(currTile)
+	# And we can place the next track cause the player cant change the direction on this tile
+	var degrees: int = 0
+	if currDir.y != 0: degrees = 90
+	put_track(currTile, true, degrees)
+	
+	change_sprite()
+	#Resets saved direction
+	saveDir = Vector2i(0,0)
+	canChangeDir = false
+	#Updates the next tile based on the new direction
 	nextTile = currTile + currDir
 
 # Changes the train sprite based on the trains direction
