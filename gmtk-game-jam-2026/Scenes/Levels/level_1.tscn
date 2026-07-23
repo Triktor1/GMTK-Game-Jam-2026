@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://cohhfihmfgh0b"]
 
 [ext_resource type="Script" uid="uid://krhrj3qi4kys" path="res://Scripts/train.gd" id="1_tlcug"]
+[ext_resource type="Texture2D" uid="uid://cf3qo6gq7dalg" path="res://Assets/Placeholders/TilesetTest.png" id="2_4dpyx"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_seteq"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -31,3 +32,6 @@ speed = 200
 direction = Vector2i(1, 0)
 iniTilePos = Vector2i(0, 4)
 tilemap = NodePath("../TileMapLayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="Train" unique_id=1095869792]
+texture = ExtResource("2_4dpyx")

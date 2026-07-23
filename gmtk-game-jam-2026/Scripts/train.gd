@@ -22,8 +22,7 @@ func _ready() -> void:
 	saveDir = Vector2i(0,0)
 	#Put the train at the beginning of its journey
 	global_position = tilemap.map_to_local(currTile)
-	pass
-	
+
 func _process(delta: float) -> void:
 	var input_vector = Input.get_vector("Left", "Right", "Up", "Down")
 	
