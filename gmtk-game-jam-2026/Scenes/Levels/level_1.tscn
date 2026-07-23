@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://xmbqegm15gqv" path="res://Assets/TrainSpriteSheet.png" id="2_3mqfk"]
 [ext_resource type="Texture2D" uid="uid://f2oenapdktcw" path="res://Assets/RailTile.png" id="2_jv26f"]
 [ext_resource type="SpriteFrames" uid="uid://c3off8h1hrimu" path="res://Assets/SpriteFrames/train_sprite_frames.tres" id="3_iixi8"]
-[ext_resource type="SpriteFrames" uid="uid://bh558eu2coxeg" path="res://Assets/SpriteFrames/tracks_sprite_frames.tres" id="3_xgxfi"]
 [ext_resource type="PackedScene" uid="uid://qc45y82fn63y" path="res://Scenes/pause_menu.tscn" id="5_cyadu"]
 [ext_resource type="Script" uid="uid://dpmqgvhr5mh8p" path="res://Scenes/Levels/trainCollisions.gd" id="6_5f3p6"]
 
@@ -52,24 +51,22 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAA
 tile_set = SubResource("TileSet_6amc0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=365720927]
-position = Vector2(531, 583)
-zoom = Vector2(0.5, 0.5)
+position = Vector2(149, 152)
+zoom = Vector2(1.955, 1.955)
 
 [node name="Train" type="Node2D" parent="." unique_id=146788322 node_paths=PackedStringArray("tilemap", "sprite")]
 script = ExtResource("1_tlcug")
-speed = 200
+speed = 40
 direction = Vector2i(1, 0)
 iniTilePos = Vector2i(0, 4)
 tilemap = NodePath("../Tracks")
 sprite = NodePath("AnimatedSprite2D")
-tracks = ExtResource("3_xgxfi")
 
 [node name="Sprite2D" type="Sprite2D" parent="Train" unique_id=1095869792]
 visible = false
 texture = ExtResource("2_3mqfk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Train" unique_id=395441266]
-scale = Vector2(3.28125, 3.28125)
 sprite_frames = ExtResource("3_iixi8")
 animation = &"down"
 
