@@ -28,6 +28,7 @@ columns = 5
 
 [node name="LevelButton" parent="CanvasLayer/GridContainer" unique_id=1106077915 instance=ExtResource("1_22lal")]
 layout_mode = 2
+scene_to_load = "1"
 
 [node name="LevelButton2" parent="CanvasLayer/GridContainer" unique_id=1254444544 instance=ExtResource("1_22lal")]
 layout_mode = 2
