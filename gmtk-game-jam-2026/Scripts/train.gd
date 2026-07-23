@@ -14,6 +14,7 @@ var lastDir: Vector2i
 var canChangeDir: bool = true
 var fixDistance = 5
 var NextVia = true
+var exploded = false
 
 func _ready() -> void:
 	currTile = iniTilePos
@@ -26,6 +27,8 @@ func _ready() -> void:
 	change_sprite()
 
 func _process(delta: float) -> void:
+	if exploded: return
+	
 	var input_vector = Input.get_vector("Left", "Right", "Up", "Down")
 	var distanceCurr = global_position.distance_to(tilemap.map_to_local(currTile))
 	var distanceNext = global_position.distance_to(tilemap.map_to_local(nextTile))
@@ -195,4 +198,5 @@ func onTrack() -> bool :
 
 func explode() -> void:
 	currDir = Vector2i(0,0)
+	exploded = true
 	print("EXPLODE")
