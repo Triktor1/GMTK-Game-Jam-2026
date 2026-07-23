@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bh558eu2coxeg"]
+
+[ext_resource type="Texture2D" uid="uid://f2oenapdktcw" path="res://Assets/RailTile.png" id="1_xq81q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8slwd"]
+atlas = ExtResource("1_xq81q")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fpsh6"]
+atlas = ExtResource("1_xq81q")
+region = Rect2(160, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8slwd")
+}],
+"loop": 1,
+"name": &"curve",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fpsh6")
+}],
+"loop": 1,
+"name": &"straight",
+"speed": 5.0
+}]
