@@ -4,6 +4,7 @@ extends Node2D
 @export var iniTilePos: Vector2i
 @export var tilemap: TileMapLayer
 @export var sprite: Node
+@export var tracks : SpriteFrames
 
 var currTile: Vector2i
 # Saves the last input action which makes train changes direction
@@ -64,6 +65,9 @@ func changeDir(newDir: Vector2i) -> void:
 	global_position = tilemap.map_to_local(currTile)
 	if (newDir.x != 0 || newDir.y != 0) && canChangeDir:
 			currDir = newDir
+			var degrees:int = 0
+			if currDir.y != 0: degrees = 90
+			put_track(currTile+currDir, true, degrees)
 			change_sprite()
 			saveDir = Vector2i(0,0)
 			#If you make any move you need to wait the next tile to do another
@@ -79,3 +83,52 @@ func change_sprite() -> void:
 	else:
 		sprite.play("horizontal")
 		sprite.flip_h = currDir.x == -1
+
+func put_track(tile: Vector2i, straight: bool, degrees: int):
+	var tile_data = tilemap.get_cell_tile_data(tile)
+	if !tile_data:
+		#If didnt exist, creates it.
+		tilemap.set_cell(tile, 0, Vector2i(0, 0))
+		tile_data = tilemap.get_cell_tile_data(tile)
+		
+		#Select sprite
+		var track : Texture2D
+		if straight: track = tracks.get_frame_texture("straight", 0)
+		else: track = tracks.get_frame_texture("curve", 0)
+		
+		#Put the sprite
+		putTexture(tile, track, degrees)
+	else:
+		pass
+
+func putTexture(tile: Vector2i, tex: Texture2D, degrees: int)->void:
+		var atlas_source = tilemap.tile_set.get_source(0) as TileSetAtlasSource
+		var alternative_id = atlas_source.create_alternative_tile(Vector2i(0,0))
+		var alt_data = atlas_source.get_tile_data(Vector2i(0,0), alternative_id)
+		alt_data.texture_origin = Vector2i(0,0) 
+		
+		#Rotate n degrees
+		rotateTile(alt_data, degrees)
+		# Guardamos tu textura en el custom data si quieres conservarla como referencia lógica
+		alt_data.set_custom_data("textura", tex) 
+		# 5. Pintamos la celda usando el ID único de la textura que acabamos de crear en memoria
+		tilemap.set_cell(tile, 0, Vector2i(0, 0), alternative_id)
+
+func rotateTile(data: TileData, degrees: int) -> void:
+	match degrees:
+			90:
+				data.flip_h = true
+				data.flip_v = false
+				data.transpose = true
+			180:
+				data.flip_h = true
+				data.flip_v = true
+				data.transpose = false
+			270:
+				data.flip_h = false
+				data.flip_v = true
+				data.transpose = true
+			_: # default
+				data.flip_h = false
+				data.flip_v = false
+				data.transpose = false
