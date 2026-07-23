@@ -47,8 +47,10 @@ offset_bottom = 602.0
 theme_override_constants/separation = 40
 script = ExtResource("1_opfnp")
 target = NodePath(".")
+exit_signal_name = &"start_game"
 
 [node name="StartButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1711177666]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
@@ -61,6 +63,7 @@ script = ExtResource("1_28flt")
 metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 
 [node name="LevelsButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=2043916165]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
@@ -73,6 +76,7 @@ script = ExtResource("1_28flt")
 metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=432788262]
+modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50

@@ -13,7 +13,11 @@ enum ANIM_TYPE{
 	##Elements will slide from the right
 	SLIDE_IN_RIGHT,
 	##Elements will scale from 0 to 1
-	SCALE
+	SCALE,
+	##Elements will alternate between sliding from the left and right, starting in the left
+	SHUFFLE_FROM_LEFT,
+	##Elements will alternate between sliding from the left and right, starting in the right
+	SHUFFLE_FROM_RIGHT
 }
 
 enum ORDER_TYPE{
@@ -127,7 +131,11 @@ func appear() -> void:
 	
 	if order_type == ORDER_TYPE.START_BOTTOM:
 		children.reverse()
-	
+		
+	var cont: int = -1
+	if anim_type == ANIM_TYPE.SHUFFLE_FROM_RIGHT:
+		cont *= -1
+		
 	var idx: int = 0
 	for c: Control in children:
 		if anim_type == ANIM_TYPE.SCALE:
@@ -139,6 +147,10 @@ func appear() -> void:
 		elif anim_type == ANIM_TYPE.SLIDE_IN_RIGHT:
 			tween.tween_property(c, "position:x", c.position.x, duration).from(c.position.x+c.size.x).set_delay(delay_between_elems*idx)
 			tween.tween_property(c, "modulate:a", 1.0, 0.05).set_delay(delay_between_elems*idx)
+		elif anim_type == ANIM_TYPE.SHUFFLE_FROM_LEFT || anim_type == ANIM_TYPE.SHUFFLE_FROM_RIGHT:
+			tween.tween_property(c, "position:x", c.position.x, duration).from(c.position.x+(c.size.x*cont)).set_delay(delay_between_elems*idx)
+			tween.tween_property(c, "modulate:a", 1.0, 0.05).set_delay(delay_between_elems*idx)
+			cont *= -1
 		
 		idx += 1
 
