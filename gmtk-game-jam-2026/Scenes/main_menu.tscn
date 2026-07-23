@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://xiow4n8f6cmo" path="res://Scripts/button_effects_component.gd" id="1_28flt"]
 [ext_resource type="Script" uid="uid://blvfpxicctk5s" path="res://Scripts/exit_button.gd" id="2_48xlc"]
 [ext_resource type="PackedScene" uid="uid://cohhfihmfgh0b" path="res://Scenes/Levels/level_1.tscn" id="2_ce3w2"]
+[ext_resource type="Script" uid="uid://fsp2tku0qxj5" path="res://Scripts/menu_button.gd" id="4_n45e2"]
 
 [node name="MainMenu" type="Control" unique_id=1866697238]
 layout_mode = 3
@@ -61,6 +62,8 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Levels"
+script = ExtResource("4_n45e2")
+menu_path = "uid://h0cty0irlsra"
 
 [node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/VBoxContainer/LevelsButton" unique_id=1621879276]
 script = ExtResource("1_28flt")
