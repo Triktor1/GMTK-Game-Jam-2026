@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1l6t7k7j5nmn" path="res://Scripts/resume_button.gd" id="1_bpi0q"]
 [ext_resource type="Script" uid="uid://xiow4n8f6cmo" path="res://Scripts/button_effects_component.gd" id="1_emv3i"]
-[ext_resource type="Script" uid="uid://cy8edn0phhmx7" path="res://Scripts/pause_menu.gd" id="1_vmyb1"]
+[ext_resource type="Script" uid="uid://b4ci70i5smhij" path="res://Scripts/pause_menu.gd" id="1_vmyb1"]
 [ext_resource type="Script" uid="uid://b62v5aq23eqt" path="res://Scripts/restart_button.gd" id="2_1och7"]
 [ext_resource type="Script" uid="uid://fsp2tku0qxj5" path="res://Scripts/menu_button.gd" id="2_k0w1u"]
 
@@ -56,13 +56,12 @@ script = ExtResource("1_bpi0q")
 script = ExtResource("1_emv3i")
 metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 
-[node name="RestartButton" type="Button" parent="VBoxContainer" unique_id=15219313 node_paths=PackedStringArray("parent_ui")]
+[node name="RestartButton" type="Button" parent="VBoxContainer" unique_id=15219313]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Restart"
 script = ExtResource("2_1och7")
-parent_ui = NodePath("")
 
 [node name="ButtonEffectsComponent" type="Node2D" parent="VBoxContainer/RestartButton" unique_id=374034497]
 script = ExtResource("1_emv3i")
