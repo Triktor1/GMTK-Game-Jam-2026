@@ -1,18 +1,16 @@
 [gd_scene format=3 uid="uid://qc45y82fn63y"]
 
+[ext_resource type="Script" uid="uid://b1l6t7k7j5nmn" path="res://Scripts/resume_button.gd" id="1_bpi0q"]
 [ext_resource type="Script" uid="uid://xiow4n8f6cmo" path="res://Scripts/button_effects_component.gd" id="1_emv3i"]
+[ext_resource type="Script" uid="uid://cy8edn0phhmx7" path="res://Scripts/pause_menu.gd" id="1_vmyb1"]
+[ext_resource type="Script" uid="uid://b62v5aq23eqt" path="res://Scripts/restart_button.gd" id="2_1och7"]
+[ext_resource type="Script" uid="uid://fsp2tku0qxj5" path="res://Scripts/menu_button.gd" id="2_k0w1u"]
 
-[node name="pause_menu" type="Control" unique_id=1039053309]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="pause_menu" type="CanvasLayer" unique_id=1116311543]
+process_mode = 2
+script = ExtResource("1_vmyb1")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=667549147]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1815856049]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1815856049]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -26,20 +24,20 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=1541967457]
+[node name="Label" type="Label" parent="." unique_id=1541967457]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -82.0
+offset_left = -113.5
 offset_top = 67.0
-offset_right = 86.0
+offset_right = 117.5
 offset_bottom = 177.0
 grow_horizontal = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 80
 text = "Pause"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=592467352]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=592467352]
 custom_minimum_size = Vector2(400, 200)
 offset_left = 377.0
 offset_top = 222.0
@@ -47,32 +45,37 @@ offset_right = 777.0
 offset_bottom = 602.0
 theme_override_constants/separation = 40
 
-[node name="ResumeButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=2124104625]
+[node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=2124104625]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Resume"
+script = ExtResource("1_bpi0q")
 
-[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/VBoxContainer/ResumeButton" unique_id=1811723920]
+[node name="ButtonEffectsComponent" type="Node2D" parent="VBoxContainer/ResumeButton" unique_id=1811723920]
 script = ExtResource("1_emv3i")
 metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 
-[node name="RestartButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=15219313]
+[node name="RestartButton" type="Button" parent="VBoxContainer" unique_id=15219313 node_paths=PackedStringArray("parent_ui")]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Restart"
+script = ExtResource("2_1och7")
+parent_ui = NodePath("")
 
-[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/VBoxContainer/RestartButton" unique_id=374034497]
+[node name="ButtonEffectsComponent" type="Node2D" parent="VBoxContainer/RestartButton" unique_id=374034497]
 script = ExtResource("1_emv3i")
 metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 
-[node name="MenuButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=554630862]
+[node name="MenuButton" type="Button" parent="VBoxContainer" unique_id=554630862]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Menu"
+script = ExtResource("2_k0w1u")
+menu_path = "uid://chd1e6tufoex6"
 
-[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/VBoxContainer/MenuButton" unique_id=1176768305]
+[node name="ButtonEffectsComponent" type="Node2D" parent="VBoxContainer/MenuButton" unique_id=1176768305]
 script = ExtResource("1_emv3i")
 metadata/_custom_type_script = "uid://xiow4n8f6cmo"

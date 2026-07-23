@@ -1,8 +1,10 @@
 [gd_scene format=4 uid="uid://cohhfihmfgh0b"]
 
+[ext_resource type="Script" uid="uid://jhqwswu22aw6" path="res://Scripts/level.gd" id="1_iixi8"]
 [ext_resource type="Script" uid="uid://krhrj3qi4kys" path="res://Scripts/train.gd" id="1_tlcug"]
 [ext_resource type="Texture2D" uid="uid://xmbqegm15gqv" path="res://Assets/TrainSpriteSheet.png" id="2_3mqfk"]
 [ext_resource type="SpriteFrames" uid="uid://c3off8h1hrimu" path="res://Assets/SpriteFrames/train_sprite_frames.tres" id="3_iixi8"]
+[ext_resource type="PackedScene" uid="uid://qc45y82fn63y" path="res://Scenes/pause_menu.tscn" id="5_cyadu"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_seteq"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -17,7 +19,9 @@ texture_region_size = Vector2i(128, 128)
 tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_4dpyx")
 
-[node name="Level_1" type="Node2D" unique_id=538218094]
+[node name="Level_1" type="Node2D" unique_id=538218094 node_paths=PackedStringArray("pause_menu") groups=["level"]]
+script = ExtResource("1_iixi8")
+pause_menu = NodePath("pause_menu")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1654643204]
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAUAAAAAAAAAAAAFAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAADAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAAAAgAAAAAAAAAAAABAAgAAAAAAAAAAAACAAgAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAA=")
@@ -43,3 +47,7 @@ texture = ExtResource("2_3mqfk")
 scale = Vector2(3.28125, 3.28125)
 sprite_frames = ExtResource("3_iixi8")
 animation = &"down"
+
+[node name="pause_menu" parent="." unique_id=1039053309 instance=ExtResource("5_cyadu")]
+process_mode = 3
+visible = false
