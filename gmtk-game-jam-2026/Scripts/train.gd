@@ -72,7 +72,7 @@ func _process(delta: float) -> void:
 # Changes the train direction to the especify direction
 # excepts null direction, cause the train is always moving
 # or if the player has already changed the direction on the same tile
-func changeDir(newDir: Vector2i, onTrack:bool = false) -> void:
+func changeDir(newDir: Vector2i, track:bool = false) -> void:
 	if not canChangeDir or (newDir.x == 0 and newDir.y == 0): return
 	#To change direction, we update last directon and current direction
 	#Relocate the train
@@ -84,7 +84,7 @@ func changeDir(newDir: Vector2i, onTrack:bool = false) -> void:
 	lastDir = currDir
 	currDir = newDir
 	
-	if not onTrack:
+	if not track:
 		# When we change direction, the last track changes to be a curve track
 		try_change_track(currTile)
 		# And we can place the next track cause the player cant change the direction on this tile
@@ -170,9 +170,24 @@ func onTrack() -> bool :
 		TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V: degrees = 180
 		TileSetAtlasSource.TRANSFORM_FLIP_V | TileSetAtlasSource.TRANSFORM_TRANSPOSE: degrees = 270
 		_: degrees = 0
-
-	if textureAtlas == Vector2i(1,0):
-		pass
+	
+	if textureAtlas == Vector2i(0,0):
+		if degrees == 0:
+			if currDir == Vector2i(0, 1): changeDir(Vector2i(-1,0), true)
+			elif currDir == Vector2i(1, 0): changeDir(Vector2i(0,-1), true)
+			else: explode()
+		elif degrees == 90:
+			if currDir == Vector2i(0, 1): changeDir(Vector2i(1,0), true)
+			elif currDir == Vector2i(-1, 0): changeDir(Vector2i(0,-1), true)
+			else: explode()
+		elif degrees == 180:
+			if currDir == Vector2i(0, -1): changeDir(Vector2i(1,0), true)
+			elif currDir == Vector2i(-1, 0): changeDir(Vector2i(0,1), true)
+			else: explode()
+		else:
+			if currDir == Vector2i(0, -1): changeDir(Vector2i(-1,0), true)
+			elif currDir == Vector2i(1, 0): changeDir(Vector2i(0,1), true)
+			else: explode()
 	elif textureAtlas == Vector2i(5,0):
 		if (currDir.x != 0 and degrees == 90) or (currDir.y != 0 and degrees == 0): explode()
 		elif (currDir.x != 0 and degrees == 0) or (currDir.y != 0 and degrees == 90): changeDir(currDir, true)
