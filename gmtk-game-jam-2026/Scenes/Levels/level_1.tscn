@@ -29,11 +29,11 @@ load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.cte
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4dpyx"]
 resource_name = "Placeholder"
 texture = SubResource("CompressedTexture2D_seteq")
-texture_region_size = Vector2i(128, 128)
+texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_6amc0"]
-tile_size = Vector2i(128, 128)
+tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_4dpyx")
 
 [node name="Level_1" type="Node2D" unique_id=538218094 node_paths=PackedStringArray("pause_menu") groups=["level"]]
