@@ -3,6 +3,7 @@ extends Node2D
 @export var direction: Vector2i
 @export var iniTilePos: Vector2i
 @export var tilemap: TileMapLayer
+@export var sprite: Node
 
 var currTile: Vector2i
 # Saves the last input action which makes train changes direction
@@ -22,15 +23,17 @@ func _ready() -> void:
 	saveDir = Vector2i(0,0)
 	#Put the train at the beginning of its journey
 	global_position = tilemap.map_to_local(currTile)
+	change_sprite()
 
 func _process(delta: float) -> void:
 	var input_vector = Input.get_vector("Left", "Right", "Up", "Down")
 	
 	#Train´s direction changes
 	if input_vector != Vector2.ZERO:
-		if input_vector.x == 0:
+		#The train can´t go backwards
+		if input_vector.x == 0 and input_vector.y != -currDir.y:
 			saveDir = Vector2i(0, input_vector.y)
-		elif input_vector.y == 0:
+		elif input_vector.y == 0 and input_vector.x != -currDir.x:
 			saveDir = Vector2i(input_vector.x, 0)
 	
 	#When you arrive the next Tile
@@ -43,9 +46,20 @@ func _process(delta: float) -> void:
 		#Updates it
 		if saveDir.x != 0 || saveDir.y != 0:
 			currDir = saveDir
+			change_sprite()
 			saveDir = Vector2i(0,0)
 		currTile = nextTile
 		nextTile += currDir
 		
 	#Ejecutar cambio de posición
 	global_position += currDir * speed * delta
+
+func change_sprite() -> void:
+	#Change sprite depending on new direction
+	if (currDir.y == -1):
+		sprite.play("up")
+	elif (currDir.y == 1):
+		sprite.play("down")
+	else:
+		sprite.play("horizontal")
+		sprite.flip_h = currDir.x == -1

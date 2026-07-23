@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c3off8h1hrimu"]
+
+[ext_resource type="Texture2D" uid="uid://xmbqegm15gqv" path="res://Assets/TrainSpriteSheet.png" id="1_2fnm6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k64xw"]
+atlas = ExtResource("1_2fnm6")
+region = Rect2(40, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ix74"]
+atlas = ExtResource("1_2fnm6")
+region = Rect2(0, 0, 40, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21fuk"]
+atlas = ExtResource("1_2fnm6")
+region = Rect2(80, 0, 40, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k64xw")
+}],
+"loop": 1,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ix74")
+}],
+"loop": 1,
+"name": &"horizontal",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21fuk")
+}],
+"loop": 1,
+"name": &"up",
+"speed": 5.0
+}]
