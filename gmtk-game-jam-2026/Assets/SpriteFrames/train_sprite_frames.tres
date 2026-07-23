@@ -6,11 +6,11 @@
 atlas = ExtResource("1_2fnm6")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ix74"]
-atlas = ExtResource("1_2fnm6")
-region = Rect2(0, 0, 40, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_k64xw"]
+atlas = ExtResource("1_2fnm6")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ix74"]
 atlas = ExtResource("1_2fnm6")
 region = Rect2(64, 0, 32, 32)
 
@@ -26,7 +26,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7ix74")
+"texture": SubResource("AtlasTexture_k64xw")
 }],
 "loop": 1,
 "name": &"horizontal",
@@ -34,7 +34,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k64xw")
+"texture": SubResource("AtlasTexture_7ix74")
 }],
 "loop": 1,
 "name": &"up",

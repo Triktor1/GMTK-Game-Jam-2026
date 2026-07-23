@@ -2,7 +2,9 @@ extends Node2D
 @export var speed : int
 @export var direction: Vector2i
 @export var iniTilePos: Vector2i
-@export var tilemap: TileMapLayer
+@export var tilemapTracks: TileMapLayer
+@export var tilemapCargos: TileMapLayer
+@export var cargo: PackedScene
 @export var sprite: Node
 
 var currTile: Vector2i
@@ -16,6 +18,8 @@ var fixDistance = 5
 var NextVia = true
 var exploded = false
 
+var lastCargo: Node2D
+
 func _ready() -> void:
 	currTile = iniTilePos
 	currDir = direction
@@ -23,15 +27,15 @@ func _ready() -> void:
 	nextTile = currTile + currDir
 	canChangeDir = true
 	saveDir = Vector2i(0,0)
-	global_position = tilemap.map_to_local(currTile)
+	global_position = tilemapTracks.map_to_local(currTile)
 	change_sprite()
 
 func _process(delta: float) -> void:
 	if exploded: return
 	
 	var input_vector = Input.get_vector("Left", "Right", "Up", "Down")
-	var distanceCurr = global_position.distance_to(tilemap.map_to_local(currTile))
-	var distanceNext = global_position.distance_to(tilemap.map_to_local(nextTile))
+	var distanceCurr = global_position.distance_to(tilemapTracks.map_to_local(currTile))
+	var distanceNext = global_position.distance_to(tilemapTracks.map_to_local(nextTile))
 	# Recieve inputs
 	# When we recieve a movement input, we want to know if
 	# we can move it inmediatly or not.
@@ -53,6 +57,9 @@ func _process(delta: float) -> void:
 		if not onTrack():
 			NextVia = true
 			changeDir(saveDir)
+			
+		onCargo()
+	
 	#We can change direction if we arrive the new tile or
 	#if we are some fixed distance away
 	if distanceCurr < fixDistance:
@@ -64,7 +71,7 @@ func _process(delta: float) -> void:
 	#Once we have moved, We can set up the next track.
 	#Thats if the distance to the current Tile is enought away
 	#so the player cant change the direction before the next tile
-	distanceCurr = global_position.distance_to(tilemap.map_to_local(currTile))
+	distanceCurr = global_position.distance_to(tilemapTracks.map_to_local(currTile))
 	if distanceCurr > fixDistance and NextVia:
 		var degress: int = 0
 		if currDir.y != 0: degress = 90
@@ -82,7 +89,7 @@ func changeDir(newDir: Vector2i, track:bool = false) -> void:
 	#Update the last track to make it curve
 	#We know player cant change Direction until the next tile, so we can put the next track
 	#Also changes the train sprite and resets saved direction
-	if newDir != currDir: global_position = tilemap.map_to_local(currTile)
+	if newDir != currDir: global_position = tilemapTracks.map_to_local(currTile)
 	
 	lastDir = currDir
 	currDir = newDir
@@ -138,12 +145,12 @@ func try_change_track(tile: Vector2i) -> void:
 func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = false):
 	if not NextVia: return
 	
-	var tile_data = tilemap.get_cell_tile_data(tile)
+	var tile_data = tilemapTracks.get_cell_tile_data(tile)
 	if !tile_data or replace:
 		# If there isn´t any track, we create the tile data.
 		if !tile_data :
-			tilemap.set_cell(tile, 0, Vector2i(0, 0))
-			tile_data = tilemap.get_cell_tile_data(tile)
+			tilemapTracks.set_cell(tile, 0, Vector2i(0, 0))
+			tile_data = tilemapTracks.get_cell_tile_data(tile)
 			EventBus.emit("PlacedRail" , [])
 		
 		# Choose the track type
@@ -160,15 +167,15 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 			_: alternative_id = 0 
 		
 		# Place the new texture on the tileMap
-		tilemap.set_cell(tile, 0, track, alternative_id)
+		tilemapTracks.set_cell(tile, 0, track, alternative_id)
 		if not replace: NextVia = false
 
 func onTrack() -> bool :
-	var tile_data = tilemap.get_cell_tile_data(currTile)
+	var tile_data = tilemapTracks.get_cell_tile_data(currTile)
 	if not tile_data or not NextVia: return false
 	
-	var textureAtlas = tilemap.get_cell_atlas_coords(currTile)
-	var degrees: int = tilemap.get_cell_alternative_tile(currTile)
+	var textureAtlas = tilemapTracks.get_cell_atlas_coords(currTile)
+	var degrees: int = tilemapTracks.get_cell_alternative_tile(currTile)
 	match degrees:
 		TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_TRANSPOSE: degrees = 90
 		TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V: degrees = 180
@@ -195,6 +202,26 @@ func onTrack() -> bool :
 	elif textureAtlas == Vector2i(5,0):
 		if (currDir.x != 0 and degrees == 90) or (currDir.y != 0 and degrees == 0): explode()
 		elif (currDir.x != 0 and degrees == 0) or (currDir.y != 0 and degrees == 90): changeDir(currDir, true)
+	return true
+
+func onCargo() -> bool :
+	var tile_data = tilemapCargos.get_cell_tile_data(currTile)
+	if not tile_data or not NextVia: return false
+	tilemapCargos.erase_cell(currTile)
+	
+	var newCargo = cargo.instantiate()
+	
+	newCargo.tilemapTracks = tilemapTracks
+	newCargo.tilemapCargos = tilemapCargos
+	newCargo.direction = currDir
+	
+	if lastCargo:
+		newCargo.iniTilePos = lastCargo.currTile - lastCargo.currDir
+	else:
+		newCargo.iniTilePos = Vector2i(currTile - currDir)
+	
+	lastCargo = newCargo
+	get_parent().add_child(newCargo)
 	return true
 
 func explode() -> void:
