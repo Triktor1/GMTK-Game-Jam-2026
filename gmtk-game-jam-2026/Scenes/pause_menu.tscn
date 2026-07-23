@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1l6t7k7j5nmn" path="res://Scripts/resume_button.gd" id="1_bpi0q"]
 [ext_resource type="Script" uid="uid://xiow4n8f6cmo" path="res://Scripts/button_effects_component.gd" id="1_emv3i"]
+[ext_resource type="Script" uid="uid://jwpytl1sb417" path="res://Scripts/container_tween.gd" id="1_vmyb1"]
 [ext_resource type="Script" uid="uid://b62v5aq23eqt" path="res://Scripts/restart_button.gd" id="2_1och7"]
 [ext_resource type="Script" uid="uid://fsp2tku0qxj5" path="res://Scripts/menu_button.gd" id="2_k0w1u"]
 
@@ -35,13 +36,18 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 80
 text = "Pause"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=592467352]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=592467352 node_paths=PackedStringArray("target")]
 custom_minimum_size = Vector2(400, 200)
 offset_left = 377.0
 offset_top = 222.0
 offset_right = 777.0
 offset_bottom = 602.0
 theme_override_constants/separation = 40
+script = ExtResource("1_vmyb1")
+target = NodePath(".")
+anim_when = 1
+enter_signal_name = &"pause_game"
+exit_signal_name = &"exit_pause"
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=2124104625]
 custom_minimum_size = Vector2(0, 100)
