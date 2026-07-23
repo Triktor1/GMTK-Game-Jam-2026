@@ -8,4 +8,5 @@ func _ready() -> void:
 
 func _startGame() -> void:
 	AudioManager.stop()
+	EventBus.emit("start_game")
 	get_tree().change_scene_to_packed(startScene)

@@ -23,7 +23,7 @@ EventBus="*uid://dshcn2qonar70"
 
 [display]
 
-window/size/mode=3
+window/size/mode=2
 window/stretch/mode="viewport"
 
 [input]
