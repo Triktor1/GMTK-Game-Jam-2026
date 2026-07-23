@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 AudioManager="*uid://cbn8bflkc4tym"
 GameManager="*uid://dws65p3ikbqmb"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [input]
 
 Up={
