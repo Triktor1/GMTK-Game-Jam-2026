@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://h0cty0irlsra"]
 
 [ext_resource type="PackedScene" uid="uid://gh7r11pciatg" path="res://Scenes/Objects/level_button.tscn" id="1_22lal"]
+[ext_resource type="Script" uid="uid://jwpytl1sb417" path="res://Scripts/container_tween.gd" id="1_yk0gq"]
 [ext_resource type="Script" uid="uid://fsp2tku0qxj5" path="res://Scripts/menu_button.gd" id="2_x3xpc"]
+[ext_resource type="Script" uid="uid://xiow4n8f6cmo" path="res://Scripts/button_effects_component.gd" id="4_b8t80"]
 
 [node name="LevelSelector" type="Control" unique_id=78686125]
 layout_mode = 3
@@ -25,6 +27,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 30
 columns = 5
+script = ExtResource("1_yk0gq")
+scale_from = 1
+duration = 0.3
+delay_between_elems = 0.1
 
 [node name="LevelButton" parent="CanvasLayer/GridContainer" unique_id=1106077915 instance=ExtResource("1_22lal")]
 layout_mode = 2
@@ -62,3 +68,7 @@ theme_override_font_sizes/font_size = 30
 text = "Main Menu"
 script = ExtResource("2_x3xpc")
 menu_path = "uid://chd1e6tufoex6"
+
+[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/MainMenuButton" unique_id=570779540]
+script = ExtResource("4_b8t80")
+metadata/_custom_type_script = "uid://xiow4n8f6cmo"
