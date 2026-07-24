@@ -20,6 +20,8 @@ var NextVia = true
 var exploded = false
 
 var lastCargo: Node2D
+var previousTile: Vector2i
+var previousDir: Vector2i
 
 func _ready() -> void:
 	currTile = iniTilePos
@@ -30,6 +32,8 @@ func _ready() -> void:
 	saveDir = Vector2i(0,0)
 	global_position = tilemapTracks.map_to_local(currTile)
 	change_sprite()
+	previousTile = currTile - currDir
+	previousDir = currDir
 
 func _process(delta: float) -> void:
 	if exploded: return
@@ -55,13 +59,19 @@ func _process(delta: float) -> void:
 	# Allow the player to change direction
 	# Allow to put the next track
 	if distanceNext < fixDistance:
+		previousTile = currTile
+		previousDir = currDir
+		
 		currTile = nextTile
+		
+		onCargo()
+		
 		canChangeDir = true
 		nextTile = currTile + currDir
 		if not onTrack():
 			NextVia = true
 			changeDir(saveDir)
-		onCargo()
+	
 	#We can change direction if we arrive the new tile or
 	#if we are some fixed distance away
 	if distanceCurr < fixDistance:
@@ -217,11 +227,11 @@ func onCargo() -> bool :
 	newCargo.tilemapCargos = tilemapCargos
 	
 	if lastCargo:
-		newCargo.iniTilePos = lastCargo.currTile - lastCargo.currDir
-		newCargo.direction = lastCargo.currDir
+		newCargo.iniTilePos = lastCargo.previousTile
+		newCargo.direction = lastCargo.previousDir
 	else:
-		newCargo.iniTilePos = currTile - currDir
-		newCargo.direction = currDir
+		newCargo.iniTilePos = previousTile
+		newCargo.direction = previousDir
 	
 	lastCargo = newCargo
 	get_parent().add_child(newCargo)
