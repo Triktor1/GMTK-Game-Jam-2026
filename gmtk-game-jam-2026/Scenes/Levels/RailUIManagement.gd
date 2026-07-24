@@ -2,7 +2,7 @@ extends Control
 
 @export var railLabel : Label
 
-var railNum : int  =40
+var railNum : int = 12
 
 func _ready() ->void:
 	
@@ -18,5 +18,9 @@ func setInitialRailNumber(railNumber : int) -> void:
 
 func railPlaced()-> void:
 	if railNum > 0:
+		if railNum <= 10:
+			railLabel.modulate = Color8(255,(255 * railNum / 10),(255 * railNum / 10),255)
+			railLabel.scale = (railLabel.scale * (11 - railNum)/10)
+			
 		railNum = railNum - 1
 		railLabel.text = str(railNum)
