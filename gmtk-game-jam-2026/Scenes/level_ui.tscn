@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://c3iotgd2wtk3g"]
 
 [ext_resource type="Script" uid="uid://dwkfpwdltk1n7" path="res://Scenes/Levels/RailUIManagement.gd" id="1_gw16p"]
+[ext_resource type="Script" uid="uid://jdsuucorsaiy" path="res://Scripts/auto_tween_property.gd" id="2_4mllq"]
+[ext_resource type="Texture2D" uid="uid://bglv13pagck8y" path="res://Assets/Placeholders/RailUI.png" id="3_xdjqv"]
 
 [node name="LevelUI" type="Control" unique_id=1736655561 node_paths=PackedStringArray("railLabel")]
 layout_mode = 3
@@ -16,11 +18,21 @@ railLabel = NodePath("levelUI/Label")
 
 [node name="levelUI" type="CanvasLayer" parent="." unique_id=2066591075]
 
+[node name="TextureRect" type="TextureRect" parent="levelUI" unique_id=2077499168]
+offset_left = 908.0
+offset_top = 46.0
+offset_right = 1008.0
+offset_bottom = 146.0
+texture = ExtResource("3_xdjqv")
+
 [node name="Label" type="Label" parent="levelUI" unique_id=1205461375]
-offset_left = 871.0
-offset_top = 13.0
-offset_right = 1138.0
-offset_bottom = 75.0
-text = "RAILS: 0/40"
+offset_left = 928.0
+offset_top = 14.0
+offset_right = 1112.0
+offset_bottom = 165.0
+theme_override_font_sizes/font_size = 45
+text = "RAILS"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("2_4mllq")
+target_property = "text"
