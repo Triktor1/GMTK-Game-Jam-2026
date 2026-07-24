@@ -267,7 +267,7 @@ func explode() -> void:
 	print("EXPLODE")
 	if myCargo:
 		var timer = get_tree().create_timer(0.15)
-		timer.timeout.connect(func():myCargo.explode())
-	
-	var restartTimer = get_tree().create_timer(1.0)
-	restartTimer.timeout.connect(func():get_parent().get_tree().reload_current_scene())
+		timer.timeout.connect(myCargo.explode)
+	else:
+		var restartTimer = get_tree().create_timer(1.0)
+		restartTimer.timeout.connect(get_parent().get_tree().reload_current_scene)
