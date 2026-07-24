@@ -63,13 +63,13 @@ func _process(delta: float) -> void:
 	# Allow the player to change direction
 	# Allow to put the next track
 	if distanceNext < fixDistance:
-		onCargo()
 		currTile = nextTile
 		canChangeDir = true
 		nextTile = currTile + currDir
 		if not onTrack():
 			NextVia = true
 			changeDir(saveDir)
+		if not exploded: onCargo()
 	
 	#We can change direction if we arrive the new tile or
 	#if we are some fixed distance away
@@ -235,14 +235,14 @@ func onTrack() -> bool :
 func onCargo() -> bool :
 	#If there´s a cargo, we erase the tile and instantiate the cargo
 	#return otherwise
-	var tile_data = tilemapCargos.get_cell_tile_data(nextTile)
+	var tile_data = tilemapCargos.get_cell_tile_data(currTile)
 	if not tile_data: return false
 	
-	var textureAtlas = tilemapCargos.get_cell_atlas_coords(nextTile)
-	var degrees: int = tilemapCargos.get_cell_alternative_tile(nextTile)
-	tilemapCargos.erase_cell(nextTile)
-	EventBus.emit("getCargo", [nextTile, 4])
-	tilemapTracks.set_cell(nextTile, 0, textureAtlas, degrees)
+	var textureAtlas = tilemapCargos.get_cell_atlas_coords(currTile)
+	var degrees: int = tilemapCargos.get_cell_alternative_tile(currTile)
+	tilemapCargos.erase_cell(currTile)
+	EventBus.emit("getCargo", [currTile, 4])
+	tilemapTracks.set_cell(currTile, 0, textureAtlas, degrees)
 	
 	createCargo()
 	return true
@@ -258,7 +258,7 @@ func createCargo() -> void:
 	myCargo.tilemapTracks = tilemapTracks
 	myCargo.tilemapCargos = tilemapCargos
 	myCargo.isCargo = true
-	myCargo.direction = currDir
+	myCargo.direction = lastDir
 	myCargo.cargo = cargo
 	
 	#Position, don't ask how it works, I don't know how it works.
@@ -268,12 +268,12 @@ func createCargo() -> void:
 	#So, we want to place the cargo on the Tile before with some fixed distance
 	var Offset: Vector2 = Vector2(0,0)
 	
-	if currDir.x > 0: Offset.x = -tilemapTracks.map_to_local(nextTile).distance_to(global_position)
-	elif currDir.x < 0: Offset.x = tilemapTracks.map_to_local(nextTile).distance_to(global_position)
-	elif currDir.y > 0: Offset.y = -tilemapTracks.map_to_local(nextTile).distance_to(global_position)
-	elif currDir.y < 0: Offset.y = tilemapTracks.map_to_local(nextTile).distance_to(global_position)
+	if lastDir.x > 0: Offset.x = -tilemapTracks.map_to_local(currTile).distance_to(global_position)
+	elif lastDir.x < 0: Offset.x = tilemapTracks.map_to_local(currTile).distance_to(global_position)
+	elif lastDir.y > 0: Offset.y = -tilemapTracks.map_to_local(currTile).distance_to(global_position)
+	elif lastDir.y < 0: Offset.y = tilemapTracks.map_to_local(currTile).distance_to(global_position)
 	
-	myCargo.iniTilePos = currTile
+	myCargo.iniTilePos = currTile-lastDir
 	myCargo.iniPosOffset = Offset
 	
 	get_parent().add_child(myCargo)
