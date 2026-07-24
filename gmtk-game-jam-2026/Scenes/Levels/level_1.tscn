@@ -92,11 +92,22 @@ texture_region_size = Vector2i(32, 32)
 16:0/0 = 0
 17:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7r2dd"]
+texture = ExtResource("2_jv26f")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_6amc0"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_4dpyx")
 sources/1 = SubResource("TileSetAtlasSource_3628d")
 sources/2 = SubResource("TileSetAtlasSource_irw6p")
+sources/3 = SubResource("TileSetAtlasSource_7r2dd")
 
 [node name="Level_1" type="Node2D" unique_id=538218094 node_paths=PackedStringArray("pause_menu") groups=["level"]]
 script = ExtResource("1_iixi8")
@@ -127,7 +138,7 @@ tile_map_data = PackedByteArray("AAAEAAUAAgAMAAAAAAAEAAQAAgANAAAAAAAEAAMAAgAJAAA
 tile_set = SubResource("TileSet_6amc0")
 
 [node name="Cargos" type="TileMapLayer" parent="Objects" unique_id=2071072411]
-tile_map_data = PackedByteArray("AAACAAQAAAAAAAAAAAACAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAYAAAAAAAAAAAACAAYAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAACAAIAAwAAAAAAADAGAAIAAwAAAAAAAGAGAAYAAwAAAAAAAAACAAYAAwAAAAAAAFA=")
 tile_set = SubResource("TileSet_6amc0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=365720927]
