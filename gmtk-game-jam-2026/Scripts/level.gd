@@ -3,6 +3,7 @@ extends Node2D
 #signal paused_game
 @export var pause_menu: CanvasLayer
 
+func _ready()->void:y_sort_enabled=true
 func _on_resume_requested():
 	pause_menu.visible = false
 	get_tree().paused = false
