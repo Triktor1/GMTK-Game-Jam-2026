@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://d3x45r5o4h15l"]
+
+[ext_resource type="Texture2D" uid="uid://bo7jop332xjnt" path="res://icon.svg" id="1_60q08"]
+[ext_resource type="Shader" uid="uid://bp37c5wuqnywf" path="res://Scripts/Shaders/pattern_transition.gdshader" id="1_bc1jf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_igsj5"]
+shader = ExtResource("1_bc1jf")
+shader_parameter/base_color = Color(0.73673886, 0.5431633, 0.7614609, 1)
+shader_parameter/node_resolution = Vector2(0, 0)
+shader_parameter/factor = 0.57999998703584
+shader_parameter/width = 0.4
+shader_parameter/gradient_fixed = false
+shader_parameter/shape_texture = ExtResource("1_60q08")
+shader_parameter/shape_tiling = 32.0
+shader_parameter/shape_rotation = 0.0
+shader_parameter/shape_scroll = Vector2(0, 0)
+shader_parameter/shape_feathering = 0.27999999374144
+shader_parameter/shape_treshold = 1.0
+
+[sub_resource type="Animation" id="Animation_ls13d"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_bc1jf"]
+resource_name = "level_transition"
+length = 2.0
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ls13d"]
+_data = {
+&"RESET": SubResource("Animation_ls13d"),
+&"level_transition": SubResource("Animation_bc1jf")
+}
+
+[node name="SceneTransitions" type="Control" unique_id=1497086813]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2112978491]
+material = SubResource("ShaderMaterial_igsj5")
+layout_mode = 0
+offset_left = 300.0
+offset_top = 14.0
+offset_right = 1017.0
+offset_bottom = 661.0
+texture = ExtResource("1_60q08")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=991900625]
+libraries/ = SubResource("AnimationLibrary_ls13d")
