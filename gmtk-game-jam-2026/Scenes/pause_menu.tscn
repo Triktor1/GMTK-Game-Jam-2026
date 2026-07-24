@@ -47,7 +47,6 @@ script = ExtResource("1_vmyb1")
 target = NodePath(".")
 anim_when = 1
 enter_signal_name = &"pause_game"
-exit_signal_name = &"exit_pause"
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=2124104625]
 modulate = Color(1, 1, 1, 0)
