@@ -76,7 +76,7 @@ texture = ExtResource("2_3mqfk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Train" unique_id=395441266]
 sprite_frames = ExtResource("3_iixi8")
-animation = &"down"
+animation = &"up"
 
 [node name="Collider" type="Node2D" parent="Train" unique_id=1317488483 node_paths=PackedStringArray("obstaclesMap", "train")]
 script = ExtResource("6_5f3p6")

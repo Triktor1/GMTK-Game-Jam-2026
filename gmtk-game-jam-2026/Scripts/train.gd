@@ -260,6 +260,7 @@ func createCargo() -> void:
 
 func explode() -> void:
 	currDir = Vector2i(0,0)
+	sprite.stop()
 	exploded = true
 	print("EXPLODE")
 	if myCargo:

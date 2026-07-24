@@ -24,4 +24,4 @@ func railPlaced()-> void:
 			
 		railNum = railNum - 1
 		railLabel.text = "[img=64x64]res://Assets/Placeholders/RailUI.png[/img]" +  "[color=#" + currentColor.to_html() + "]" + str(railNum) + "[/color]"
-	else: EventBus.emit("withoutTracks", [])
+	if railNum == 0: EventBus.emit("withoutTracks", [])
