@@ -25,8 +25,8 @@ var coronavirusSafetyDistance: float = 20
 
 func _ready() -> void:
 	if !isCargo:
-		EventBus.connect_signal("explode", func():explode())
-		EventBus.connect_signal("withoutTracks", func():wthoutTracks=true)
+		EventBus.connect_signal("explode", func(): if is_instance_valid(self): explode())
+		EventBus.connect_signal("withoutTracks", func():if is_instance_valid(self): wthoutTracks=true)
 	currTile = iniTilePos
 	currDir = direction
 	lastDir = currDir
