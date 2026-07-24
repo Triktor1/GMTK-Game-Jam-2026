@@ -25,8 +25,8 @@ var coronavirusSafetyDistance: float = 20
 
 func _ready() -> void:
 	if !isCargo:
-		EventBus.connect_signal("explode", func(): if is_instance_valid(self): explode())
-		EventBus.connect_signal("withoutTracks", func():if is_instance_valid(self): wthoutTracks=true)
+		EventBus.connect_signal("explode", explode)
+		EventBus.connect_signal("withoutTracks", noT)
 	currTile = iniTilePos
 	currDir = direction
 	lastDir = currDir
@@ -35,7 +35,9 @@ func _ready() -> void:
 	saveDir = Vector2i(0,0)
 	global_position = tilemapTracks.map_to_local(currTile) + iniPosOffset
 	change_sprite()
-	
+
+func noT()->void:wthoutTracks=false
+
 func _process(delta: float) -> void:
 	if exploded: return
 	
