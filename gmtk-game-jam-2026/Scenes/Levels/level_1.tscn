@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://by24vanmk3ut5" path="res://Assets/Sprites/Obstacles.png" id="5_k2mw1"]
 [ext_resource type="Script" uid="uid://dpmqgvhr5mh8p" path="res://Scenes/Levels/trainCollisions.gd" id="6_5f3p6"]
 [ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="7_jv26f"]
+[ext_resource type="Texture2D" uid="uid://bfvpnfslgx6nr" path="res://Assets/Sprites/TrainCarSpriteSheet.png" id="7_k2mw1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tjl6l"]
 texture = ExtResource("2_afv7b")
@@ -102,12 +103,29 @@ texture_region_size = Vector2i(32, 32)
 4:0/0 = 0
 5:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_31phq"]
+texture = ExtResource("7_k2mw1")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_6amc0"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_4dpyx")
 sources/1 = SubResource("TileSetAtlasSource_3628d")
 sources/2 = SubResource("TileSetAtlasSource_irw6p")
 sources/3 = SubResource("TileSetAtlasSource_7r2dd")
+sources/4 = SubResource("TileSetAtlasSource_31phq")
 
 [node name="Level_1" type="Node2D" unique_id=538218094 node_paths=PackedStringArray("pause_menu") groups=["level"]]
 script = ExtResource("1_iixi8")
@@ -134,7 +152,7 @@ tile_map_data = PackedByteArray("AAAAAAEAAQAFAAAAAAAAAAIAAQAGAAAAAAAAAAMAAQAGAAA
 tile_set = SubResource("TileSet_6amc0")
 
 [node name="Obstacles" type="TileMapLayer" parent="Objects" unique_id=956508609]
-tile_map_data = PackedByteArray("AAAEAAUAAgAMAAAAAAAEAAQAAgANAAAAAAAEAAMAAgAJAAAAAAA=")
+tile_map_data = PackedByteArray("AAAEAAUAAgAMAAAAAAAEAAQAAgANAAAAAAAEAAMAAgAJAAAAAAACAAcABAABAAAAAAAHAAYABAAEAAAAAAACAAEABAACAAAAAAA=")
 tile_set = SubResource("TileSet_6amc0")
 
 [node name="Cargos" type="TileMapLayer" parent="Objects" unique_id=2071072411]

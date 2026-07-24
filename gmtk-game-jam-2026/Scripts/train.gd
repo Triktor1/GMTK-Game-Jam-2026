@@ -239,7 +239,7 @@ func onCargo() -> bool :
 	var textureAtlas = tilemapCargos.get_cell_atlas_coords(nextTile)
 	var degrees: int = tilemapCargos.get_cell_alternative_tile(nextTile)
 	tilemapCargos.erase_cell(nextTile)
-	
+	EventBus.emit("getCargo", [nextTile, 4])
 	tilemapTracks.set_cell(nextTile, 0, textureAtlas, degrees)
 	
 	createCargo()
