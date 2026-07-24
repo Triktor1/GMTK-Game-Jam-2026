@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://6k3g6fgr26eh"]
 
 [ext_resource type="Script" uid="uid://krhrj3qi4kys" path="res://Scripts/train.gd" id="1_bvf0f"]
-[ext_resource type="Texture2D" uid="uid://bfvpnfslgx6nr" path="res://Assets/TrainCarSpriteSheet.png" id="2_bvf0f"]
+[ext_resource type="Texture2D" uid="uid://bfvpnfslgx6nr" path="res://Assets/Sprites/TrainCarSpriteSheet.png" id="2_bvf0f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bsr63"]
 atlas = ExtResource("2_bvf0f")

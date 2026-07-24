@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://by24vanmk3ut5"
-path="res://.godot/imported/Obstacles.png-1e968d6a5e2f9be8039a859e75690669.ctex"
+uid="uid://cpewhf13i2bxc"
+path="res://.godot/imported/Shelfs.png-86782894986ced4e258ade95d1b26a45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Obstacles.png"
-dest_files=["res://.godot/imported/Obstacles.png-1e968d6a5e2f9be8039a859e75690669.ctex"]
+source_file="res://Assets/Sprites/Shelfs.png"
+dest_files=["res://.godot/imported/Shelfs.png-86782894986ced4e258ade95d1b26a45.ctex"]
 
 [params]
 

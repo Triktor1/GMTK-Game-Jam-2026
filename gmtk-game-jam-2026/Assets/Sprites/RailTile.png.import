@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcasdulikgnlj"
-path="res://.godot/imported/Passengers.png-1fc870298357b39db583963a3cba0039.ctex"
+uid="uid://f2oenapdktcw"
+path="res://.godot/imported/RailTile.png-0a21716ad2f44660f0e7e5d95a76d768.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Passengers.png"
-dest_files=["res://.godot/imported/Passengers.png-1fc870298357b39db583963a3cba0039.ctex"]
+source_file="res://Assets/Sprites/RailTile.png"
+dest_files=["res://.godot/imported/RailTile.png-0a21716ad2f44660f0e7e5d95a76d768.ctex"]
 
 [params]
 

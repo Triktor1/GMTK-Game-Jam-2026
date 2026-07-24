@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xmbqegm15gqv"
-path="res://.godot/imported/TrainSpriteSheet.png-cb8a07c369bade98091b1a4b2af43708.ctex"
+uid="uid://bfvpnfslgx6nr"
+path="res://.godot/imported/TrainCarSpriteSheet.png-af501a35a93a80072c99b0ad2a99640a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/TrainSpriteSheet.png"
-dest_files=["res://.godot/imported/TrainSpriteSheet.png-cb8a07c369bade98091b1a4b2af43708.ctex"]
+source_file="res://Assets/Sprites/TrainCarSpriteSheet.png"
+dest_files=["res://.godot/imported/TrainCarSpriteSheet.png-af501a35a93a80072c99b0ad2a99640a.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f2oenapdktcw"
-path="res://.godot/imported/RailTile.png-f07aab11b9b56e946f6ced89c2f18711.ctex"
+uid="uid://cc31ywy2pfa8"
+path="res://.godot/imported/FloorTile.png-81814e448b17a6dabf46e5bf766730e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/RailTile.png"
-dest_files=["res://.godot/imported/RailTile.png-f07aab11b9b56e946f6ced89c2f18711.ctex"]
+source_file="res://Assets/Sprites/FloorTile.png"
+dest_files=["res://.godot/imported/FloorTile.png-81814e448b17a6dabf46e5bf766730e5.ctex"]
 
 [params]
 
