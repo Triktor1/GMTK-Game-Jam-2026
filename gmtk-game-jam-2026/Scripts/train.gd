@@ -6,6 +6,7 @@ extends Node2D
 @export var tilemapCargos: TileMapLayer
 @export var cargo: PackedScene
 @export var sprite: Node
+@export var isCargo: bool
 
 var currTile: Vector2i
 var nextTile: Vector2i
@@ -33,7 +34,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if exploded: return
 	
-	var input_vector = Input.get_vector("Left", "Right", "Up", "Down")
+	var input_vector = Vector2.ZERO
+	if not isCargo:
+		input_vector = Input.get_vector("Left", "Right", "Up", "Down")
+	
 	var distanceCurr = global_position.distance_to(tilemapTracks.map_to_local(currTile))
 	var distanceNext = global_position.distance_to(tilemapTracks.map_to_local(nextTile))
 	# Recieve inputs
@@ -57,9 +61,7 @@ func _process(delta: float) -> void:
 		if not onTrack():
 			NextVia = true
 			changeDir(saveDir)
-			
 		onCargo()
-	
 	#We can change direction if we arrive the new tile or
 	#if we are some fixed distance away
 	if distanceCurr < fixDistance:
@@ -206,19 +208,20 @@ func onTrack() -> bool :
 
 func onCargo() -> bool :
 	var tile_data = tilemapCargos.get_cell_tile_data(currTile)
-	if not tile_data or not NextVia: return false
+	if not tile_data: return false
 	tilemapCargos.erase_cell(currTile)
 	
 	var newCargo = cargo.instantiate()
 	
 	newCargo.tilemapTracks = tilemapTracks
 	newCargo.tilemapCargos = tilemapCargos
-	newCargo.direction = currDir
 	
 	if lastCargo:
 		newCargo.iniTilePos = lastCargo.currTile - lastCargo.currDir
+		newCargo.direction = lastCargo.currDir
 	else:
-		newCargo.iniTilePos = Vector2i(currTile - currDir)
+		newCargo.iniTilePos = currTile - currDir
+		newCargo.direction = currDir
 	
 	lastCargo = newCargo
 	get_parent().add_child(newCargo)
