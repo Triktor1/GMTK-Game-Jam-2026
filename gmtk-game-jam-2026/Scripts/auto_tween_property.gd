@@ -13,8 +13,6 @@ extends Control
 @export var time_back_y: float = 0.3
 @export var time_back_rot: float = 0.1
 
-signal hola;
-
 var tween: Tween	
 
 func _set(property: StringName, value: Variant) -> bool:

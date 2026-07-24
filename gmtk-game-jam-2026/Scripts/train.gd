@@ -25,8 +25,8 @@ var coronavirusSafetyDistance: float = 20
 
 func _ready() -> void:
 	if !isCargo:
-		EventBus.connect_signal("explode", func():explode())
-		EventBus.connect_signal("withoutTracks", func():wthoutTracks=true)
+		EventBus.connect_signal("explode", explode)
+		EventBus.connect_signal("withoutTracks", noT)
 	currTile = iniTilePos
 	currDir = direction
 	lastDir = currDir
@@ -35,7 +35,9 @@ func _ready() -> void:
 	saveDir = Vector2i(0,0)
 	global_position = tilemapTracks.map_to_local(currTile) + iniPosOffset
 	change_sprite()
-	
+
+func noT()->void:wthoutTracks=true
+
 func _process(delta: float) -> void:
 	if exploded: return
 	
@@ -49,7 +51,7 @@ func _process(delta: float) -> void:
 	# When we recieve a movement input, we want to know if
 	# we can move it inmediatly or not.
 	# If we cant move it inmediatly, we save the input until we arrive the next tile
-	if input_vector != Vector2.ZERO:
+	if input_vector != Vector2.ZERO and !wthoutTracks:
 		if input_vector.x == 0 and abs(input_vector.y) != abs(currDir.y):
 			saveDir = Vector2i(0, input_vector.y)
 		elif input_vector.y == 0 and abs(input_vector.x) != abs(currDir.x):
@@ -260,6 +262,7 @@ func createCargo() -> void:
 
 func explode() -> void:
 	currDir = Vector2i(0,0)
+	sprite.stop()
 	exploded = true
 	print("EXPLODE")
 	if myCargo:
