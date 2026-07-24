@@ -58,7 +58,7 @@ tile_set = SubResource("TileSet_6amc0")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=365720927]
 position = Vector2(149, 152)
-zoom = Vector2(1.955, 1.955)
+zoom = Vector2(2, 2)
 
 [node name="Train" type="Node2D" parent="." unique_id=146788322 node_paths=PackedStringArray("tilemapTracks", "tilemapCargos", "sprite")]
 script = ExtResource("1_tlcug")
