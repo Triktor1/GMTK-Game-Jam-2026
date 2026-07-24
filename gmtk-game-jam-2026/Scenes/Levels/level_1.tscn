@@ -51,16 +51,20 @@ tile_set = SubResource("TileSet_6amc0")
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAUAAAAAAAAAAAAFAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAADAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAcAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAAcAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAUAAAAAAAAAAAAIAAYAAAAAAAAAAAAAAAgAAAAAAAAAAAABAAgAAAAAAAAAAAACAAgAAAAAAAAAAAADAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAGAAgAAAAAAAAAAAAHAAgAAAAAAAAAAAAIAAgAAAAAAAAAAAAEAAMAAAAAAAAAAAAEAAQAAAAAAAAAAAAEAAUAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_6amc0")
 
+[node name="Cargos" type="TileMapLayer" parent="." unique_id=2071072411]
+tile_map_data = PackedByteArray("AAACAAQAAAAAAAAAAAACAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAQAAAAAAAAAAAAGAAYAAAAAAAAAAAACAAYAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_6amc0")
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=365720927]
 position = Vector2(149, 152)
 zoom = Vector2(1.955, 1.955)
 
-[node name="Train" type="Node2D" parent="." unique_id=146788322 node_paths=PackedStringArray("tilemap", "sprite")]
+[node name="Train" type="Node2D" parent="." unique_id=146788322 node_paths=PackedStringArray("tilemapTracks", "sprite")]
 script = ExtResource("1_tlcug")
 speed = 40
 direction = Vector2i(1, 0)
 iniTilePos = Vector2i(0, 4)
-tilemap = NodePath("../Tracks")
+tilemapTracks = NodePath("../Tracks")
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Train" unique_id=1095869792]
