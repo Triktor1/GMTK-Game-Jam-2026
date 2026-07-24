@@ -20,7 +20,7 @@ var fixDistance = 5
 var NextVia = true
 var exploded = false
 
-var lastCargo: Node2D
+var myCargo: Node2D
 
 func _ready() -> void:
 	currTile = iniTilePos
@@ -214,15 +214,20 @@ func onCargo() -> bool :
 	var tile_data = tilemapCargos.get_cell_tile_data(nextTile)
 	if not tile_data: return false
 	tilemapCargos.erase_cell(nextTile)
-	
-	var object = self if !lastCargo else lastCargo
+	createCargo()
+	return true
+func createCargo() -> void:
+	if myCargo:
+		myCargo.createCargo()
+		return
 	
 	#Init Cargo
-	var newCargo = cargo.instantiate()
-	newCargo.tilemapTracks = tilemapTracks
-	newCargo.tilemapCargos = tilemapCargos
-	newCargo.isCargo = true
-	newCargo.direction = object.currDir
+	myCargo = cargo.instantiate()
+	myCargo.tilemapTracks = tilemapTracks
+	myCargo.tilemapCargos = tilemapCargos
+	myCargo.isCargo = true
+	myCargo.direction = currDir
+	myCargo.cargo = cargo
 	
 	#Position, don't ask how it works, I don't know how it works.
 	#it just works!
@@ -231,19 +236,21 @@ func onCargo() -> bool :
 	#So, we want to place the cargo on the Tile before with some fixed distance
 	var Offset: Vector2 = Vector2(0,0)
 	
-	if object.currDir.x > 0: Offset.x = -tilemapTracks.map_to_local(object.nextTile).distance_to(object.global_position)
-	elif object.currDir.x < 0: Offset.x = tilemapTracks.map_to_local(object.nextTile).distance_to(object.global_position)
-	elif object.currDir.y > 0: Offset.y = -tilemapTracks.map_to_local(object.nextTile).distance_to(object.global_position)
-	elif object.currDir.y < 0: Offset.y = tilemapTracks.map_to_local(object.nextTile).distance_to(object.global_position)
+	if currDir.x > 0: Offset.x = -tilemapTracks.map_to_local(nextTile).distance_to(global_position)
+	elif currDir.x < 0: Offset.x = tilemapTracks.map_to_local(nextTile).distance_to(global_position)
+	elif currDir.y > 0: Offset.y = -tilemapTracks.map_to_local(nextTile).distance_to(global_position)
+	elif currDir.y < 0: Offset.y = tilemapTracks.map_to_local(nextTile).distance_to(global_position)
 	
-	newCargo.iniTilePos = object.currTile
-	newCargo.iniPosOffset = Offset
+	myCargo.iniTilePos = currTile
+	myCargo.iniPosOffset = Offset
 	
-	get_parent().add_child(newCargo)
-	lastCargo = newCargo
-	return true
+	get_parent().add_child(myCargo)
 
 func explode() -> void:
 	currDir = Vector2i(0,0)
 	exploded = true
 	print("EXPLODE")
+	if myCargo:
+		var timer = get_tree().create_timer(0.15)
+		timer.timeout.connect(func():myCargo.explode())
+	

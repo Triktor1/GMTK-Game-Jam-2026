@@ -45,6 +45,7 @@ animations = [{
 [node name="Cargo" type="Node2D" unique_id=1011093709 node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_bvf0f")
 speed = 40
+cargo = null
 sprite = NodePath("AnimatedSprite2D")
 isCargo = true
 
