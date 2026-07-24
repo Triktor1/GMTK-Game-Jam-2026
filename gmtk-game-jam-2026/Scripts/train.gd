@@ -200,6 +200,8 @@ func onTrack() -> bool :
 		tile_data = tile_map.get_cell_tile_data(currTile)
 		if not tile_data : return false
 	
+	EventBus.emit("checkMultTracks", [])
+	
 	var textureAtlas = tile_map.get_cell_atlas_coords(currTile)
 	var degrees: int = tile_map.get_cell_alternative_tile(currTile)
 	match degrees:
