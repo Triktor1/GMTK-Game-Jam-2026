@@ -1,6 +1,6 @@
 extends Control
 
-@export var railLabel : Label
+@export var railLabel : RichTextLabel
 
 var railNum : int = 12
 var storedScale : int
@@ -15,11 +15,13 @@ func setInitialRailNumber(railNumber : int) -> void:
 	railLabel.text = str(railNum)
 
 func railPlaced()-> void:
+	
+	var currentColor = Color(1 , 1 , 1 , 1)
 	if railNum > 0:
 		if railNum <= 10:
-			railLabel.self_modulate = Color8(255,(255 * railNum / 10),(255 * railNum),255)
-			
+			var newValue = 1.0 * railNum / 10
+			currentColor = Color(1.0,newValue,newValue,1)
 			
 		railNum = railNum - 1
-		railLabel.text = str(railNum)
+		railLabel.text = "[img=64x64]res://Assets/Placeholders/RailUI.png[/img]" +  "[color=#" + currentColor.to_html() + "]" + str(railNum) + "[/color]"
 	else: EventBus.emit("withoutTracks", [])
