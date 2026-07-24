@@ -1,11 +1,10 @@
+class_name MixedRailsCollider
 extends Node2D
 
 var train: Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	train = get_parent()
-	if not train.isCargo:
-		EventBus.connect_signal("checkMultTracks", onTrack)
 
 func onTrack() -> bool :
 	var tile_data = train.tilemapTracks.get_cell_tile_data(train.currTile)

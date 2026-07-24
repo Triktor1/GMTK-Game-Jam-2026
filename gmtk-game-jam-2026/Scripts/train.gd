@@ -200,7 +200,13 @@ func onTrack() -> bool :
 		tile_data = tile_map.get_cell_tile_data(currTile)
 		if not tile_data : return false
 	
-	EventBus.emit("checkMultTracks", [])
+	var i := 0
+	while i < get_child_count():
+		var child = get_child(i)
+		if child is MixedRailsCollider:
+			child.onTrack()
+			break
+		i += 1
 	
 	var textureAtlas = tile_map.get_cell_atlas_coords(currTile)
 	var degrees: int = tile_map.get_cell_alternative_tile(currTile)
