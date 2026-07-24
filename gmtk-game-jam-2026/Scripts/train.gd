@@ -36,7 +36,9 @@ func _ready() -> void:
 	global_position = tilemapTracks.map_to_local(currTile) + iniPosOffset
 	change_sprite()
 
-func noT()->void:wthoutTracks=true
+func noT()->void:
+	wthoutTracks=true
+	saveDir=Vector2i(0,0)
 
 func _process(delta: float) -> void:
 	if exploded: return
@@ -56,7 +58,6 @@ func _process(delta: float) -> void:
 			saveDir = Vector2i(0, input_vector.y)
 		elif input_vector.y == 0 and abs(input_vector.x) != abs(currDir.x):
 			saveDir = Vector2i(input_vector.x, 0)
-
 	#When we reach the new Tile
 	# Updates current and next Tiles
 	# Allow the player to change direction
@@ -74,7 +75,6 @@ func _process(delta: float) -> void:
 	#if we are some fixed distance away
 	if distanceCurr < fixDistance:
 		changeDir(saveDir)
-
 	#Moves the train forward
 	global_position += Vector2(currDir) * speed * delta
 	
