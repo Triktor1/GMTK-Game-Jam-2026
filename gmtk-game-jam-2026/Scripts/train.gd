@@ -161,6 +161,8 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 	if not NextVia: return
 	
 	var tile_data = tilemapTracks.get_cell_tile_data(tile)
+	if not tile_data: tile_data = tilemapCargos.get_cell_tile_data(tile)
+	
 	if !tile_data or replace:
 		if wthoutTracks:
 			explode()
@@ -189,11 +191,17 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 		if not replace: NextVia = false
 
 func onTrack() -> bool :
-	var tile_data = tilemapTracks.get_cell_tile_data(currTile)
-	if not tile_data or not NextVia: return false
+	if not NextVia: return false
 	
-	var textureAtlas = tilemapTracks.get_cell_atlas_coords(currTile)
-	var degrees: int = tilemapTracks.get_cell_alternative_tile(currTile)
+	var tile_map = tilemapTracks
+	var tile_data = tile_map.get_cell_tile_data(currTile)
+	if not tile_data:
+		tile_map = tilemapCargos
+		tile_data = tile_map.get_cell_tile_data(currTile)
+		if not tile_data : return false
+	
+	var textureAtlas = tile_map.get_cell_atlas_coords(currTile)
+	var degrees: int = tile_map.get_cell_alternative_tile(currTile)
 	match degrees:
 		TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_TRANSPOSE: degrees = 90
 		TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V: degrees = 180
@@ -227,9 +235,17 @@ func onCargo() -> bool :
 	#return otherwise
 	var tile_data = tilemapCargos.get_cell_tile_data(nextTile)
 	if not tile_data: return false
+	
+	var textureAtlas = tilemapCargos.get_cell_atlas_coords(nextTile)
+	var degrees: int = tilemapCargos.get_cell_alternative_tile(nextTile)
 	tilemapCargos.erase_cell(nextTile)
+	
+	tilemapTracks.set_cell(nextTile, 0, textureAtlas, degrees)
+	
 	createCargo()
 	return true
+
+
 func createCargo() -> void:
 	if myCargo:
 		myCargo.createCargo()
