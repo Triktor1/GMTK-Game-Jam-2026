@@ -152,9 +152,10 @@ texture = ExtResource("2_3mqfk")
 sprite_frames = ExtResource("3_iixi8")
 animation = &"up"
 
-[node name="Collider" type="Node2D" parent="Train" unique_id=1317488483 node_paths=PackedStringArray("obstaclesMap", "train")]
+[node name="Collider" type="Node2D" parent="Train" unique_id=1317488483 node_paths=PackedStringArray("obstaclesMap", "wallsMap", "train")]
 script = ExtResource("6_5f3p6")
 obstaclesMap = NodePath("../../Objects/Obstacles")
+wallsMap = NodePath("../../Objects/Wall")
 train = NodePath("..")
 
 [node name="LevelUI" parent="." unique_id=1736655561 instance=ExtResource("7_jv26f")]

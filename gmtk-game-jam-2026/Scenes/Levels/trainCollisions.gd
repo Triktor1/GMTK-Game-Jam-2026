@@ -1,5 +1,6 @@
 extends Node2D
 @export var obstaclesMap: TileMapLayer
+@export var wallsMap:TileMapLayer
 @export var train: Node2D
 
 var storedTile : TileData
@@ -10,7 +11,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	checkIfInsideTile()
 	pass
 
@@ -20,7 +21,10 @@ func checkIfInsideTile() ->void:
 	#print(currentTile)
 	var tileData=obstaclesMap.get_cell_tile_data(currentTile);
 	
-	if tileData && tileData != storedTile:
+	var currentTileWall = wallsMap.local_to_map(wallsMap.to_local(train.global_position))
+	var tileDataWall=wallsMap.get_cell_tile_data(currentTileWall);
+	
+	if tileData && tileData != storedTile || tileDataWall && tileDataWall!=storedTile:
 		print("inside Tile")
 		tileEvent()
 	storedTile = tileData
