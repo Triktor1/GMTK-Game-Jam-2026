@@ -36,7 +36,7 @@ func _ready() -> void:
 	global_position = tilemapTracks.map_to_local(currTile) + iniPosOffset
 	change_sprite()
 
-func noT()->void:wthoutTracks=false
+func noT()->void:wthoutTracks=true
 
 func _process(delta: float) -> void:
 	if exploded: return
