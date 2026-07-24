@@ -7,7 +7,7 @@
 [ext_resource type="SpriteFrames" uid="uid://c3off8h1hrimu" path="res://Assets/SpriteFrames/train_sprite_frames.tres" id="3_iixi8"]
 [ext_resource type="PackedScene" uid="uid://qc45y82fn63y" path="res://Scenes/pause_menu.tscn" id="5_cyadu"]
 [ext_resource type="Script" uid="uid://dpmqgvhr5mh8p" path="res://Scenes/Levels/trainCollisions.gd" id="6_5f3p6"]
-[ext_resource type="Script" uid="uid://dwkfpwdltk1n7" path="res://Scenes/Levels/RailUIManagement.gd" id="7_jv26f"]
+[ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="7_jv26f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rb0md"]
 texture = ExtResource("2_jv26f")
@@ -80,28 +80,7 @@ script = ExtResource("6_5f3p6")
 obstaclesMap = NodePath("../../Objects")
 train = NodePath("..")
 
-[node name="LevelUI" type="Control" parent="." unique_id=955276572 node_paths=PackedStringArray("railLabel")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 1152.0
-offset_bottom = 648.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("7_jv26f")
-railLabel = NodePath("levelUI/Label")
-
-[node name="levelUI" type="CanvasLayer" parent="LevelUI" unique_id=290268130]
-
-[node name="Label" type="Label" parent="LevelUI/levelUI" unique_id=895774391]
-offset_left = 871.0
-offset_top = 13.0
-offset_right = 1138.0
-offset_bottom = 75.0
-text = "RAILS: 0/40"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="LevelUI" parent="." unique_id=1736655561 instance=ExtResource("7_jv26f")]
 
 [node name="pause_menu" parent="." unique_id=1039053309 instance=ExtResource("5_cyadu")]
 process_mode = 3
