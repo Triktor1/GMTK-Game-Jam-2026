@@ -2,6 +2,7 @@ extends Node2D
 @export var speed : int
 @export var direction: Vector2i
 @export var iniTilePos: Vector2i
+@export var iniPosOffset: Vector2
 @export var tilemapTracks: TileMapLayer
 @export var tilemapCargos: TileMapLayer
 @export var cargo: PackedScene
@@ -20,8 +21,6 @@ var NextVia = true
 var exploded = false
 
 var lastCargo: Node2D
-var previousTile: Vector2i
-var previousDir: Vector2i
 
 func _ready() -> void:
 	currTile = iniTilePos
@@ -30,11 +29,9 @@ func _ready() -> void:
 	nextTile = currTile + currDir
 	canChangeDir = true
 	saveDir = Vector2i(0,0)
-	global_position = tilemapTracks.map_to_local(currTile)
+	global_position = tilemapTracks.map_to_local(currTile) + iniPosOffset
 	change_sprite()
-	previousTile = currTile - currDir
-	previousDir = currDir
-
+	
 func _process(delta: float) -> void:
 	if exploded: return
 	
@@ -59,13 +56,8 @@ func _process(delta: float) -> void:
 	# Allow the player to change direction
 	# Allow to put the next track
 	if distanceNext < fixDistance:
-		previousTile = currTile
-		previousDir = currDir
-		
-		currTile = nextTile
-		
 		onCargo()
-		
+		currTile = nextTile
 		canChangeDir = true
 		nextTile = currTile + currDir
 		if not onTrack():
@@ -217,24 +209,38 @@ func onTrack() -> bool :
 	return true
 
 func onCargo() -> bool :
-	var tile_data = tilemapCargos.get_cell_tile_data(currTile)
+	#If there´s a cargo, we erase the tile and instantiate the cargo
+	#return otherwise
+	var tile_data = tilemapCargos.get_cell_tile_data(nextTile)
 	if not tile_data: return false
-	tilemapCargos.erase_cell(currTile)
+	tilemapCargos.erase_cell(nextTile)
 	
+	var object = self if !lastCargo else lastCargo
+	
+	#Init Cargo
 	var newCargo = cargo.instantiate()
-	
 	newCargo.tilemapTracks = tilemapTracks
 	newCargo.tilemapCargos = tilemapCargos
+	newCargo.isCargo = true
+	newCargo.direction = object.currDir
 	
-	if lastCargo:
-		newCargo.iniTilePos = lastCargo.previousTile
-		newCargo.direction = lastCargo.previousDir
-	else:
-		newCargo.iniTilePos = previousTile
-		newCargo.direction = previousDir
+	#Position, don't ask how it works, I don't know how it works.
+	#it just works!
+	#When we reach the tile, currTile is the lastTile
+	#regardless of whether it goes past the center or falls a little short
+	#So, we want to place the cargo on the Tile before with some fixed distance
+	var Offset: Vector2 = Vector2(0,0)
 	
-	lastCargo = newCargo
+	if object.currDir.x > 0: Offset.x = -tilemapTracks.map_to_local(object.nextTile).distance_to(object.global_position)
+	elif object.currDir.x < 0: Offset.x = tilemapTracks.map_to_local(object.nextTile).distance_to(object.global_position)
+	elif object.currDir.y > 0: Offset.y = -tilemapTracks.map_to_local(object.nextTile).distance_to(object.global_position)
+	elif object.currDir.y < 0: Offset.y = tilemapTracks.map_to_local(object.nextTile).distance_to(object.global_position)
+	
+	newCargo.iniTilePos = object.currTile
+	newCargo.iniPosOffset = Offset
+	
 	get_parent().add_child(newCargo)
+	lastCargo = newCargo
 	return true
 
 func explode() -> void:
