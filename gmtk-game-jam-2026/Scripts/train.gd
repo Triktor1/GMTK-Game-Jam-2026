@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 	# When we recieve a movement input, we want to know if
 	# we can move it inmediatly or not.
 	# If we cant move it inmediatly, we save the input until we arrive the next tile
-	if input_vector != Vector2.ZERO:
+	if input_vector != Vector2.ZERO and !wthoutTracks:
 		if input_vector.x == 0 and abs(input_vector.y) != abs(currDir.y):
 			saveDir = Vector2i(0, input_vector.y)
 		elif input_vector.y == 0 and abs(input_vector.x) != abs(currDir.x):
