@@ -19,11 +19,14 @@ var canChangeDir: bool = true
 var fixDistance = 5
 var NextVia = true
 var exploded = false
-
+var wthoutTracks = false
 var myCargo: Node2D
 var coronavirusSafetyDistance: float = 20
 
 func _ready() -> void:
+	if !isCargo:
+		EventBus.connect_signal("explode", func():explode())
+		EventBus.connect_signal("withoutTracks", func():wthoutTracks=true)
 	currTile = iniTilePos
 	currDir = direction
 	lastDir = currDir
@@ -157,6 +160,9 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 	
 	var tile_data = tilemapTracks.get_cell_tile_data(tile)
 	if !tile_data or replace:
+		if wthoutTracks:
+			explode()
+			return
 		# If there isn´t any track, we create the tile data.
 		if !tile_data :
 			tilemapTracks.set_cell(tile, 0, Vector2i(0, 0))

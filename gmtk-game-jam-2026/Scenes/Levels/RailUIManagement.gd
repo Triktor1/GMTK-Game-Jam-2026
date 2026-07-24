@@ -17,8 +17,9 @@ func setInitialRailNumber(railNumber : int) -> void:
 func railPlaced()-> void:
 	if railNum > 0:
 		if railNum <= 10:
-			railLabel.self_modulate = Color8(255,(255 * railNum / 10),(255 * railNum / 10),255)
+			railLabel.self_modulate = Color8(255,(255 * railNum / 10),(255 * railNum),255)
 			
 			
 		railNum = railNum - 1
 		railLabel.text = str(railNum)
+	else: EventBus.emit("withoutTracks", [])

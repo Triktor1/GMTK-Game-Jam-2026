@@ -25,14 +25,15 @@ offset_right = 1008.0
 offset_bottom = 146.0
 texture = ExtResource("3_xdjqv")
 
-[node name="Label" type="Label" parent="levelUI" unique_id=1205461375]
+[node name="Label" type="Label" parent="levelUI" unique_id=1205461375 node_paths=PackedStringArray("target")]
 offset_left = 928.0
 offset_top = 14.0
 offset_right = 1112.0
 offset_bottom = 165.0
+pivot_offset = Vector2(92, 75.5)
 theme_override_font_sizes/font_size = 45
-text = "RAILS"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_4mllq")
+target = NodePath(".")
 target_property = "text"

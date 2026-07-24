@@ -27,6 +27,6 @@ func checkIfInsideTile() ->void:
 	
 	
 	
-
 func tileEvent() -> void:
+	EventBus.emit("explode", [])
 	print ("Executing tile event")
