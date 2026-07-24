@@ -21,6 +21,7 @@ var NextVia = true
 var exploded = false
 
 var myCargo: Node2D
+var coronavirusSafetyDistance: float = 20
 
 func _ready() -> void:
 	currTile = iniTilePos
@@ -80,6 +81,11 @@ func _process(delta: float) -> void:
 		var degress: int = 0
 		if currDir.y != 0: degress = 90
 		put_track(nextTile, true, degress)
+		
+	#If myCargo is very close to me, I adjust the distance
+	if myCargo and global_position.distance_to(myCargo.global_position) < coronavirusSafetyDistance:
+		var distance = coronavirusSafetyDistance - global_position.distance_to(myCargo.global_position)
+		myCargo.global_position += Vector2(distance, distance)*Vector2(-myCargo.currDir)
 
 # OTHER FUNCTIONS
 
