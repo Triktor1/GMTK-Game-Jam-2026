@@ -113,6 +113,14 @@ func pullAdyacentLever(tile: Vector2i, id: int) -> void:
 				obstaclesMap.set_cell(pos, 0, atlas, alternative)
 			else: #Invierte horizontalmente el sprite
 				obstaclesMap.set_cell(pos, id, atlas, alternative ^ TileSetAtlasSource.TRANSFORM_FLIP_H)
+	
+	for cell in train.tilemapTracks.get_used_cells():
+					var atlas: Vector2i = train.tilemapTracks.get_cell_atlas_coords(cell)
+					var alt : int = train.tilemapTracks.get_cell_alternative_tile(cell)
+					if atlas == Vector2i(11,0):
+						train.tilemapTracks.set_cell(cell, 0, Vector2i(6,0), alt)
+					elif atlas == Vector2i(6,0):
+						train.tilemapTracks.set_cell(cell, 0, Vector2i(11,0), alt)
 
 func tileEvent() -> void:
 	EventBus.emit("explode", [])
