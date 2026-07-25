@@ -5,6 +5,7 @@ extends Node2D
 @export var iniPosOffset: Vector2
 @export var tilemapTracks: TileMapLayer
 @export var tilemapCargos: TileMapLayer
+@export var tilemapLevers: TileMapLayer
 @export var cargo: PackedScene
 @export var sprite: Node
 @export var isCargo: bool
@@ -71,8 +72,10 @@ func _process(delta: float) -> void:
 		canChangeDir = true
 		if not onTrack():
 			NextVia = true
-			changeDir(saveDir) #Edita nextTile si cambia la dirección
-		if not exploded: onCargo()
+			changeDir(saveDir)
+		if not exploded:
+			onLever()
+			onCargo()
 	
 	#We can change direction if we arrive the new tile or
 	#if we are some fixed distance away
@@ -165,6 +168,7 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 	
 	var tile_data = tilemapTracks.get_cell_tile_data(tile)
 	if not tile_data: tile_data = tilemapCargos.get_cell_tile_data(tile)
+	if not tile_data: tile_data = tilemapLevers.get_cell_tile_data(tile)
 	
 	if !tile_data or replace:
 		if wthoutTracks:
@@ -201,8 +205,13 @@ func onTrack() -> bool :
 	if not tile_data:
 		tile_map = tilemapCargos
 		tile_data = tile_map.get_cell_tile_data(currTile)
+		
+		if not tile_data:
+			tile_map = tilemapLevers
+			tile_data = tile_map.get_cell_tile_data(currTile)
+			
 		if not tile_data : return false
-	
+		
 	var i := 0
 	while i < get_child_count():
 		var child = get_child(i)
@@ -256,6 +265,17 @@ func onCargo() -> bool :
 	createCargo()
 	return true
 
+func onLever() -> bool :
+	var tile_data = tilemapLevers.get_cell_tile_data(currTile)
+	if not tile_data: return false
+	
+	var textureAtlas = tilemapLevers.get_cell_atlas_coords(currTile)
+	
+	if textureAtlas != Vector2i(5,0):
+		return false
+	
+	EventBus.emit("pullLever", [currTile, 5])
+	return true
 
 func createCargo() -> void:
 	if myCargo:
