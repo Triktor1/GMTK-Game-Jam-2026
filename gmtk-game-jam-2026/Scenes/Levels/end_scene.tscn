@@ -356,6 +356,9 @@ offset_left = 10.0
 offset_top = 49.0
 offset_right = 1162.0
 offset_bottom = 697.0
+railNum = 0
+requiredPassengerNum = 0
+requiredCargoNum = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=695276836]
 layer = 2
