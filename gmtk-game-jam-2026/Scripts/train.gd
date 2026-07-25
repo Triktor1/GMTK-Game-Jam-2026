@@ -282,7 +282,7 @@ func onLever() -> bool :
 	if textureAtlas != Vector2i(5,0):
 		return false
 	
-	EventBus.emit("pullLever", [currTile, 5])
+	if not isCargo: EventBus.emit("pullLever", [currTile, 7])
 	return true
 
 func createCargo() -> void:
