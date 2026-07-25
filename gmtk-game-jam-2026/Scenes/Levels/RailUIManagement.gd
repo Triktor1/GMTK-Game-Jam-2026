@@ -28,7 +28,7 @@ func _ready() ->void:
 	#Rail
 	EventBus.connect_signal("PlacedRail" , railPlaced)
 	#Passenger
-	EventBus.connect_signal("PassengerPicked" , passengerPicked)
+	EventBus.connect_signal("newPassengers" , passengerPicked)
 	#Cargo
 	EventBus.connect_signal("CargoPicked" , cargoPicked)
 	
@@ -57,8 +57,8 @@ func railPlaced()-> void:
 		railLabel.text = RailImage +  "[color=#" + currentColor.to_html() + "]" + str(railNum) + "[/color]"
 	if railNum == 0: EventBus.emit("withoutTracks", [])
 
-func passengerPicked() -> void:
-	currentPassengers += 1
+func passengerPicked( passengerNum : int) -> void:
+	currentPassengers += passengerNum
 	passengerUpdate()
 
 func cargoPicked() -> void:
@@ -73,22 +73,31 @@ func passengerUpdate() -> void:
 		
 		if currentPassengers >= requiredPassengerNum:
 			# Color and objective
-			if passengerExactNum || (!passengerExactNum && currentPassengers == requiredPassengerNum):
+			if !passengerExactNum || (passengerExactNum && currentPassengers == requiredPassengerNum):
 				currentColor = Color(0.847, 0.706, 0.0, 1.0)
-				passengersLabel.text = PassengerImage + "[color=white]" + str(currentPassengers) + "/" + str(requiredPassengerNum) + "[font_size=15] (Pick only " + str(requiredPassengerNum) + "!) [/font_size]" +"[/color]"
-			elif !passengerExactNum && currentPassengers > requiredPassengerNum:
+			elif passengerExactNum && currentPassengers > requiredPassengerNum:
 				currentColor = Color(1.0, 0.0, 0.0, 1.0)
 			 
-			#Text
-			if passengerExactNum:
-				passengersLabel.text= PassengerImage + "[color= #" + currentColor.to_html() + "]"  + str(currentPassengers) + "/" + str(requiredPassengerNum) + "[font_size=15] (Pick only " + str(requiredPassengerNum) + "!) [/font_size]" + "[/color]"
-			else:
-				passengersLabel.text= PassengerImage + "[color= #" + currentColor.to_html() + "]"  + str(currentPassengers) + "/" + str(requiredPassengerNum) + "[/color]"
+		#Text
+		if passengerExactNum:
+			passengersLabel.text= PassengerImage + "[color=#" + currentColor.to_html() + "]"  + str(currentPassengers) + "/" + str(requiredPassengerNum) + "[font_size=15] (Pick only " + str(requiredPassengerNum) + "!) [/font_size]" + "[/color]"
+		else:
+			passengersLabel.text= PassengerImage + "[color=#" + currentColor.to_html() + "]"  + str(currentPassengers) + "/" + str(requiredPassengerNum) + "[/color]"
 
 func cargoUpdate() -> void:
+	
+	var currentColor = Color(1 , 1 , 1 , 1)
+	
 	if requiredCargoNum > 0:
+		if currentCargo >= requiredCargoNum:
+			# Color and objective
+			if !cargoExactNum || (cargoExactNum && currentCargo == requiredCargoNum):
+				currentColor = Color(0.847, 0.706, 0.0, 1.0)
+			elif cargoExactNum && currentCargo > requiredCargoNum:
+				currentColor = Color(1.0, 0.0, 0.0, 1.0)
+			 
+		#Text
 		if cargoExactNum:
-			cargoLabel.text = CargoImage + "[color=white]" + str(currentCargo) + "/" + str(requiredCargoNum) + "[font_size=15] (Pick only " + str(requiredCargoNum) + "!) [/font_size]" +"[/color]"
+			cargoLabel.text= CargoImage + "[color=#" + currentColor.to_html() + "]"  + str(currentCargo) + "/" + str(requiredCargoNum) + "[font_size=15] (Pick only " + str(requiredCargoNum) + "!) [/font_size]" + "[/color]"
 		else:
-			cargoLabel.text = CargoImage + "[color=white]" + str(currentCargo) + "/" + str(requiredCargoNum) + "[/color]"
-		
+			cargoLabel.text= CargoImage + "[color=#" + currentColor.to_html() + "]"  + str(currentCargo) + "/" + str(requiredCargoNum) + "[/color]"
