@@ -14,8 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://bfvpnfslgx6nr" path="res://Assets/Sprites/TrainCarSpriteSheet.png" id="6_khr6i"]
 [ext_resource type="Texture2D" uid="uid://dcasdulikgnlj" path="res://Assets/Sprites/Passengers.png" id="7_mnmct"]
 [ext_resource type="Texture2D" uid="uid://pj3jaxkp6p0u" path="res://Assets/Sprites/Station.png" id="8_31yle"]
+[ext_resource type="Texture2D" uid="uid://bf6pkdkg4mrwp" path="res://Assets/Sprites/TrackSwitch.png" id="10_33y7k"]
 [ext_resource type="PackedScene" uid="uid://6k3g6fgr26eh" path="res://Scenes/cargo.tscn" id="10_dnyrp"]
 [ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="14_061ob"]
+[ext_resource type="Script" uid="uid://d1c64slyc1qyx" path="res://Scripts/mixed_rails_collider.gd" id="16_khr6i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eb5oh"]
 texture = ExtResource("1_eb4ip")
@@ -149,6 +151,13 @@ texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
 2:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mnmct"]
+texture = ExtResource("10_33y7k")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_ipr37"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_oteb1")
@@ -158,6 +167,7 @@ sources/3 = SubResource("TileSetAtlasSource_x7vre")
 sources/4 = SubResource("TileSetAtlasSource_lhrhx")
 sources/5 = SubResource("TileSetAtlasSource_iw2e1")
 sources/6 = SubResource("TileSetAtlasSource_p0l4d")
+sources/7 = SubResource("TileSetAtlasSource_mnmct")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hckno"]
 texture = ExtResource("7_mnmct")
@@ -284,6 +294,9 @@ obstaclesMap = NodePath("../../Obstacles")
 wallsMap = NodePath("../../Wall")
 passegersMap = NodePath("../../PassengersSprites")
 train = NodePath("..")
+
+[node name="MixedRails" type="Node2D" parent="Train" unique_id=1935318724]
+script = ExtResource("16_khr6i")
 
 [node name="PassengersSprites" type="TileMapLayer" parent="." unique_id=293032404]
 z_index = 3

@@ -14,8 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://bfvpnfslgx6nr" path="res://Assets/Sprites/TrainCarSpriteSheet.png" id="7_anjjd"]
 [ext_resource type="Texture2D" uid="uid://dcasdulikgnlj" path="res://Assets/Sprites/Passengers.png" id="8_ocbj8"]
 [ext_resource type="Texture2D" uid="uid://pj3jaxkp6p0u" path="res://Assets/Sprites/Station.png" id="9_r8neg"]
+[ext_resource type="Texture2D" uid="uid://bf6pkdkg4mrwp" path="res://Assets/Sprites/TrackSwitch.png" id="10_ocbj8"]
 [ext_resource type="PackedScene" uid="uid://6k3g6fgr26eh" path="res://Scenes/cargo.tscn" id="11_rcyh2"]
 [ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="15_341pv"]
+[ext_resource type="Script" uid="uid://d1c64slyc1qyx" path="res://Scripts/mixed_rails_collider.gd" id="16_r8neg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wnlxl"]
 texture = ExtResource("1_x1k1j")
@@ -149,6 +151,13 @@ texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
 2:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rcyh2"]
+texture = ExtResource("10_ocbj8")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_d0d85"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_wvd0d")
@@ -158,6 +167,7 @@ sources/3 = SubResource("TileSetAtlasSource_teul3")
 sources/4 = SubResource("TileSetAtlasSource_6qnit")
 sources/5 = SubResource("TileSetAtlasSource_e4pux")
 sources/6 = SubResource("TileSetAtlasSource_isixn")
+sources/7 = SubResource("TileSetAtlasSource_rcyh2")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ykav4"]
 texture = ExtResource("8_ocbj8")
@@ -284,6 +294,9 @@ obstaclesMap = NodePath("../../Obstacles")
 wallsMap = NodePath("../../Wall")
 passegersMap = NodePath("../../PassengersTracks")
 train = NodePath("..")
+
+[node name="MixedRails" type="Node2D" parent="Train" unique_id=2010091035]
+script = ExtResource("16_r8neg")
 
 [node name="PassengersSprites" type="TileMapLayer" parent="." unique_id=1147458278]
 z_index = 3

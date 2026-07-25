@@ -282,7 +282,7 @@ func onLever() -> bool :
 	if textureAtlas != Vector2i(5,0):
 		return false
 	
-	EventBus.emit("pullLever", [currTile, 5])
+	if not isCargo: EventBus.emit("pullLever", [currTile, 7])
 	return true
 
 func createCargo() -> void:
@@ -352,12 +352,12 @@ func explode() -> void:
 	exploded = true
 	print("EXPLODE")
 	if myCargo:
-		var timer = get_tree().create_timer(0.15)
-		timer.timeout.connect(myCargo.explode)
+		await get_tree().create_timer(0.15).timeout
+		myCargo.explode()
 	else:
-		var restartTimer = get_tree().create_timer(1.0)
+		await get_tree().create_timer(1).timeout
 		get_tree().set_meta("from_restart", true)
 		EventBus.emit("exit_pause")
 		EventBus.emit("play_transition", ["restart_animation"])
 		await get_tree().create_timer(1).timeout
-		restartTimer.timeout.connect(get_tree().reload_current_scene)
+		get_tree().reload_current_scene()
