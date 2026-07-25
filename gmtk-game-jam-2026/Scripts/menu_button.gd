@@ -7,5 +7,8 @@ func _ready():
 
 func _back():
 	get_tree().paused = false
-	get_tree().change_scene_to_file(menu_path)
 	EventBus.emit("exit_pause")
+	get_tree().set_meta("from_pause", true)
+	EventBus.emit("play_transition", ["level_transition"])
+	await get_tree().create_timer(1).timeout
+	get_tree().change_scene_to_file(menu_path)
