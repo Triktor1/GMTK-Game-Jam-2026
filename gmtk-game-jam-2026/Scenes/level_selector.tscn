@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://h0cty0irlsra"]
 
 [ext_resource type="PackedScene" uid="uid://gh7r11pciatg" path="res://Scenes/Objects/level_button.tscn" id="1_22lal"]
+[ext_resource type="Script" uid="uid://bvu3px7x3mwig" path="res://Scenes/level_selector.gd" id="1_t6kw3"]
 [ext_resource type="Script" uid="uid://jwpytl1sb417" path="res://Scripts/container_tween.gd" id="1_yk0gq"]
 [ext_resource type="Script" uid="uid://fsp2tku0qxj5" path="res://Scripts/menu_button.gd" id="2_x3xpc"]
 [ext_resource type="Script" uid="uid://xiow4n8f6cmo" path="res://Scripts/button_effects_component.gd" id="4_b8t80"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_t6kw3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1507128057]
 

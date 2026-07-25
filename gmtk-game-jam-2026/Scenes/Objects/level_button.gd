@@ -10,6 +10,7 @@ const LEVEL_5:String="res://Scenes/Levels/level_5.tscn"
 
 
 func _ready() -> void:
+	grab_focus()
 	pressed.connect(_load_scene)
 
 

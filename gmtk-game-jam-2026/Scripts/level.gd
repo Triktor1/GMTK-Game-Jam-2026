@@ -16,6 +16,7 @@ func _input(event: InputEvent) -> void:
 func _unhandled_input(event):
 	if event.is_action_pressed("Pause"):
 		pause_menu.visible = !pause_menu.visible
+		$pause_menu/VBoxContainer/ResumeButton.grab_focus()
 		if pause_menu.visible:
 			EventBus.emit("pause_game")
 			get_tree().paused = true

@@ -14,6 +14,11 @@ var tween: Tween
 func _ready() -> void:
 	button.mouse_entered.connect(_on_mouse_hovered.bind(true))
 	button.mouse_exited.connect(_on_mouse_hovered.bind(false))
+	
+	#teclas 
+	button.focus_entered.connect(_on_mouse_hovered.bind(true))
+	button.focus_exited.connect(_on_mouse_hovered.bind(false))
+	
 	button.pivot_offset_ratio = Vector2(0.5, 0.5)
 
 func _on_mouse_hovered(hovered: bool) -> void:
@@ -23,6 +28,7 @@ func _on_mouse_hovered(hovered: bool) -> void:
 	tween.tween_property(button, "rotation_degrees",
 		rotation_amount * [-1, 1].pick_random() if hovered else 0.0, duration).from(0)
 
+	
 func reset_tween() -> void:
 	if tween:
 		tween.kill()
