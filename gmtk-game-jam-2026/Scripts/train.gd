@@ -6,6 +6,7 @@ extends Node2D
 @export var tilemapTracks: TileMapLayer
 @export var tilemapCargos: TileMapLayer
 @export var tilemapLevers: TileMapLayer
+@export var tilemapPassengers: TileMapLayer
 @export var cargo: PackedScene
 @export var sprite: Node
 @export var isCargo: bool

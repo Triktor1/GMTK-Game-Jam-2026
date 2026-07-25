@@ -1,6 +1,7 @@
 extends Node2D
 @export var obstaclesMap: TileMapLayer
 @export var wallsMap:TileMapLayer
+@export var passegersMap:TileMapLayer
 @export var train: Node2D
 
 var storedTile : TileData
