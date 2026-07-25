@@ -9,6 +9,10 @@ func _ready()->void:
 		await get_tree().process_frame
 		EventBus.emit("play_transition", ["restart_animation_out"])
 		get_tree().remove_meta("from_restart")
+	elif get_tree().has_meta("from_level"):
+		await get_tree().process_frame
+		EventBus.emit("play_transition", ["level_transition_out"])
+		get_tree().remove_meta("from_level")
 
 func _on_resume_requested():
 	pause_menu.visible = false
