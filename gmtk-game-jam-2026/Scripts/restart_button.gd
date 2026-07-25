@@ -7,3 +7,4 @@ func _restart():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 	EventBus.emit("exit_pause")
+	EventBus.emit("play_transition", ["restart_animation"])
