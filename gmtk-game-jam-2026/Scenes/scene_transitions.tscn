@@ -263,7 +263,6 @@ offset_right = 1160.0
 offset_bottom = 870.0
 texture = SubResource("GradientTexture2D_lecgh")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=991900625 node_paths=PackedStringArray("texture")]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=991900625]
 libraries/ = SubResource("AnimationLibrary_ls13d")
 script = ExtResource("2_bc1jf")
-texture = NodePath("../TextureRect")
