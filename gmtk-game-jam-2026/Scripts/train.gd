@@ -9,6 +9,7 @@ extends Node2D
 @export var sprite: Node
 @export var isCargo: bool
 
+var lastTile: Vector2i
 var currTile: Vector2i
 var nextTile: Vector2i
 var saveDir: Vector2i
@@ -21,7 +22,7 @@ var NextVia = true
 var exploded = false
 var wthoutTracks = false
 var myCargo: Node2D
-var coronavirusSafetyDistance: float = 20
+var coronavirusSafetyDistance: float = 27
 
 func _ready() -> void:
 	if !isCargo:
@@ -29,6 +30,7 @@ func _ready() -> void:
 		EventBus.connect_signal("withoutTracks", noT)
 	currTile = iniTilePos
 	currDir = direction
+	lastTile=currTile
 	lastDir = currDir
 	nextTile = currTile + currDir
 	canChangeDir = true
@@ -63,12 +65,13 @@ func _process(delta: float) -> void:
 	# Allow the player to change direction
 	# Allow to put the next track
 	if distanceNext < fixDistance:
+		lastTile = currTile
 		currTile = nextTile
-		canChangeDir = true
 		nextTile = currTile + currDir
+		canChangeDir = true
 		if not onTrack():
 			NextVia = true
-			changeDir(saveDir)
+			changeDir(saveDir) #Edita nextTile si cambia la dirección
 		if not exploded: onCargo()
 	
 	#We can change direction if we arrive the new tile or
@@ -273,16 +276,30 @@ func createCargo() -> void:
 	#regardless of whether it goes past the center or falls a little short
 	#So, we want to place the cargo on the Tile before with some fixed distance
 	var Offset: Vector2 = Vector2(0,0)
+	var closerTile: Vector2i = Vector2i(0,0)
+	if global_position.distance_to(tilemapTracks.map_to_local(currTile)) > global_position.distance_to(tilemapTracks.map_to_local(nextTile)):
+		closerTile = nextTile
+	else: closerTile = currTile
 	
-	if lastDir.x > 0: Offset.x = -tilemapTracks.map_to_local(currTile).distance_to(global_position)
-	elif lastDir.x < 0: Offset.x = tilemapTracks.map_to_local(currTile).distance_to(global_position)
-	elif lastDir.y > 0: Offset.y = -tilemapTracks.map_to_local(currTile).distance_to(global_position)
-	elif lastDir.y < 0: Offset.y = tilemapTracks.map_to_local(currTile).distance_to(global_position)
+	if lastDir.x > 0: Offset.x = -tilemapTracks.map_to_local(closerTile).distance_to(global_position)
+	elif lastDir.x < 0: Offset.x = tilemapTracks.map_to_local(closerTile).distance_to(global_position)
+	elif lastDir.y > 0: Offset.y = -tilemapTracks.map_to_local(closerTile).distance_to(global_position)
+	elif lastDir.y < 0: Offset.y = tilemapTracks.map_to_local(closerTile).distance_to(global_position)
 	
-	myCargo.iniTilePos = currTile-lastDir
+	if isCargo:
+		if global_position.distance_to(tilemapTracks.map_to_local(currTile)) > global_position.distance_to(tilemapTracks.map_to_local(nextTile)):
+			closerTile = currTile
+		else: closerTile = currTile
+	
+	if lastDir.x > 0: Offset.x = tilemapTracks.map_to_local(closerTile).distance_to(global_position)
+	elif lastDir.x < 0: Offset.x = -tilemapTracks.map_to_local(closerTile).distance_to(global_position)
+	elif lastDir.y > 0: Offset.y = tilemapTracks.map_to_local(closerTile).distance_to(global_position)
+	elif lastDir.y < 0: Offset.y = -tilemapTracks.map_to_local(closerTile).distance_to(global_position)
+	
+	myCargo.iniTilePos = lastTile
 	myCargo.iniPosOffset = Offset
-	
 	get_parent().add_child(myCargo)
+	
 
 func explode() -> void:
 	currDir = Vector2i(0,0)
