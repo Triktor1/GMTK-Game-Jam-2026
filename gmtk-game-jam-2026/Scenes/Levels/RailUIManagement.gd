@@ -8,7 +8,7 @@ extends Control
 @export var cargoLabel : RichTextLabel
 
 @export var railUiIm : Texture
-@export var reachEndIm : Texture
+@export var reachEndUiIm : Texture
 @export var passengerUiIm : Texture
 @export var cargoUiIm : Texture
 
@@ -50,9 +50,11 @@ func _ready() ->void:
 	EventBus.connect_signal("CargoPicked" , cargoPicked)
 	
 	RailImage = "[img=64x64]" + railUiIm.resource_path + "[/img]"
+	ReachEndImage = "[img=32x32]" + reachEndUiIm.resource_path + "[/img]"
 	PassengerImage = "[img=32x32]" + passengerUiIm.resource_path + "[/img]"
 	CargoImage = "[img=32x32]" + cargoUiIm.resource_path + "[/img]"
 	
+	reachEndLabel.text = ReachEndImage + "[color=#white]" + "Reach the end!" + "[/color]"
 	passengerUpdate()
 	cargoUpdate()
 	
@@ -77,6 +79,7 @@ func railPlaced()-> void:
 func reachedEnd () -> void:
 	if ReachEndObjective:
 		ReachEndComplete = true
+		reachEndLabel.text = ReachEndImage + "[color=#" + Color(0.847, 0.706, 0.0, 1.0).to_html()  + "]"+ "Reach the end!" + "[/color]"
 		checkObjectives()
 
 func passengerPicked( passengerNum : int) -> void:

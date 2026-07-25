@@ -20,7 +20,7 @@ reachEndLabel = NodePath("levelUI/ReachEndLabel")
 passengersLabel = NodePath("levelUI/PassengerLabel")
 cargoLabel = NodePath("levelUI/CargoLabel")
 railUiIm = ExtResource("2_u4a2s")
-reachEndIm = ExtResource("2_u4a2s")
+reachEndUiIm = ExtResource("2_u4a2s")
 passengerUiIm = ExtResource("3_2qe5m")
 cargoUiIm = ExtResource("3_2qe5m")
 railNum = 20
@@ -47,7 +47,7 @@ target_property = "text"
 [node name="ReachEndLabel" type="RichTextLabel" parent="levelUI" unique_id=84507185 node_paths=PackedStringArray("target")]
 offset_left = 19.0
 offset_top = 32.0
-offset_right = 230.0
+offset_right = 305.585
 offset_bottom = 107.0
 pivot_offset = Vector2(105.5, 37.5)
 theme_override_font_sizes/normal_font_size = 30
@@ -61,7 +61,7 @@ rot_degrees = 0
 [node name="PassengerLabel" type="RichTextLabel" parent="levelUI" unique_id=387309645 node_paths=PackedStringArray("target")]
 offset_left = 19.0
 offset_top = 111.0
-offset_right = 230.0
+offset_right = 305.585
 offset_bottom = 186.0
 pivot_offset = Vector2(105.5, 37.5)
 theme_override_font_sizes/normal_font_size = 30
@@ -75,7 +75,7 @@ rot_degrees = 0
 [node name="CargoLabel" type="RichTextLabel" parent="levelUI" unique_id=1978236909 node_paths=PackedStringArray("target")]
 offset_left = 19.0
 offset_top = 180.48001
-offset_right = 230.0
+offset_right = 305.585
 offset_bottom = 255.48013
 pivot_offset = Vector2(105.5, 37.500057)
 theme_override_font_sizes/normal_font_size = 30
