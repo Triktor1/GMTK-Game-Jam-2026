@@ -356,4 +356,8 @@ func explode() -> void:
 		timer.timeout.connect(myCargo.explode)
 	else:
 		var restartTimer = get_tree().create_timer(1.0)
-		restartTimer.timeout.connect(get_parent().get_tree().reload_current_scene)
+		get_tree().set_meta("from_restart", true)
+		EventBus.emit("exit_pause")
+		EventBus.emit("play_transition", ["restart_animation"])
+		await get_tree().create_timer(1).timeout
+		restartTimer.timeout.connect(get_tree().reload_current_scene)

@@ -330,5 +330,4 @@ mouse_filter = 2
 
 [node name="pause_menu" parent="." unique_id=1039053309 instance=ExtResource("5_cyadu")]
 process_mode = 3
-layer = 2
 visible = false

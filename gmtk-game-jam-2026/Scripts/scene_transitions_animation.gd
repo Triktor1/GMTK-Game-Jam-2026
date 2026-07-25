@@ -4,9 +4,9 @@ extends AnimationPlayer
 func _ready() -> void:
 	EventBus.connect_signal("play_transition", _playAnim)
 
-func _playAnim(name: StringName)->void:
+func _playAnim(animName: StringName)->void:
 	get_parent().visible = true
-	play(name)
+	play(animName)
 
-func _on_animation_finished(anim_name: StringName) -> void:
+func _on_animation_finished(_anim_name: StringName) -> void:
 	get_parent().visible = false
