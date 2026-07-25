@@ -288,7 +288,7 @@ func explode() -> void:
 	currDir = Vector2i(0,0)
 	sprite.stop()
 	exploded = true
-	print("EXPLODE")	
+	print("EXPLODE")
 	if myCargo:
 		var timer = get_tree().create_timer(0.15)
 		timer.timeout.connect(myCargo.explode)
