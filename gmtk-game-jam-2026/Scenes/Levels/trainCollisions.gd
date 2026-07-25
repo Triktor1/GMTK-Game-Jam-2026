@@ -59,8 +59,8 @@ func erasePassengers(tile: Vector2i) -> void:
 	if passegersMap.get_cell_tile_data(tile+Vector2i(3,0)): 
 		passegersMap.erase_cell(tile+Vector2i(3,0))
 		count+=1
-	if passegersMap.get_cell_tile_data(tile+Vector2i(-3,0)): 
-		passegersMap.erase_cell(tile+Vector2i(-3,0))
+	if passegersMap.get_cell_tile_data(tile+Vector2i(-1,0)): 
+		passegersMap.erase_cell(tile+Vector2i(-1,0))
 		count+=1
 	if passegersMap.get_cell_tile_data(tile+Vector2i(1,2)): 
 		passegersMap.erase_cell(tile+Vector2i(1,2))
@@ -79,22 +79,22 @@ func erasePassengers(tile: Vector2i) -> void:
 	if passegersMap.get_cell_tile_data(tile+Vector2i(0,3)): 
 		passegersMap.erase_cell(tile+Vector2i(0,3))
 		count+=1
-	if passegersMap.get_cell_tile_data(tile+Vector2i(0,-3)): 
-		passegersMap.erase_cell(tile+Vector2i(0,-3))
+	if passegersMap.get_cell_tile_data(tile+Vector2i(0,-1)): 
+		passegersMap.erase_cell(tile+Vector2i(0,-1))
 		count+=1
 	
 	
-	if passegersMap.get_cell_tile_data(tile+Vector2i(2,0)): 
+	if passegersMap.get_cell_tile_data(tile+Vector2i(3,1)): 
 		passegersMap.erase_cell(tile+Vector2i(3,1))
 		count+=1
-	if passegersMap.get_cell_tile_data(tile+Vector2i(-2,0)): 
-		passegersMap.erase_cell(tile+Vector2i(-3,1))
+	if passegersMap.get_cell_tile_data(tile+Vector2i(-1,1)): 
+		passegersMap.erase_cell(tile+Vector2i(-1,1))
 		count+=1
-	if passegersMap.get_cell_tile_data(tile+Vector2i(0,3)): 
+	if passegersMap.get_cell_tile_data(tile+Vector2i(1,3)): 
 		passegersMap.erase_cell(tile+Vector2i(1,3))
 		count+=1
-	if passegersMap.get_cell_tile_data(tile+Vector2i(1,-3)): 
-		passegersMap.erase_cell(tile+Vector2i(1,-3))
+	if passegersMap.get_cell_tile_data(tile+Vector2i(1,-1)): 
+		passegersMap.erase_cell(tile+Vector2i(1,-1))
 		count+=1
 	
 	EventBus.emit("newPassengers", [count])
