@@ -284,6 +284,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="ColorRect" parent="." unique_id=1467914890]
+process_mode = 3
 material = SubResource("ShaderMaterial_igsj5")
 layout_mode = 0
 offset_top = -290.0
