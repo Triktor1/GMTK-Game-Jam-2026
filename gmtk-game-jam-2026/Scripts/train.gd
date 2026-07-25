@@ -167,8 +167,8 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 	if not NextVia: return
 	
 	var tile_data = tilemapTracks.get_cell_tile_data(tile)
-	if not tile_data: tile_data = tilemapCargos.get_cell_tile_data(tile)
-	if not tile_data: tile_data = tilemapLevers.get_cell_tile_data(tile)
+	if not tile_data and tilemapCargos: tile_data = tilemapCargos.get_cell_tile_data(tile)
+	if not tile_data and tilemapLevers: tile_data = tilemapLevers.get_cell_tile_data(tile)
 	
 	if !tile_data or replace:
 		if wthoutTracks:
@@ -204,11 +204,11 @@ func onTrack() -> bool :
 	var tile_data = tile_map.get_cell_tile_data(currTile)
 	if not tile_data:
 		tile_map = tilemapCargos
-		tile_data = tile_map.get_cell_tile_data(currTile)
+		if tile_map: tile_data = tile_map.get_cell_tile_data(currTile)
 		
 		if not tile_data:
 			tile_map = tilemapLevers
-			tile_data = tile_map.get_cell_tile_data(currTile)
+			if tile_map: tile_data = tile_map.get_cell_tile_data(currTile)
 			
 		if not tile_data : return false
 		
@@ -251,6 +251,7 @@ func onTrack() -> bool :
 	return true
 
 func onCargo() -> bool :
+	if not tilemapCargos: return false
 	#If there´s a cargo, we erase the tile and instantiate the cargo
 	#return otherwise
 	var tile_data = tilemapCargos.get_cell_tile_data(currTile)
@@ -266,6 +267,8 @@ func onCargo() -> bool :
 	return true
 
 func onLever() -> bool :
+	if not tilemapLevers: return false
+	
 	var tile_data = tilemapLevers.get_cell_tile_data(currTile)
 	if not tile_data: return false
 	
