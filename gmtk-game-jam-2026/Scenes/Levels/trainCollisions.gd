@@ -5,7 +5,7 @@ extends Node2D
 @export var train: Node2D
 
 var storedTile : TileData
-
+var exploded: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	EventBus.connect_signal("getCargo", eraseAdyacentObstacle)
@@ -123,5 +123,7 @@ func pullAdyacentLever(tile: Vector2i, id: int) -> void:
 						train.tilemapTracks.set_cell(cell, 0, Vector2i(11,0), alt)
 
 func tileEvent() -> void:
-	EventBus.emit("explode", [])
+	if !exploded:
+		exploded = true
+		EventBus.emit("explode", [])
 	print ("Executing tile event")
