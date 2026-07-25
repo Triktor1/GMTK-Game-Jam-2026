@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://ckatcq3ckytgb"]
 
+[ext_resource type="Script" uid="uid://bm5x1yyotsxo4" path="res://Scripts/win_scene.gd" id="1_2tg22"]
 [ext_resource type="Script" uid="uid://jwpytl1sb417" path="res://Scripts/container_tween.gd" id="1_b5jpj"]
 [ext_resource type="Script" uid="uid://xiow4n8f6cmo" path="res://Scripts/button_effects_component.gd" id="1_hea1w"]
 [ext_resource type="Script" uid="uid://fsp2tku0qxj5" path="res://Scripts/menu_button.gd" id="2_b5jpj"]
+[ext_resource type="Script" uid="uid://d26jf20q7pedt" path="res://Scripts/next_level_button.gd" id="2_knexo"]
 
 [node name="WinScene" type="Control" unique_id=64850322]
 layout_mode = 3
@@ -11,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2tg22")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=233865395]
 scale = Vector2(0.5, 0.5)
@@ -49,6 +52,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Next level"
+script = ExtResource("2_knexo")
 
 [node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/VBoxContainer/NextLevelButton" unique_id=774523518]
 script = ExtResource("1_hea1w")
