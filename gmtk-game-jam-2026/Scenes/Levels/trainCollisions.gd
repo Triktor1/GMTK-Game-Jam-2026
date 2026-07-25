@@ -10,14 +10,13 @@ var storedTile : TileData
 func _ready() -> void:
 	EventBus.connect_signal("getCargo", eraseAdyacentObstacle)
 	EventBus.connect_signal("pullLever", pullAdyacentLever)
-	pass # Replace with function body.
+	EventBus.connect_signal("getPassenger", erasePassengers)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	checkIfInsideTile()
 	pass
-
 
 func checkIfInsideTile() ->void:
 	var currentTile = obstaclesMap.local_to_map(obstaclesMap.to_local(train.global_position))
@@ -33,10 +32,73 @@ func checkIfInsideTile() ->void:
 	storedTile = tileData
 	
 func eraseAdyacentObstacle(tile: Vector2i, id: int) -> void:
+	if not obstaclesMap: return
 	if obstaclesMap.get_cell_tile_data(tile+Vector2i(1,0)): if obstaclesMap.get_cell_source_id(tile+Vector2i(1,0)) == id: obstaclesMap.erase_cell(tile+Vector2i(1,0))
 	if obstaclesMap.get_cell_tile_data(tile+Vector2i(-1,0)): if obstaclesMap.get_cell_source_id(tile+Vector2i(-1,0)) == id: obstaclesMap.erase_cell(tile+Vector2i(-1,0))
 	if obstaclesMap.get_cell_tile_data(tile+Vector2i(0,1)): if obstaclesMap.get_cell_source_id(tile+Vector2i(0,1)) == id: obstaclesMap.erase_cell(tile+Vector2i(0,1))
 	if obstaclesMap.get_cell_tile_data(tile+Vector2i(0,-1)): if obstaclesMap.get_cell_source_id(tile+Vector2i(0,-1)) == id: obstaclesMap.erase_cell(tile+Vector2i(0,-1))
+func erasePassengers(tile: Vector2i) -> void:
+	if not passegersMap: return
+	tile = tile*2
+	var count: int = 0
+	
+	if passegersMap.get_cell_tile_data(tile+Vector2i(2,0)): 
+		passegersMap.erase_cell(tile+Vector2i(2,0))
+		count+=1
+	if passegersMap.get_cell_tile_data(tile+Vector2i(-2,0)): 
+		passegersMap.erase_cell(tile+Vector2i(-2,0))
+		count+=1
+	if passegersMap.get_cell_tile_data(tile+Vector2i(0,2)): 
+		passegersMap.erase_cell(tile+Vector2i(0,2))
+		count+=1
+	if passegersMap.get_cell_tile_data(tile+Vector2i(0,-2)): 
+		passegersMap.erase_cell(tile+Vector2i(0,-2))
+		count+=1
+	
+	
+	if passegersMap.get_cell_tile_data(tile+Vector2i(3,0)): 
+		passegersMap.erase_cell(tile+Vector2i(3,0))
+		count+=1
+	if passegersMap.get_cell_tile_data(tile+Vector2i(-3,0)): 
+		passegersMap.erase_cell(tile+Vector2i(-3,0))
+		count+=1
+	if passegersMap.get_cell_tile_data(tile+Vector2i(1,2)): 
+		passegersMap.erase_cell(tile+Vector2i(1,2))
+		count+=1
+	if passegersMap.get_cell_tile_data(tile+Vector2i(1,-2)): 
+		passegersMap.erase_cell(tile+Vector2i(1,-2))
+		count+=1
+	
+	
+	if passegersMap.get_cell_tile_data(tile+Vector2i(2,1)): 
+		passegersMap.erase_cell(tile+Vector2i(2,1))
+		count+=1
+	if passegersMap.get_cell_tile_data(tile+Vector2i(-2,1)): 
+		passegersMap.erase_cell(tile+Vector2i(-2,1))
+		count+=1
+	if passegersMap.get_cell_tile_data(tile+Vector2i(0,3)): 
+		passegersMap.erase_cell(tile+Vector2i(0,3))
+		count+=1
+	if passegersMap.get_cell_tile_data(tile+Vector2i(0,-3)): 
+		passegersMap.erase_cell(tile+Vector2i(0,-3))
+		count+=1
+	
+	
+	if passegersMap.get_cell_tile_data(tile+Vector2i(2,0)): 
+		passegersMap.erase_cell(tile+Vector2i(3,1))
+		count+=1
+	if passegersMap.get_cell_tile_data(tile+Vector2i(-2,0)): 
+		passegersMap.erase_cell(tile+Vector2i(-3,1))
+		count+=1
+	if passegersMap.get_cell_tile_data(tile+Vector2i(0,3)): 
+		passegersMap.erase_cell(tile+Vector2i(1,3))
+		count+=1
+	if passegersMap.get_cell_tile_data(tile+Vector2i(1,-3)): 
+		passegersMap.erase_cell(tile+Vector2i(1,-3))
+		count+=1
+	
+	EventBus.emit("newPassengers", [count])
+	print(count)
 
 func pullAdyacentLever(tile: Vector2i, id: int) -> void:
 	var directions = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]

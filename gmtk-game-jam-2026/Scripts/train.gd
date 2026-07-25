@@ -77,6 +77,7 @@ func _process(delta: float) -> void:
 		if not exploded:
 			onLever()
 			onCargo()
+			onPassenger()
 	
 	#We can change direction if we arrive the new tile or
 	#if we are some fixed distance away
@@ -170,6 +171,7 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 	var tile_data = tilemapTracks.get_cell_tile_data(tile)
 	if not tile_data and tilemapCargos: tile_data = tilemapCargos.get_cell_tile_data(tile)
 	if not tile_data and tilemapLevers: tile_data = tilemapLevers.get_cell_tile_data(tile)
+	if not tile_data and tilemapPassengers: tile_data = tilemapPassengers.get_cell_tile_data(tile)
 	
 	if !tile_data or replace:
 		if wthoutTracks:
@@ -206,12 +208,14 @@ func onTrack() -> bool :
 	if not tile_data:
 		tile_map = tilemapCargos
 		if tile_map: tile_data = tile_map.get_cell_tile_data(currTile)
-		
 		if not tile_data:
 			tile_map = tilemapLevers
 			if tile_map: tile_data = tile_map.get_cell_tile_data(currTile)
-			
-		if not tile_data : return false
+			if not tile_data :
+				tile_map = tilemapPassengers
+				if tile_map: tile_data = tile_map.get_cell_tile_data(currTile)
+				if not tile_data :
+					return false
 		
 	var i := 0
 	while i < get_child_count():
@@ -326,6 +330,21 @@ func createCargo() -> void:
 	myCargo.iniPosOffset = Offset
 	get_parent().add_child(myCargo)
 	
+
+func onPassenger() -> bool:
+	if not tilemapPassengers: return false
+	#If there´s a passenger, we erase the passenger
+	#return otherwise
+	var tile_data = tilemapPassengers.get_cell_tile_data(currTile)
+	if not tile_data: return false
+	
+	var textureAtlas = tilemapPassengers.get_cell_atlas_coords(currTile)
+	var degrees: int = tilemapPassengers.get_cell_alternative_tile(currTile)
+	tilemapPassengers.erase_cell(currTile)
+	EventBus.emit("getPassenger", [currTile])
+	tilemapTracks.set_cell(currTile, 0, textureAtlas, degrees)
+	
+	return true
 
 func explode() -> void:
 	currDir = Vector2i(0,0)
