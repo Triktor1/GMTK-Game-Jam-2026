@@ -21,8 +21,8 @@ cargoLabel = NodePath("levelUI/CargoLabel")
 railUiIm = ExtResource("2_u4a2s")
 passengerUiIm = ExtResource("3_2qe5m")
 cargoUiIm = ExtResource("3_2qe5m")
-passengerExactNum = true
-requiredPassengerNum = 10
+railNum = 20
+requiredPassengerNum = 2
 requiredCargoNum = 10
 
 [node name="levelUI" type="CanvasLayer" parent="." unique_id=2066591075]
@@ -45,17 +45,27 @@ offset_left = 19.0
 offset_top = 16.0
 offset_right = 230.0
 offset_bottom = 91.0
+pivot_offset = Vector2(105.5, 37.5)
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
+text = "a"
+vertical_alignment = 1
 script = ExtResource("2_4mllq")
 target = NodePath(".")
+target_property = "text"
+rot_degrees = 0
 
 [node name="CargoLabel" type="RichTextLabel" parent="levelUI" unique_id=1978236909 node_paths=PackedStringArray("target")]
 offset_left = 19.0
-offset_top = 104.0
+offset_top = 85.48
 offset_right = 230.0
-offset_bottom = 179.0
+offset_bottom = 160.48012
+pivot_offset = Vector2(105.5, 37.5)
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
+text = "a"
+vertical_alignment = 1
 script = ExtResource("2_4mllq")
 target = NodePath(".")
+target_property = "text"
+rot_degrees = 0
