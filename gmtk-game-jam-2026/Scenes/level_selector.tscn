@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://jwpytl1sb417" path="res://Scripts/container_tween.gd" id="1_yk0gq"]
 [ext_resource type="Script" uid="uid://fsp2tku0qxj5" path="res://Scripts/menu_button.gd" id="2_x3xpc"]
 [ext_resource type="Script" uid="uid://xiow4n8f6cmo" path="res://Scripts/button_effects_component.gd" id="4_b8t80"]
+[ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="6_g3msu"]
 
 [node name="LevelSelector" type="Control" unique_id=78686125]
 layout_mode = 3
@@ -78,3 +79,20 @@ menu_path = "uid://chd1e6tufoex6"
 [node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/MainMenuButton" unique_id=570779540]
 script = ExtResource("4_b8t80")
 metadata/_custom_type_script = "uid://xiow4n8f6cmo"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=2049653688]
+layer = 2
+scale = Vector2(1.34, 1.34)
+transform = Transform2D(1.34, 0, 0, 1.34, 0, 0)
+follow_viewport_enabled = true
+
+[node name="SceneTransitions" parent="CanvasLayer2" unique_id=1497086813 instance=ExtResource("6_g3msu")]
+visible = false
+z_index = 10
+offset_left = -474.62686
+offset_top = -140.29851
+offset_right = -1031.0713
+offset_bottom = -453.29852
+scale = Vector2(0.78, 0.78)
+offset_transform_position = Vector2(340, 0)
+mouse_filter = 2
