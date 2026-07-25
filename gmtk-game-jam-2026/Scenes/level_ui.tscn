@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dwkfpwdltk1n7" path="res://Scenes/Levels/RailUIManagement.gd" id="1_gw16p"]
 [ext_resource type="Script" uid="uid://jdsuucorsaiy" path="res://Scripts/auto_tween_property.gd" id="2_4mllq"]
+[ext_resource type="Texture2D" uid="uid://bglv13pagck8y" path="res://Assets/Placeholders/RailUI.png" id="2_u4a2s"]
+[ext_resource type="Texture2D" uid="uid://dqq14cn4olh4d" path="res://Assets/Placeholders/PassengerUI.png" id="3_2qe5m"]
 
-[node name="LevelUI" type="Control" unique_id=1736655561 node_paths=PackedStringArray("railLabel")]
+[node name="LevelUI" type="Control" unique_id=1736655561 node_paths=PackedStringArray("railLabel", "passengersLabel", "cargoLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,11 +15,19 @@ offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gw16p")
-railLabel = NodePath("levelUI/Label")
+railLabel = NodePath("levelUI/RailLabel")
+passengersLabel = NodePath("levelUI/PassengerLabel")
+cargoLabel = NodePath("levelUI/CargoLabel")
+railUiIm = ExtResource("2_u4a2s")
+passengerUiIm = ExtResource("3_2qe5m")
+cargoUiIm = ExtResource("3_2qe5m")
+passengerExactNum = true
+requiredPassengerNum = 10
+requiredCargoNum = 10
 
 [node name="levelUI" type="CanvasLayer" parent="." unique_id=2066591075]
 
-[node name="Label" type="RichTextLabel" parent="levelUI" unique_id=90153445 node_paths=PackedStringArray("target")]
+[node name="RailLabel" type="RichTextLabel" parent="levelUI" unique_id=90153445]
 offset_left = 928.0
 offset_top = 14.0
 offset_right = 1112.0
@@ -28,5 +38,24 @@ bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_4mllq")
-target = NodePath("")
 target_property = "text"
+
+[node name="PassengerLabel" type="RichTextLabel" parent="levelUI" unique_id=387309645 node_paths=PackedStringArray("target")]
+offset_left = 19.0
+offset_top = 16.0
+offset_right = 230.0
+offset_bottom = 91.0
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+script = ExtResource("2_4mllq")
+target = NodePath(".")
+
+[node name="CargoLabel" type="RichTextLabel" parent="levelUI" unique_id=1978236909 node_paths=PackedStringArray("target")]
+offset_left = 19.0
+offset_top = 104.0
+offset_right = 230.0
+offset_bottom = 179.0
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+script = ExtResource("2_4mllq")
+target = NodePath(".")
