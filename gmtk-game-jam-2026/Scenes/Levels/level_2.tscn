@@ -15,7 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://bfvpnfslgx6nr" path="res://Assets/Sprites/TrainCarSpriteSheet.png" id="7_yxf76"]
 [ext_resource type="Texture2D" uid="uid://dcasdulikgnlj" path="res://Assets/Sprites/Passengers.png" id="8_ia1lp"]
 [ext_resource type="Texture2D" uid="uid://pj3jaxkp6p0u" path="res://Assets/Sprites/Station.png" id="9_5buja"]
+[ext_resource type="Texture2D" uid="uid://bf6pkdkg4mrwp" path="res://Assets/Sprites/TrackSwitch.png" id="10_5buja"]
 [ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="15_wyygt"]
+[ext_resource type="Script" uid="uid://d1c64slyc1qyx" path="res://Scripts/mixed_rails_collider.gd" id="16_wyygt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u87on"]
 texture = ExtResource("1_blpqv")
@@ -149,6 +151,13 @@ texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
 2:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iunut"]
+texture = ExtResource("10_5buja")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_ts3wb"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_m4i1e")
@@ -158,6 +167,7 @@ sources/3 = SubResource("TileSetAtlasSource_umcau")
 sources/4 = SubResource("TileSetAtlasSource_ud172")
 sources/5 = SubResource("TileSetAtlasSource_s5367")
 sources/6 = SubResource("TileSetAtlasSource_blyvk")
+sources/7 = SubResource("TileSetAtlasSource_iunut")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_chm77"]
 texture = ExtResource("8_ia1lp")
@@ -285,6 +295,9 @@ obstaclesMap = NodePath("../../Obstacles")
 wallsMap = NodePath("../../Wall")
 passegersMap = NodePath("../../PassengersSprites")
 train = NodePath("..")
+
+[node name="MixedRails" type="Node2D" parent="Train" unique_id=2011413070]
+script = ExtResource("16_wyygt")
 
 [node name="PassengersSprites" type="TileMapLayer" parent="." unique_id=278470838]
 z_index = 3
