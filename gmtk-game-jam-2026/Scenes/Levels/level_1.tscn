@@ -314,15 +314,21 @@ offset_top = 49.0
 offset_right = 1162.0
 offset_bottom = 697.0
 
-[node name="pause_menu" parent="." unique_id=1039053309 instance=ExtResource("5_cyadu")]
-process_mode = 3
-visible = false
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=695276836]
+layer = 2
+follow_viewport_enabled = true
 
-[node name="SceneTransitions" parent="." unique_id=1497086813 instance=ExtResource("17_irw6p")]
+[node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("17_irw6p")]
 visible = false
 z_index = 10
 offset_left = -343.0
 offset_top = -8.0
 offset_right = -343.0
 offset_bottom = -8.0
+offset_transform_position = Vector2(340, 0)
 mouse_filter = 2
+
+[node name="pause_menu" parent="." unique_id=1039053309 instance=ExtResource("5_cyadu")]
+process_mode = 3
+layer = 2
+visible = false
