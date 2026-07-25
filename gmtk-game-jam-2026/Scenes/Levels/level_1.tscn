@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bfvpnfslgx6nr" path="res://Assets/Sprites/TrainCarSpriteSheet.png" id="7_k2mw1"]
 [ext_resource type="Texture2D" uid="uid://dcasdulikgnlj" path="res://Assets/Sprites/Passengers.png" id="8_3628d"]
 [ext_resource type="Texture2D" uid="uid://pj3jaxkp6p0u" path="res://Assets/Sprites/Station.png" id="9_irw6p"]
+[ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="17_irw6p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tjl6l"]
 texture = ExtResource("2_afv7b")
@@ -316,3 +317,12 @@ offset_bottom = 697.0
 [node name="pause_menu" parent="." unique_id=1039053309 instance=ExtResource("5_cyadu")]
 process_mode = 3
 visible = false
+
+[node name="SceneTransitions" parent="." unique_id=1497086813 instance=ExtResource("17_irw6p")]
+visible = false
+z_index = 10
+offset_left = -343.0
+offset_top = -8.0
+offset_right = -343.0
+offset_bottom = -8.0
+mouse_filter = 2

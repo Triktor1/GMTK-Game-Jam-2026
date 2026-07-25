@@ -3,7 +3,13 @@ extends Node2D
 #signal paused_game
 @export var pause_menu: CanvasLayer
 @onready var resume_button:= $pause_menu/VBoxContainer/ResumeButton
-func _ready()->void:y_sort_enabled=true
+func _ready()->void:
+	y_sort_enabled=true
+	if get_tree().has_meta("from_restart"):
+		await get_tree().process_frame
+		EventBus.emit("play_transition", ["restart_animation_out"])
+		get_tree().remove_meta("from_restart")
+
 func _on_resume_requested():
 	pause_menu.visible = false
 	get_tree().paused = false
