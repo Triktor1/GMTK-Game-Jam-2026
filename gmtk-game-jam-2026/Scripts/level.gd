@@ -4,6 +4,7 @@ extends Node2D
 @export var pause_menu: CanvasLayer
 @onready var resume_button:= $pause_menu/VBoxContainer/ResumeButton
 func _ready()->void:
+	get_tree().paused = false
 	y_sort_enabled=true
 	if get_tree().has_meta("from_restart"):
 		await get_tree().process_frame
