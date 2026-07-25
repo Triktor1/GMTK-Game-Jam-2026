@@ -19,18 +19,19 @@ func _process(_delta: float) -> void:
 	pass
 
 func checkIfInsideTile() ->void:
-	var currentTile = obstaclesMap.local_to_map(obstaclesMap.to_local(train.global_position))
-	#print(currentTile)
-	var tileData=obstaclesMap.get_cell_tile_data(currentTile);
-	
-	var currentTileWall = wallsMap.local_to_map(wallsMap.to_local(train.global_position))
-	var tileDataWall=wallsMap.get_cell_tile_data(currentTileWall);
-	
+	var tileData = null
+	var tileDataWall = null
+	if obstaclesMap:
+		var currentTile = obstaclesMap.local_to_map(obstaclesMap.to_local(train.global_position))
+		tileData=obstaclesMap.get_cell_tile_data(currentTile);
+	if wallsMap:
+		var currentTileWall = wallsMap.local_to_map(wallsMap.to_local(train.global_position))
+		tileDataWall=wallsMap.get_cell_tile_data(currentTileWall);
+		
 	if tileData && tileData != storedTile || tileDataWall && tileDataWall!=storedTile:
-		print("inside Tile")
 		tileEvent()
 	storedTile = tileData
-	
+
 func eraseAdyacentObstacle(tile: Vector2i, id: int) -> void:
 	if not obstaclesMap: return
 	if obstaclesMap.get_cell_tile_data(tile+Vector2i(1,0)): if obstaclesMap.get_cell_source_id(tile+Vector2i(1,0)) == id: obstaclesMap.erase_cell(tile+Vector2i(1,0))
