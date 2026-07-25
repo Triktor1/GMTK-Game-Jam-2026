@@ -286,6 +286,8 @@ func createCargo() -> void:
 		myCargo.createCargo()
 		return
 	
+	EventBus.emit("CargoPicked")
+	
 	#Init Cargo
 	myCargo = cargo.instantiate()
 	myCargo.tilemapTracks = tilemapTracks
