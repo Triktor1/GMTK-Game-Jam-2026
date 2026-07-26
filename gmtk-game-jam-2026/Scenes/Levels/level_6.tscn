@@ -250,7 +250,7 @@ tile_set = SubResource("TileSet_wfdgf")
 
 [node name="Tracks" type="TileMapLayer" parent="." unique_id=2097695173]
 z_index = 2
-tile_map_data = PackedByteArray("AAAJAAYAAAAFAAAAAAAEAAUAAAAGAAAAAFAIAAUAAAAGAAAAAEA=")
+tile_map_data = PackedByteArray("AAAJAAYAAAAFAAAAAAAEAAUAAAAGAAAAAFAIAAUAAAAJAAAAAGA=")
 tile_set = SubResource("TileSet_5j0xs")
 
 [node name="LeverTracks" type="TileMapLayer" parent="." unique_id=19592179]
