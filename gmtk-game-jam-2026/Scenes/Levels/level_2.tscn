@@ -387,4 +387,5 @@ level_ui = NodePath("../LevelUI")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=998293533]
 stream = ExtResource("22_jd2hh")
+volume_db = -10.0
 autoplay = true

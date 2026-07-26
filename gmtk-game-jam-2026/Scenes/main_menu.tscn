@@ -29,7 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://pj3jaxkp6p0u" path="res://Assets/Sprites/Station.png" id="21_5n0dv"]
 [ext_resource type="Texture2D" uid="uid://bf6pkdkg4mrwp" path="res://Assets/Sprites/TrackSwitch.png" id="22_ne6ao"]
 [ext_resource type="AudioStream" uid="uid://cq685wcuv7bqk" path="res://Assets/Music/Main-Theme.mp3" id="29_fmarx"]
-[ext_resource type="Script" uid="uid://7s05qduq3tu0" path="res://Autoloads/audio_manager.gd" id="30_hkdq0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ucpb"]
 texture = ExtResource("4_5n0dv")
@@ -259,8 +258,6 @@ texture = ExtResource("20_84iac")
 
 [sub_resource type="TileSet" id="TileSet_pddej"]
 sources/0 = SubResource("TileSetAtlasSource_bmhhk")
-
-[sub_resource type="PackedScene" id="PackedScene_hkdq0"]
 
 [node name="MainMenu" type="Control" unique_id=1866697238]
 layout_mode = 3
@@ -570,11 +567,7 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAD9/wUABgABAAAAAAALAAUABgABAAAAABALAAQABgABAAAAABD//wIAAgAFAAAAAAAJAAgAAgAJAAAAAAAIAP//AgAOAAAAAAAJAP//AgAPAAAAAAAIAAAAAgAQAAAAAAAJAAAAAgARAAAAAAD//wUAAgAKAAAAAAAAAAUAAgALAAAAAAAIAAUAAgAIAAAAAAAAAAgAAgAMAAAAAAAAAAcAAgANAAAAAAD9/wAAAgADAAAAAAALAAEAAgAHAAAAAAA=")
 tile_set = SubResource("TileSet_y82t1")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=992127243 node_paths=PackedStringArray("clips", "one_shots")]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=992127243]
 stream = ExtResource("29_fmarx")
-volume_db = -6.405
+volume_db = -10.0
 autoplay = true
-script = ExtResource("30_hkdq0")
-clips = NodePath(".")
-one_shots = NodePath(".")
-audio_one_shot_scene = SubResource("PackedScene_hkdq0")

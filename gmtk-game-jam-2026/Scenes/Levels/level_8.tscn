@@ -369,4 +369,5 @@ visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=219602338]
 stream = ExtResource("19_6a1eu")
+volume_db = -10.0
 autoplay = true

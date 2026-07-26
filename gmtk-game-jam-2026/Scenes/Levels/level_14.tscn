@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="19_fq2yn"]
 [ext_resource type="PackedScene" uid="uid://qc45y82fn63y" path="res://Scenes/pause_menu.tscn" id="20_ggev5"]
 [ext_resource type="PackedScene" uid="uid://ckatcq3ckytgb" path="res://Scenes/win_scene.tscn" id="21_wdatr"]
+[ext_resource type="AudioStream" uid="uid://cvmmlksb2upxh" path="res://Assets/Music/Steam-theme.mp3" id="23_vvjhp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y3a7i"]
 texture = ExtResource("2_wdatr")
@@ -439,3 +440,8 @@ offset_right = 0.0
 offset_bottom = 0.0
 lvl_num = 11
 level_ui = NodePath("../LevelUI")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=453719218]
+stream = ExtResource("23_vvjhp")
+volume_db = -10.0
+autoplay = true
