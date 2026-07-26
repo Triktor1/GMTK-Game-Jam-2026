@@ -130,6 +130,10 @@ func pullAdyacentLever(tile: Vector2i, id: int) -> void:
 						train.tilemapTracks.set_cell(cell, 0, Vector2i(6,0), alt)
 					elif atlas == Vector2i(6,0):
 						train.tilemapTracks.set_cell(cell, 0, Vector2i(11,0), alt)
+					elif atlas == Vector2i(12,0):
+						train.tilemapTracks.set_cell(cell, 0, Vector2i(9,0), alt)
+					elif atlas == Vector2i(9,0):
+						train.tilemapTracks.set_cell(cell, 0, Vector2i(12,0), alt)
 
 func tileEvent() -> void:
 	if !exploded:
