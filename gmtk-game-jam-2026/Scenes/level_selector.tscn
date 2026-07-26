@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://fsp2tku0qxj5" path="res://Scripts/menu_button.gd" id="2_x3xpc"]
 [ext_resource type="Script" uid="uid://xiow4n8f6cmo" path="res://Scripts/button_effects_component.gd" id="4_b8t80"]
 [ext_resource type="StyleBox" uid="uid://olbk5ecnwlnc" path="res://new_style_box_texture.tres" id="4_jgeg8"]
+[ext_resource type="FontFile" uid="uid://bp0voh20n6bhw" path="res://Assets/Fonts/Rubik-Black.ttf" id="4_oto5v"]
 [ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="6_g3msu"]
 [ext_resource type="Texture2D" uid="uid://cc31ywy2pfa8" path="res://Assets/Sprites/FloorTile.png" id="7_2h1o8"]
 [ext_resource type="Texture2D" uid="uid://g71kbe4e68gb" path="res://Assets/Sprites/borders.png" id="8_jgeg8"]
@@ -56,6 +57,7 @@ delay_between_elems = 0.1
 
 [node name="LevelButton" parent="CanvasLayer/GridContainer" unique_id=1106077915 instance=ExtResource("1_22lal")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oto5v")
 theme_override_styles/normal = ExtResource("4_jgeg8")
 theme_override_styles/pressed = ExtResource("4_jgeg8")
 theme_override_styles/hover = ExtResource("4_jgeg8")
@@ -67,6 +69,7 @@ metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 
 [node name="LevelButton2" parent="CanvasLayer/GridContainer" unique_id=1254444544 instance=ExtResource("1_22lal")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oto5v")
 theme_override_styles/normal = ExtResource("4_jgeg8")
 theme_override_styles/pressed = ExtResource("4_jgeg8")
 theme_override_styles/hover = ExtResource("4_jgeg8")
@@ -79,6 +82,7 @@ metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 
 [node name="LevelButton3" parent="CanvasLayer/GridContainer" unique_id=2043613685 instance=ExtResource("1_22lal")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oto5v")
 theme_override_styles/normal = ExtResource("4_jgeg8")
 theme_override_styles/pressed = ExtResource("4_jgeg8")
 theme_override_styles/hover = ExtResource("4_jgeg8")
@@ -91,6 +95,7 @@ metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 
 [node name="LevelButton4" parent="CanvasLayer/GridContainer" unique_id=1066577434 instance=ExtResource("1_22lal")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oto5v")
 theme_override_styles/normal = ExtResource("4_jgeg8")
 theme_override_styles/pressed = ExtResource("4_jgeg8")
 theme_override_styles/hover = ExtResource("4_jgeg8")
@@ -103,6 +108,7 @@ metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 
 [node name="LevelButton5" parent="CanvasLayer/GridContainer" unique_id=1177797273 instance=ExtResource("1_22lal")]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oto5v")
 theme_override_styles/normal = ExtResource("4_jgeg8")
 theme_override_styles/pressed = ExtResource("4_jgeg8")
 theme_override_styles/hover = ExtResource("4_jgeg8")
@@ -125,6 +131,7 @@ offset_right = 124.0
 offset_bottom = -60.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_oto5v")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = ExtResource("4_jgeg8")
 theme_override_styles/pressed = ExtResource("4_jgeg8")

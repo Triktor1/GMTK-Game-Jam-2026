@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c6e1x36fhu3m" path="res://Assets/Sprites/Button.png" id="4_5n0dv"]
 [ext_resource type="Script" uid="uid://fsp2tku0qxj5" path="res://Scripts/menu_button.gd" id="4_n45e2"]
 [ext_resource type="StyleBox" uid="uid://olbk5ecnwlnc" path="res://new_style_box_texture.tres" id="4_ne6ao"]
+[ext_resource type="FontFile" uid="uid://bp0voh20n6bhw" path="res://Assets/Fonts/Rubik-Black.ttf" id="4_tt8ml"]
 [ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="7_cp0ys"]
 [ext_resource type="Texture2D" uid="uid://cc31ywy2pfa8" path="res://Assets/Sprites/FloorTile.png" id="8_16hvj"]
 [ext_resource type="Texture2D" uid="uid://g71kbe4e68gb" path="res://Assets/Sprites/borders.png" id="9_vr1f0"]
@@ -36,21 +37,21 @@ texture_margin_right = 15.0
 texture_margin_bottom = 15.0
 region_rect = Rect2(0, 0, 142, 79)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jr6u5"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y82t1"]
 texture = ExtResource("8_16hvj")
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_6m47u"]
-sources/0 = SubResource("TileSetAtlasSource_jr6u5")
+sources/0 = SubResource("TileSetAtlasSource_y82t1")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_84iac"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pddej"]
 texture = ExtResource("9_vr1f0")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_5n0dv"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_84iac")
+sources/0 = SubResource("TileSetAtlasSource_pddej")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ne6ao"]
 texture = ExtResource("10_t1dhk")
@@ -303,6 +304,7 @@ texture_filter = 1
 custom_minimum_size = Vector2(0.635, 0)
 custom_maximum_size = Vector2(500, 120)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_tt8ml")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = ExtResource("4_ne6ao")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_6ucpb")
@@ -318,6 +320,7 @@ metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 [node name="LevelsButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=2043916165]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_tt8ml")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = ExtResource("4_ne6ao")
 theme_override_styles/pressed = ExtResource("4_ne6ao")
@@ -333,6 +336,7 @@ metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 [node name="ExitButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=432788262]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_tt8ml")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = ExtResource("4_ne6ao")
 theme_override_styles/pressed = ExtResource("4_ne6ao")
