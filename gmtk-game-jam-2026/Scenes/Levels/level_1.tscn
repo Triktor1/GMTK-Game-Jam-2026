@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://d1c64slyc1qyx" path="res://Scripts/mixed_rails_collider.gd" id="16_7hll7"]
 [ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="17_irw6p"]
 [ext_resource type="PackedScene" uid="uid://ckatcq3ckytgb" path="res://Scenes/win_scene.tscn" id="21_nojx8"]
+[ext_resource type="AudioStream" uid="uid://cvmmlksb2upxh" path="res://Assets/Music/Steam-theme.mp3" id="23_ad63i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tjl6l"]
 texture = ExtResource("2_afv7b")
@@ -411,7 +412,6 @@ layer = 2
 follow_viewport_enabled = true
 
 [node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("17_irw6p")]
-visible = false
 z_index = 10
 offset_left = -154.0
 offset_top = -17.0
@@ -427,3 +427,7 @@ visible = false
 [node name="WinScene" parent="." unique_id=64850322 node_paths=PackedStringArray("level_ui") instance=ExtResource("21_nojx8")]
 lvl_num = 1
 level_ui = NodePath("../LevelUI")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=799641435]
+stream = ExtResource("23_ad63i")
+autoplay = true

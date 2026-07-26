@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://d1c64slyc1qyx" path="res://Scripts/mixed_rails_collider.gd" id="16_khr6i"]
 [ext_resource type="PackedScene" uid="uid://ckatcq3ckytgb" path="res://Scenes/win_scene.tscn" id="19_khr6i"]
 [ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="20_mnmct"]
+[ext_resource type="AudioStream" uid="uid://cvmmlksb2upxh" path="res://Assets/Music/Steam-theme.mp3" id="22_dnyrp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eb5oh"]
 texture = ExtResource("1_eb4ip")
@@ -388,7 +389,7 @@ z_index = 2
 tile_set = SubResource("TileSet_ipr37")
 
 [node name="WinTrack" type="TileMapLayer" parent="." unique_id=660847547]
-z_index = 3
+z_index = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAANAAUAAwAFAAAAAAA=")
 tile_set = SubResource("TileSet_mypyk")
@@ -468,9 +469,9 @@ follow_viewport_enabled = true
 
 [node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("20_mnmct")]
 z_index = 10
-offset_left = -154.0
+offset_left = -90.0
 offset_top = -17.0
-offset_right = -710.44446
+offset_right = -646.44446
 offset_bottom = -330.0
 scale = Vector2(0.515, 0.515)
 offset_transform_position = Vector2(340, 0)
@@ -479,3 +480,7 @@ mouse_filter = 2
 [node name="WinScene" parent="." unique_id=64850322 node_paths=PackedStringArray("level_ui") instance=ExtResource("19_khr6i")]
 lvl_num = 4
 level_ui = NodePath("../LevelUI")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=546128243]
+stream = ExtResource("22_dnyrp")
+autoplay = true
