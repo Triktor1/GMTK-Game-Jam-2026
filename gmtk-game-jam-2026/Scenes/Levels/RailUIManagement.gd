@@ -63,7 +63,7 @@ func _ready() ->void:
 		reachEndLabel.text = RailImage + ReachEndImage
 	passengerUpdate()
 	cargoUpdate()
-	
+	railLabel.text = RailImage +  "[color=white]" + str(railNum) + "[/color]"
 	
 func setupUI(railNumber : int , 
 passengerRequirement : int , cargoRequirement : int , 
