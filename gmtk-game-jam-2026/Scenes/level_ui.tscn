@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dwkfpwdltk1n7" path="res://Scenes/Levels/RailUIManagement.gd" id="1_gw16p"]
 [ext_resource type="Script" uid="uid://jdsuucorsaiy" path="res://Scripts/auto_tween_property.gd" id="2_4mllq"]
-[ext_resource type="Texture2D" uid="uid://bglv13pagck8y" path="res://Assets/Placeholders/RailUI.png" id="2_u4a2s"]
-[ext_resource type="Texture2D" uid="uid://dqq14cn4olh4d" path="res://Assets/Placeholders/PassengerUI.png" id="3_2qe5m"]
+[ext_resource type="Texture2D" uid="uid://0002eum1fo2a" path="res://Assets/Sprites/RailIcon.png" id="2_ai2e2"]
+[ext_resource type="Texture2D" uid="uid://cll6fwft0p61n" path="res://Assets/Sprites/FinishIcon.png" id="3_htk61"]
 [ext_resource type="FontFile" uid="uid://bp0voh20n6bhw" path="res://Assets/Fonts/Rubik-Black.ttf" id="4_2qe5m"]
+[ext_resource type="Texture2D" uid="uid://t3sy1a8eva36" path="res://Assets/Sprites/PassengerIcon.png" id="4_60vve"]
+[ext_resource type="Texture2D" uid="uid://446x08ram1f5" path="res://Assets/Sprites/CarIcon.png" id="5_h5pod"]
 
 [node name="LevelUI" type="Control" unique_id=1736655561 node_paths=PackedStringArray("railLabel", "reachEndLabel", "passengersLabel", "cargoLabel")]
 layout_mode = 3
@@ -20,10 +22,10 @@ railLabel = NodePath("levelUI/RailLabel")
 reachEndLabel = NodePath("levelUI/VBoxContainer/ReachEndLabel")
 passengersLabel = NodePath("levelUI/VBoxContainer/PassengerLabel")
 cargoLabel = NodePath("levelUI/VBoxContainer/CargoLabel")
-railUiIm = ExtResource("2_u4a2s")
-reachEndUiIm = ExtResource("2_u4a2s")
-passengerUiIm = ExtResource("3_2qe5m")
-cargoUiIm = ExtResource("3_2qe5m")
+railUiIm = ExtResource("2_ai2e2")
+reachEndUiIm = ExtResource("3_htk61")
+passengerUiIm = ExtResource("4_60vve")
+cargoUiIm = ExtResource("5_h5pod")
 railNum = 20
 ReachEndObjective = true
 requiredPassengerNum = 2
