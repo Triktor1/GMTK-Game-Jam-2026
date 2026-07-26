@@ -8,9 +8,15 @@
 
 [node name="WinScene" type="Control" unique_id=64850322]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -576.0
+offset_bottom = -324.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2tg22")
@@ -23,29 +29,35 @@ transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 550.0
+offset_top = 286.0
+offset_right = 550.0
+offset_bottom = 286.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.7254902)
 
 [node name="Label" type="Label" parent="CanvasLayer" unique_id=1655217352]
 custom_minimum_size = Vector2(400, 200)
-offset_left = 358.0
-offset_top = 28.0
-offset_right = 758.0
-offset_bottom = 228.0
+offset_left = 908.0
+offset_top = 314.0
+offset_right = 1308.0
+offset_bottom = 514.0
 theme_override_font_sizes/font_size = 80
 text = "Victory"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1878347428]
-offset_left = 432.0
-offset_top = 292.0
-offset_right = 680.0
-offset_bottom = 512.0
+offset_left = 982.0
+offset_top = 578.0
+offset_right = 1230.0
+offset_bottom = 798.0
 theme_override_constants/separation = 20
 script = ExtResource("1_b5jpj")
-anim_type = 0
+anim_when = 1
+enter_signal_name = &"win_signal"
+anim_type = 2
 
 [node name="NextLevelButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=848085930]
 custom_minimum_size = Vector2(0, 100)

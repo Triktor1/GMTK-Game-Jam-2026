@@ -3,6 +3,7 @@ extends Node2D
 @export var wallsMap:TileMapLayer
 @export var passegersMap:TileMapLayer
 @export var train: Node2D
+@export var win_track:TileMapLayer
 
 var storedTile : TileData
 var exploded: bool = false
@@ -21,15 +22,22 @@ func _process(_delta: float) -> void:
 func checkIfInsideTile() ->void:
 	var tileData = null
 	var tileDataWall = null
+	var tileDataWinTrack=null
 	if obstaclesMap:
 		var currentTile = obstaclesMap.local_to_map(obstaclesMap.to_local(train.global_position))
 		tileData=obstaclesMap.get_cell_tile_data(currentTile);
 	if wallsMap:
 		var currentTileWall = wallsMap.local_to_map(wallsMap.to_local(train.global_position))
 		tileDataWall=wallsMap.get_cell_tile_data(currentTileWall);
+	if win_track:
+		var currentTileWinTrack= win_track.local_to_map(win_track.to_local(train.global_position))
+		tileDataWinTrack=win_track.get_cell_tile_data(currentTileWinTrack);
 		
 	if tileData && tileData != storedTile || tileDataWall && tileDataWall!=storedTile:
 		tileEvent()
+	elif tileDataWinTrack && tileDataWinTrack!=storedTile:
+		EventBus.emit("ReachedEnd")
+		
 	storedTile = tileData
 
 func eraseAdyacentObstacle(tile: Vector2i, id: int) -> void:

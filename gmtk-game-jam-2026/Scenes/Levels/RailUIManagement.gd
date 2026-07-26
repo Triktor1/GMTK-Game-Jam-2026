@@ -39,6 +39,9 @@ var ReachEndComplete : bool = false
 var PassengerComplete : bool = false
 var CargoComplete : bool = false
 
+
+signal win_signal
+
 func _ready() ->void:
 	
 	EventBus.connect_signal("UISetup" , setupUI)
@@ -48,6 +51,8 @@ func _ready() ->void:
 	EventBus.connect_signal("newPassengers" , passengerPicked)
 	#Cargo
 	EventBus.connect_signal("CargoPicked" , cargoPicked)
+	#Reach end
+	EventBus.connect_signal("ReachedEnd",reachedEnd)
 	
 	RailImage = "[img=64x64]" + railUiIm.resource_path + "[/img]"
 	ReachEndImage = "[img=32x32]" + reachEndUiIm.resource_path + "[/img]"
@@ -159,4 +164,4 @@ func checkObjectives() -> void:
 	#Both conditions activate the end level menu, 
 	if (ReachEndObjective && ReachEndComplete) ||(!ReachEndObjective && activeObjectivesNum == completedObjectives):
 		EventBus.emit("EndLevel" , [passengerExactNum , PassengerObjective , currentPassengers , cargoExactNum , CargoObjective , currentCargo])
-		
+		win_signal.emit()
