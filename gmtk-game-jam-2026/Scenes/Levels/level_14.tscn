@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://g71kbe4e68gb" path="res://Assets/Sprites/borders.png" id="3_vndsj"]
 [ext_resource type="Texture2D" uid="uid://f2oenapdktcw" path="res://Assets/Sprites/RailTile.png" id="4_vvjhp"]
 [ext_resource type="Texture2D" uid="uid://cpewhf13i2bxc" path="res://Assets/Sprites/Shelfs.png" id="5_oppnx"]
+[ext_resource type="Texture2D" uid="uid://bknxj5bs42y03" path="res://Assets/Sprites/Shadow.png" id="5_wdatr"]
 [ext_resource type="Texture2D" uid="uid://by24vanmk3ut5" path="res://Assets/Sprites/Obstacles.png" id="6_n8q1w"]
 [ext_resource type="Texture2D" uid="uid://bfvpnfslgx6nr" path="res://Assets/Sprites/TrainCarSpriteSheet.png" id="7_na3ai"]
 [ext_resource type="Texture2D" uid="uid://dcasdulikgnlj" path="res://Assets/Sprites/Passengers.png" id="8_cmhnm"]
@@ -65,9 +66,15 @@ texture_region_size = Vector2i(32, 32)
 21:0/0 = 0
 22:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vndsj"]
+texture = ExtResource("5_wdatr")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_wfp75"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_r7e70")
+sources/1 = SubResource("TileSetAtlasSource_vndsj")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_seteq"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -310,6 +317,11 @@ tile_set = SubResource("TileSet_wfp75")
 [node name="LeverTracks" type="TileMapLayer" parent="." unique_id=2105665918]
 z_index = 2
 tile_map_data = PackedByteArray("AAAEAAcAAAAFAAAAAAALAAQAAAAFAAAAAAAJAAgAAAAFAAAAAAA=")
+tile_set = SubResource("TileSet_wfp75")
+
+[node name="Shadows" type="TileMapLayer" parent="." unique_id=25525303]
+z_index = 2
+tile_map_data = PackedByteArray("AAACAAUAAQAAAAAAAAACAAkAAQAAAAAAAAAHAAQAAQAAAAAAAAAGAAQAAQAAAAAAAAAFAAQAAQAAAAAAAAAEAAQAAQAAAAAAAAAAAAIAAQAAAAAAAAD8/wMAAQAAAAAAAAD9/wIAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_wfp75")
 
 [node name="PassengersTracks" type="TileMapLayer" parent="." unique_id=1430780500]
