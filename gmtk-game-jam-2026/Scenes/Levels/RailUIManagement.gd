@@ -1,15 +1,27 @@
 extends Control
 
+@export_group("NODES")
 @export var railLabel : RichTextLabel
+
+@export var reachEndLabel : RichTextLabel
 @export var passengersLabel : RichTextLabel
 @export var cargoLabel : RichTextLabel
 
 @export var railUiIm : Texture
+@export var reachEndUiIm : Texture
 @export var passengerUiIm : Texture
 @export var cargoUiIm : Texture
 
+@export_group("VARIABLES")
 @export var railNum : int = 12
 
+@export_subgroup("ACTIVE OBJECTIVES")
+
+@export var ReachEndObjective : bool
+@export var PassengerObjective : bool
+@export var CargoObjective : bool
+
+@export_subgroup("OBJECTIVE INFO")
 @export var passengerExactNum : bool
 @export var requiredPassengerNum : int;
 var currentPassengers : int = 0
@@ -19,8 +31,13 @@ var currentPassengers : int = 0
 var currentCargo:int = 0
 
 var RailImage : String
+var ReachEndImage : String
 var PassengerImage : String
 var CargoImage : String
+
+var ReachEndComplete : bool = false
+var PassengerComplete : bool = false
+var CargoComplete : bool = false
 
 func _ready() ->void:
 	
@@ -33,9 +50,11 @@ func _ready() ->void:
 	EventBus.connect_signal("CargoPicked" , cargoPicked)
 	
 	RailImage = "[img=64x64]" + railUiIm.resource_path + "[/img]"
+	ReachEndImage = "[img=32x32]" + reachEndUiIm.resource_path + "[/img]"
 	PassengerImage = "[img=32x32]" + passengerUiIm.resource_path + "[/img]"
 	CargoImage = "[img=32x32]" + cargoUiIm.resource_path + "[/img]"
 	
+	reachEndLabel.text = ReachEndImage + "[color=#white]" + "Reach the end!" + "[/color]"
 	passengerUpdate()
 	cargoUpdate()
 	
@@ -57,6 +76,12 @@ func railPlaced()-> void:
 		railLabel.text = RailImage +  "[color=#" + currentColor.to_html() + "]" + str(railNum) + "[/color]"
 	if railNum == 0: EventBus.emit("withoutTracks", [])
 
+func reachedEnd () -> void:
+	if ReachEndObjective:
+		ReachEndComplete = true
+		reachEndLabel.text = ReachEndImage + "[color=#" + Color(0.847, 0.706, 0.0, 1.0).to_html()  + "]"+ "Reach the end!" + "[/color]"
+		checkObjectives()
+
 func passengerPicked( passengerNum : int) -> void:
 	currentPassengers += passengerNum
 	passengerUpdate()
@@ -69,14 +94,16 @@ func passengerUpdate() -> void:
 	
 	var currentColor = Color(1 , 1 , 1 , 1)
 	
-	if requiredPassengerNum > 0:
+	if PassengerObjective:
 		
 		if currentPassengers >= requiredPassengerNum:
 			# Color and objective
 			if !passengerExactNum || (passengerExactNum && currentPassengers == requiredPassengerNum):
 				currentColor = Color(0.847, 0.706, 0.0, 1.0)
+				PassengerComplete = true
 			elif passengerExactNum && currentPassengers > requiredPassengerNum:
 				currentColor = Color(1.0, 0.0, 0.0, 1.0)
+				PassengerComplete = false
 			 
 		#Text
 		if passengerExactNum:
@@ -88,16 +115,43 @@ func cargoUpdate() -> void:
 	
 	var currentColor = Color(1 , 1 , 1 , 1)
 	
-	if requiredCargoNum > 0:
+	if CargoObjective:
 		if currentCargo >= requiredCargoNum:
 			# Color and objective
 			if !cargoExactNum || (cargoExactNum && currentCargo == requiredCargoNum):
 				currentColor = Color(0.847, 0.706, 0.0, 1.0)
+				CargoComplete = true
 			elif cargoExactNum && currentCargo > requiredCargoNum:
 				currentColor = Color(1.0, 0.0, 0.0, 1.0)
+				CargoComplete = false
 			 
 		#Text
 		if cargoExactNum:
 			cargoLabel.text= CargoImage + "[color=#" + currentColor.to_html() + "]"  + str(currentCargo) + "/" + str(requiredCargoNum) + "[font_size=15] (Pick only " + str(requiredCargoNum) + "!) [/font_size]" + "[/color]"
 		else:
 			cargoLabel.text= CargoImage + "[color=#" + currentColor.to_html() + "]"  + str(currentCargo) + "/" + str(requiredCargoNum) + "[/color]"
+
+#THIS FUNCTION IS CALLED WHEN THE LEVEL SHOULD BE OVER, AND IT CHECKS IF THE PLAYER WON OR LOST
+func checkObjectives() -> void:
+	
+	#Check the state of the objectives
+	var activeObjectivesNum = 0
+	var completedObjectives = 0
+	
+	if ReachEndObjective:
+		activeObjectivesNum += 1
+		if ReachEndComplete:
+			completedObjectives += 1
+	if PassengerObjective:
+		activeObjectivesNum += 1
+		if PassengerComplete:
+			completedObjectives += 1
+	if CargoObjective:
+		activeObjectivesNum += 1
+		if CargoComplete:
+			completedObjectives += 1
+	
+	#Both conditions activate the end level menu, 
+	if (ReachEndObjective && ReachEndComplete) ||(!ReachEndObjective && activeObjectivesNum == completedObjectives):
+		EventBus.emit("EndLevel" , [passengerExactNum , PassengerObjective , currentPassengers , cargoExactNum , CargoObjective , currentCargo])
+		
