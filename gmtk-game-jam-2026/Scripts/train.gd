@@ -7,6 +7,7 @@ extends Node2D
 @export var tilemapCargos: TileMapLayer
 @export var tilemapLevers: TileMapLayer
 @export var tilemapPassengers: TileMapLayer
+@export var tilemapPortals: TileMapLayer
 @export var cargo: PackedScene
 @export var sprite: Node
 @export var isCargo: bool
@@ -79,6 +80,7 @@ func _process(delta: float) -> void:
 			onLever()
 			onCargo()
 			onPassenger()
+			onPortal()
 	
 	#We can change direction if we arrive the new tile or
 	#if we are some fixed distance away
@@ -106,8 +108,9 @@ func _process(delta: float) -> void:
 # Changes the train direction to the especify direction
 # excepts null direction, cause the train is always moving
 # or if the player has already changed the direction on the same tile
-func changeDir(newDir: Vector2i, track:bool = false) -> void:
+func changeDir(newDir: Vector2i, track:bool = false, portal:bool = false) -> void:
 	if not canChangeDir or (newDir.x == 0 and newDir.y == 0): return
+	if tilemapPortals and tilemapPortals.get_cell_tile_data(currTile) and not portal: return
 	#To change direction, we update last directon and current direction
 	#Relocate the train
 	#Update the last track to make it curve
@@ -173,6 +176,7 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 	if not tile_data and tilemapCargos: tile_data = tilemapCargos.get_cell_tile_data(tile)
 	if not tile_data and tilemapLevers: tile_data = tilemapLevers.get_cell_tile_data(tile)
 	if not tile_data and tilemapPassengers: tile_data = tilemapPassengers.get_cell_tile_data(tile)
+	if not tile_data and tilemapPortals: tile_data = tilemapPortals.get_cell_tile_data(tile)
 	
 	if !tile_data or replace:
 		if wthoutTracks:
@@ -297,6 +301,10 @@ func createCargo() -> void:
 	myCargo = cargo.instantiate()
 	myCargo.tilemapTracks = tilemapTracks
 	myCargo.tilemapCargos = tilemapCargos
+	myCargo.tilemapPassengers = tilemapPassengers
+	myCargo.tilemapPortals = tilemapPortals
+	myCargo.tilemapLevers = tilemapLevers
+
 	myCargo.isCargo = true
 	myCargo.direction = lastDir
 	myCargo.cargo = cargo
@@ -362,6 +370,92 @@ func explode() -> void:
 		EventBus.emit("play_transition", ["restart_animation"])
 		await get_tree().create_timer(1).timeout
 		get_tree().reload_current_scene()
+
+func onPortal() -> bool:
+	if not tilemapPortals: return false
+	
+	var tile_data = tilemapPortals.get_cell_tile_data(currTile)
+	if not tile_data: return false
+	
+	var textureAtlas = tilemapPortals.get_cell_atlas_coords(currTile)
+	
+	var portal: int = -1 # A=0, B=1, C=2, " "=3
+	if textureAtlas == Vector2i(0, 0):
+		if currDir.y == -1: portal = 0
+		else: explode()
+	elif textureAtlas == Vector2i(1, 0):
+		if currDir.y == -1: portal = 1
+		else: explode()
+	elif textureAtlas == Vector2i(2, 0):
+		if currDir.y == -1: portal = 2
+		else: explode()
+	elif textureAtlas == Vector2i(12, 0):
+		if currDir.y == -1: portal = 3
+		else: explode()
+	elif textureAtlas == Vector2i(3, 0):
+		if currDir.x == 1: portal = 0
+		else: explode()
+	elif textureAtlas == Vector2i(4, 0):
+		if currDir.x == -1: portal = 0
+		else: explode()
+	elif textureAtlas == Vector2i(6, 0):
+		if currDir.x == 1: portal = 1
+		else: explode()
+	elif textureAtlas == Vector2i(7, 0):
+		if currDir.x == -1: portal = 1
+		else: explode()
+	elif textureAtlas == Vector2i(9, 0):
+		if currDir.x == 1: portal = 2
+		else: explode()
+	elif textureAtlas == Vector2i(10, 0):
+		if currDir.x == -1: portal = 2
+		else: explode()
+	elif textureAtlas == Vector2i(13, 0):
+		if currDir.x == 1: portal = 3
+		else: explode()
+	elif textureAtlas == Vector2i(14, 0):
+		if currDir.x == -1: portal = 3
+		else: explode()
+	elif textureAtlas == Vector2i(5, 0):
+		if currDir.y == 1: portal = 0
+		else: explode()
+	elif textureAtlas == Vector2i(8, 0):
+		if currDir.y == 1: portal = 1
+		else: explode()
+	elif textureAtlas == Vector2i(11, 0):
+		if currDir.y == 1: portal = 2
+		else: explode()
+	elif textureAtlas == Vector2i(15, 0):
+		if currDir.y == 1: portal = 3
+		else: explode()
+	if portal == -1: return false
+	
+	#Una vez he encontrado un portal busco el otro
+	var portals = tilemapPortals.get_used_cells()
+	var nextPortal = Vector2i(-1,-1)
+	for tile in portals:
+		var idx = -1
+		var coords = tilemapPortals.get_cell_atlas_coords(tile)
+		if coords == Vector2i(0,0) || coords == Vector2i(3,0) || coords == Vector2i(4,0) || coords == Vector2i(5,0): idx = 0
+		elif coords == Vector2i(1,0) || coords == Vector2i(6,0) || coords == Vector2i(7,0) || coords == Vector2i(8,0): idx = 1
+		elif coords == Vector2i(2,0) || coords == Vector2i(9,0) || coords == Vector2i(10,0) || coords == Vector2i(11,0): idx = 2
+		elif coords == Vector2i(12,0) || coords == Vector2i(13,0) || coords == Vector2i(14,0) || coords == Vector2i(15,0): idx = 3
+		
+		if portal == idx and tile != currTile:
+			nextPortal = tile
+			break
+	if nextPortal == Vector2i(-1,-1): return false
+	
+	global_position = tilemapPortals.map_to_local(nextPortal)
+	currTile = nextPortal
+	var atcoo = tilemapPortals.get_cell_atlas_coords(nextPortal)
+	if atcoo == Vector2i(1,0) or atcoo == Vector2i(2,0) or atcoo == Vector2i(0,0) or atcoo == Vector2i(12,0): changeDir(Vector2i(0, 1),false,true)
+	elif atcoo == Vector2i(3,0) or atcoo == Vector2i(6,0) or atcoo == Vector2i(9,0) or atcoo == Vector2i(13,0): changeDir(Vector2i(-1, 0),false,true)
+	elif atcoo == Vector2i(4,0) or atcoo == Vector2i(7,0) or atcoo == Vector2i(10,0) or atcoo == Vector2i(14,0): changeDir(Vector2i(1, 0),false,true)
+	elif atcoo == Vector2i(5,0) or atcoo == Vector2i(8,0) or atcoo == Vector2i(11,0) or atcoo == Vector2i(15,0): changeDir(Vector2i(0, -1),false,true)
+	nextTile = currDir+currTile
+	if tilemapTracks and tilemapTracks.get_cell_tile_data(currTile): tilemapTracks.erase_cell(currTile)
+	return true
 
 func _stop():
 	speed=0
