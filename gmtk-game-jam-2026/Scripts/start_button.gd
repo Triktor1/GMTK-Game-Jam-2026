@@ -1,4 +1,4 @@
-extends Button
+extends BaseButton
 
 @export var startScene: PackedScene
 
