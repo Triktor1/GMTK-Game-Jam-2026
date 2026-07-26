@@ -366,7 +366,6 @@ visible = false
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=708354877]
 process_mode = 3
 layer = 2
-visible = false
 follow_viewport_enabled = true
 
 [node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("20_rcyh2")]
