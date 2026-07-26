@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="16_0q1nn"]
 [ext_resource type="PackedScene" uid="uid://qc45y82fn63y" path="res://Scenes/pause_menu.tscn" id="17_elvuq"]
 [ext_resource type="PackedScene" uid="uid://ckatcq3ckytgb" path="res://Scenes/win_scene.tscn" id="18_g2xfs"]
+[ext_resource type="AudioStream" uid="uid://cvmmlksb2upxh" path="res://Assets/Music/Steam-theme.mp3" id="19_tx5ki"]
 [ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="21_yv3iv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kbhvy"]
@@ -383,3 +384,7 @@ offset_bottom = -330.0
 scale = Vector2(0.515, 0.515)
 offset_transform_position = Vector2(340, 0)
 mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=294170251]
+stream = ExtResource("19_tx5ki")
+autoplay = true

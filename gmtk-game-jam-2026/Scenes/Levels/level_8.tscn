@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="16_feviu"]
 [ext_resource type="PackedScene" uid="uid://qc45y82fn63y" path="res://Scenes/pause_menu.tscn" id="17_eeh2q"]
 [ext_resource type="PackedScene" uid="uid://ckatcq3ckytgb" path="res://Scenes/win_scene.tscn" id="18_oov7e"]
+[ext_resource type="AudioStream" uid="uid://cvmmlksb2upxh" path="res://Assets/Music/Steam-theme.mp3" id="19_6a1eu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nivuq"]
 texture = ExtResource("1_63fij")
@@ -347,3 +348,7 @@ visible = false
 [node name="WinScene" parent="." unique_id=64850322 node_paths=PackedStringArray("level_ui") instance=ExtResource("18_oov7e")]
 lvl_num = 8
 level_ui = NodePath("../LevelUI")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=219602338]
+stream = ExtResource("19_6a1eu")
+autoplay = true
