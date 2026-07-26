@@ -250,7 +250,7 @@ tile_set = SubResource("TileSet_ryrpi")
 
 [node name="Tracks" type="TileMapLayer" parent="." unique_id=941727523]
 z_index = 2
-tile_map_data = PackedByteArray("AAALAAgAAAAFAAAAAAAEAAYAAAAAAAAAAFAFAAYAAAAFAAAAAAAGAAYAAAAFAAAAAAAEAAIAAAAAAAAAAGAHAAYAAAAFAAAAAAAIAAYAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAALAAgAAAAFAAAAAAAEAAYAAAAAAAAAAFAFAAYAAAAFAAAAAAAGAAYAAAAFAAAAAAAHAAYAAAAFAAAAAAAIAAYAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_dllr5")
 
 [node name="LeverTracks" type="TileMapLayer" parent="." unique_id=330764016]
@@ -333,7 +333,7 @@ offset_left = 10.0
 offset_top = 49.0
 offset_right = 1162.0
 offset_bottom = 697.0
-railNum = 35
+railNum = 28
 PassengerObjective = true
 passengerExactNum = true
 requiredPassengerNum = 5
