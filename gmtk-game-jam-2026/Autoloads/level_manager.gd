@@ -19,7 +19,7 @@ var levels:Array[String]=[
 
 func won(lvl:int):
 	current_level=lvl
-	if lvl>max_level:
+	if lvl==max_level:
 		max_level=lvl+1
 
 
