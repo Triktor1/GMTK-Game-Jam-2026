@@ -468,9 +468,9 @@ follow_viewport_enabled = true
 
 [node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("20_mnmct")]
 z_index = 10
-offset_left = -154.0
+offset_left = -90.0
 offset_top = -17.0
-offset_right = -710.44446
+offset_right = -646.44446
 offset_bottom = -330.0
 scale = Vector2(0.515, 0.515)
 offset_transform_position = Vector2(340, 0)

@@ -411,7 +411,6 @@ layer = 2
 follow_viewport_enabled = true
 
 [node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("17_irw6p")]
-visible = false
 z_index = 10
 offset_left = -154.0
 offset_top = -17.0

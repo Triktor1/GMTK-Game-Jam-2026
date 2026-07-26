@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cpewhf13i2bxc" path="res://Assets/Sprites/Shelfs.png" id="4_633d5"]
 [ext_resource type="SpriteFrames" uid="uid://c3off8h1hrimu" path="res://Assets/SpriteFrames/train_sprite_frames.tres" id="4_doouk"]
 [ext_resource type="Script" uid="uid://dpmqgvhr5mh8p" path="res://Scenes/Levels/trainCollisions.gd" id="5_0fyhm"]
+[ext_resource type="Texture2D" uid="uid://bknxj5bs42y03" path="res://Assets/Sprites/Shadow.png" id="5_27vqw"]
 [ext_resource type="Texture2D" uid="uid://by24vanmk3ut5" path="res://Assets/Sprites/Obstacles.png" id="5_rw7sn"]
 [ext_resource type="Texture2D" uid="uid://bfvpnfslgx6nr" path="res://Assets/Sprites/TrainCarSpriteSheet.png" id="6_27vqw"]
 [ext_resource type="PackedScene" uid="uid://qc45y82fn63y" path="res://Scenes/pause_menu.tscn" id="6_evokg"]
@@ -18,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://6k3g6fgr26eh" path="res://Scenes/cargo.tscn" id="10_yhtsi"]
 [ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="14_ijosb"]
 [ext_resource type="PackedScene" uid="uid://ckatcq3ckytgb" path="res://Scenes/win_scene.tscn" id="18_27vqw"]
+[ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="19_27vqw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3pc84"]
 texture = ExtResource("1_srugb")
@@ -60,10 +62,17 @@ texture_region_size = Vector2i(32, 32)
 19:0/0 = 0
 20:0/0 = 0
 21:0/0 = 0
+22:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d5m3k"]
+texture = ExtResource("5_27vqw")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_xrly6"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_k5iiv")
+sources/1 = SubResource("TileSetAtlasSource_d5m3k")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_seteq"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -353,6 +362,11 @@ tile_set = SubResource("TileSet_xrly6")
 z_index = 2
 tile_set = SubResource("TileSet_xrly6")
 
+[node name="Shadows" type="TileMapLayer" parent="." unique_id=1532739203]
+z_index = 2
+tile_map_data = PackedByteArray("AAABAAcAAQAAAAAAAAALAAcAAQAAAAAAAAALAAYAAQAAAAAAAAALAAUAAQAAAAAAAAAKAAQAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_xrly6")
+
 [node name="PassengersTracks" type="TileMapLayer" parent="." unique_id=432730624]
 z_index = 2
 tile_map_data = PackedByteArray("AAAKAAIAAwAFAAAAAAABAAUAAwAAAAAAAFAHAAcAAwAFAAAAAAAAAAMAAwABAAAAAAA=")
@@ -424,15 +438,27 @@ offset_left = 10.0
 offset_top = 49.0
 offset_right = 1162.0
 offset_bottom = 697.0
-railNum = 45
-ReachEndObjective = true
+railNum = 31
 PassengerObjective = true
-CargoObjective = false
-passengerExactNum = false
 requiredPassengerNum = 4
 
 [node name="pause_menu" parent="." unique_id=1116311543 instance=ExtResource("6_evokg")]
 visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=56039242]
+process_mode = 3
+layer = 2
+follow_viewport_enabled = true
+
+[node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("19_27vqw")]
+z_index = 10
+offset_left = -154.0
+offset_top = -17.0
+offset_right = -710.44446
+offset_bottom = -330.0
+scale = Vector2(0.515, 0.515)
+offset_transform_position = Vector2(340, 0)
+mouse_filter = 2
 
 [node name="WinScene" parent="." unique_id=64850322 node_paths=PackedStringArray("level_ui") instance=ExtResource("18_27vqw")]
 lvl_num = 5
