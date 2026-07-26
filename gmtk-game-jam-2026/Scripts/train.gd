@@ -8,6 +8,7 @@ extends Node2D
 @export var tilemapLevers: TileMapLayer
 @export var tilemapPassengers: TileMapLayer
 @export var tilemapPortals: TileMapLayer
+@export var tilemapWin: TileMapLayer
 @export var cargo: PackedScene
 @export var sprite: Node
 @export var isCargo: bool
@@ -177,6 +178,7 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 	if not tile_data and tilemapLevers: tile_data = tilemapLevers.get_cell_tile_data(tile)
 	if not tile_data and tilemapPassengers: tile_data = tilemapPassengers.get_cell_tile_data(tile)
 	if not tile_data and tilemapPortals: tile_data = tilemapPortals.get_cell_tile_data(tile)
+	if not tile_data and tilemapWin: tile_data = tilemapWin.get_cell_tile_data(tile)
 	
 	if !tile_data or replace:
 		if wthoutTracks:
@@ -225,8 +227,11 @@ func onTrack() -> bool :
 				tile_map = tilemapPassengers
 				if tile_map: tile_data = tile_map.get_cell_tile_data(currTile)
 				if not tile_data :
-					return false
-		
+					tile_map = tilemapWin
+					if tile_map: tile_data = tile_map.get_cell_tile_data(currTile)
+					if not tile_data :
+						return false
+			
 	var i := 0
 	while i < get_child_count():
 		var child = get_child(i)
