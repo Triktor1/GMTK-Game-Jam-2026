@@ -291,6 +291,7 @@ tile_set = SubResource("TileSet_afv7b")
 
 [node name="Tracks" type="TileMapLayer" parent="." unique_id=1076060199]
 z_index = 2
+tile_map_data = PackedByteArray("AAAAAAQAAAAFAAAAAAA=")
 tile_set = SubResource("TileSet_ng7rt")
 
 [node name="Win" type="TileMapLayer" parent="." unique_id=761224667]
@@ -389,7 +390,6 @@ layer = 2
 follow_viewport_enabled = true
 
 [node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("17_irw6p")]
-visible = false
 z_index = 10
 offset_left = -154.0
 offset_top = -17.0
