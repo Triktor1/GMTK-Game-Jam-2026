@@ -16,9 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://dcasdulikgnlj" path="res://Assets/Sprites/Passengers.png" id="8_ia1lp"]
 [ext_resource type="Texture2D" uid="uid://pj3jaxkp6p0u" path="res://Assets/Sprites/Station.png" id="9_5buja"]
 [ext_resource type="Texture2D" uid="uid://bf6pkdkg4mrwp" path="res://Assets/Sprites/TrackSwitch.png" id="10_5buja"]
+[ext_resource type="Texture2D" uid="uid://bknxj5bs42y03" path="res://Assets/Sprites/Shadow.png" id="11_iunut"]
 [ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="15_wyygt"]
 [ext_resource type="Script" uid="uid://d1c64slyc1qyx" path="res://Scripts/mixed_rails_collider.gd" id="16_wyygt"]
 [ext_resource type="PackedScene" uid="uid://ckatcq3ckytgb" path="res://Scenes/win_scene.tscn" id="19_wyygt"]
+[ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="20_u87on"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wyygt"]
 texture = ExtResource("1_blpqv")
@@ -92,6 +94,15 @@ texture_region_size = Vector2i(32, 32)
 10:0/0 = 0
 11:0/0 = 0
 12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+20:0/0 = 0
+21:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1xj2d"]
 texture = ExtResource("4_1jlnc")
@@ -160,6 +171,11 @@ texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
 2:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s5367"]
+texture = ExtResource("11_iunut")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_ts3wb"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_jd2hh")
@@ -170,6 +186,7 @@ sources/4 = SubResource("TileSetAtlasSource_m4i1e")
 sources/5 = SubResource("TileSetAtlasSource_ixm8h")
 sources/6 = SubResource("TileSetAtlasSource_xk8vt")
 sources/7 = SubResource("TileSetAtlasSource_umcau")
+sources/8 = SubResource("TileSetAtlasSource_s5367")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ud172"]
 texture = ExtResource("8_ia1lp")
@@ -253,7 +270,7 @@ tile_set = SubResource("TileSet_jip10")
 
 [node name="Tracks" type="TileMapLayer" parent="." unique_id=2002258341]
 z_index = 2
-tile_map_data = PackedByteArray("AAAJAAQAAAAFAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAQAAAAFAAAAAAA=")
 tile_set = SubResource("TileSet_7h8th")
 
 [node name="LeverTracks" type="TileMapLayer" parent="." unique_id=30148429]
@@ -275,7 +292,7 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAJAAQAAwAFAAAAAAA=")
 tile_set = SubResource("TileSet_ts3wb")
 
-[node name="Train" type="Node2D" parent="." unique_id=1748949514 node_paths=PackedStringArray("tilemapTracks", "tilemapCargos", "tilemapLevers", "tilemapPassengers", "sprite")]
+[node name="Train" type="Node2D" parent="." unique_id=1748949514 node_paths=PackedStringArray("tilemapTracks", "tilemapCargos", "tilemapLevers", "tilemapPassengers", "tilemapWin", "sprite")]
 z_index = 3
 y_sort_enabled = true
 script = ExtResource("2_fphuk")
@@ -286,6 +303,7 @@ tilemapTracks = NodePath("../Tracks")
 tilemapCargos = NodePath("../CargosTracks")
 tilemapLevers = NodePath("../LeverTracks")
 tilemapPassengers = NodePath("../PassengersTracks")
+tilemapWin = NodePath("../WinTrack")
 cargo = ExtResource("7_u40f0")
 sprite = NodePath("AnimatedSprite2D")
 
@@ -317,13 +335,19 @@ tile_set = SubResource("TileSet_srchd")
 [node name="Wall" type="TileMapLayer" parent="." unique_id=990571648]
 z_index = 3
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAAAAEAAQAFAAAAAAAAAAIAAQAGAAAAAAAAAAMAAQAGAAAAAAAAAAUAAQAGAAAAAAABAAAAAQAAAAAAAAAAAAYAAQAGAAAAAAAAAAcAAQAGAAAAAAAIAAEAAQACAAAAAAAAAAgAAQAHAAAAAAABAAgAAQAHAAAAAAACAAgAAQAHAAAAAAADAAgAAQAHAAAAAAAEAAgAAQAHAAAAAAAFAAgAAQAHAAAAAAAGAAgAAQAHAAAAAAAHAAgAAQAHAAAAAAAIAAgAAQAHAAAAAAAAAAAAAQAEAAAAAAACAAAAAQABAAAAAAADAAAAAQAAAAAAAAAEAAAAAQABAAAAAAAGAAAAAQABAAAAAAAHAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAABAAEAAQADAAAAAAAHAAEAAQADAAAAAAAGAAEAAQACAAAAAAAFAAEAAQADAAAAAAADAAEAAQADAAAAAAACAAEAAQACAAAAAAAEAAEAAQACAAAAAAAJAAAAAQAKAAAAAAAJAAEAAQAJAAAAAAAIAAAAAQABAAAAAAAJAAIAAQAIAAAAAAAJAAMAAQAIAAAAAAAJAAUAAQAIAAAAAAAJAAYAAQAIAAAAAAAJAAcAAQAIAAAAAAAJAAgAAQAHAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAEAAQAFAAAAAAAAAAIAAQAGAAAAAAAAAAMAAQAGAAAAAAAAAAUAAQAGAAAAAAABAAAAAQAAAAAAAAAAAAYAAQAGAAAAAAAAAAcAAQAGAAAAAAAIAAEAAQATAAAAABAAAAgAAQAHAAAAAAABAAgAAQAHAAAAAAACAAgAAQAHAAAAAAADAAgAAQAHAAAAAAAEAAgAAQAHAAAAAAAFAAgAAQAHAAAAAAAGAAgAAQAHAAAAAAAHAAgAAQAHAAAAAAAIAAgAAQAHAAAAAAAAAAAAAQAEAAAAAAAEAAAAAQABAAAAAAAGAAAAAQABAAAAAAAHAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAABAAEAAQADAAAAAAAHAAEAAQADAAAAAAAGAAEAAQACAAAAAAAFAAEAAQADAAAAAAADAAEAAQAVAAAAAAACAAEAAQAUAAAAAAAEAAEAAQACAAAAAAAJAAAAAQAOAAAAABAJAAEAAQASAAAAABAIAAAAAQAPAAAAABAJAAIAAQAIAAAAAAAJAAMAAQAIAAAAAAAJAAUAAQAIAAAAAAAJAAYAAQAIAAAAAAAJAAcAAQAIAAAAAAAJAAgAAQAHAAAAAAADAAAAAQARAAAAAAACAAAAAQAQAAAAAAAAAAkAAQANAAAAAAABAAkAAQANAAAAAAACAAkAAQANAAAAAAADAAkAAQANAAAAAAAEAAkAAQANAAAAAAAFAAkAAQANAAAAAAAGAAkAAQANAAAAAAAHAAkAAQANAAAAAAAIAAkAAQANAAAAAAAJAAkAAQANAAAAAAA=")
 tile_set = SubResource("TileSet_ts3wb")
 
 [node name="Obstacles" type="TileMapLayer" parent="." unique_id=68706575]
 z_index = 3
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAACAAcABgACAAAAAAAGAAEABgAAAAAAAAAFAAQAAgAOAAAAAAAGAAQAAgAPAAAAAAAFAAUAAgAQAAAAAAAGAAUAAgARAAAAAAA=")
+tile_map_data = PackedByteArray("AAACAAcABgACAAAAAAAGAAEABgAAAAAAAAAFAAQAAgAOAAAAAAAGAAQAAgAPAAAAAAAFAAUAAgAQAAAAAAAGAAUAAgARAAAAAAALAAEAAgAGAAAAAAD+/wgAAgAHAAAAAAD8/wUAAgABAAAAAAAMAAUAAgACAAAAAAA=")
+tile_set = SubResource("TileSet_ts3wb")
+
+[node name="Shadows" type="TileMapLayer" parent="." unique_id=152689203]
+z_index = 2
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAACAAcABgACAAAAAAAGAAEABgAAAAAAAAAFAAQAAgAOAAAAAAAGAAQAAgAPAAAAAAAFAAUAAgAQAAAAAAAGAAUAAgARAAAAAAALAAEACAAAAAAAAAD+/wgACAAAAAAAAAD8/wUACAAAAAAAAAAMAAUACAAAAAAAAAA=")
 tile_set = SubResource("TileSet_ts3wb")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=467353298]
@@ -335,13 +359,27 @@ offset_left = 10.0
 offset_top = 49.0
 offset_right = 1162.0
 offset_bottom = 697.0
-ReachEndObjective = true
+railNum = 14
 PassengerObjective = true
-CargoObjective = false
-passengerExactNum = false
 
 [node name="pause_menu" parent="." unique_id=1116311543 instance=ExtResource("6_u40f0")]
 visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1100066872]
+process_mode = 3
+layer = 2
+follow_viewport_enabled = true
+
+[node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("20_u87on")]
+visible = false
+z_index = 10
+offset_left = -154.0
+offset_top = -17.0
+offset_right = -710.44446
+offset_bottom = -330.0
+scale = Vector2(0.515, 0.515)
+offset_transform_position = Vector2(340, 0)
+mouse_filter = 2
 
 [node name="WinScene" parent="." unique_id=64850322 node_paths=PackedStringArray("level_ui") instance=ExtResource("19_wyygt")]
 lvl_num = 2

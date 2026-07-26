@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://6k3g6fgr26eh" path="res://Scenes/cargo.tscn" id="4_rb0md"]
 [ext_resource type="PackedScene" uid="uid://qc45y82fn63y" path="res://Scenes/pause_menu.tscn" id="5_cyadu"]
 [ext_resource type="Texture2D" uid="uid://by24vanmk3ut5" path="res://Assets/Sprites/Obstacles.png" id="5_k2mw1"]
+[ext_resource type="Texture2D" uid="uid://bknxj5bs42y03" path="res://Assets/Sprites/Shadow.png" id="5_vvknj"]
 [ext_resource type="Script" uid="uid://dpmqgvhr5mh8p" path="res://Scenes/Levels/trainCollisions.gd" id="6_5f3p6"]
 [ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="7_jv26f"]
 [ext_resource type="Texture2D" uid="uid://bfvpnfslgx6nr" path="res://Assets/Sprites/TrainCarSpriteSheet.png" id="7_k2mw1"]
@@ -65,9 +66,15 @@ texture_region_size = Vector2i(32, 32)
 21:0/0 = 0
 22:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pmbdk"]
+texture = ExtResource("5_vvknj")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_ng7rt"]
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_rb0md")
+sources/1 = SubResource("TileSetAtlasSource_pmbdk")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_seteq"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
@@ -94,6 +101,15 @@ texture_region_size = Vector2i(32, 32)
 10:0/0 = 0
 11:0/0 = 0
 12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+20:0/0 = 0
+21:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_irw6p"]
 texture = ExtResource("5_k2mw1")
@@ -299,6 +315,11 @@ z_index = 2
 tile_map_data = PackedByteArray("AAAJAAQAAAAFAAAAAAA=")
 tile_set = SubResource("TileSet_ng7rt")
 
+[node name="Shadows" type="TileMapLayer" parent="." unique_id=1330929409]
+z_index = 2
+tile_map_data = PackedByteArray("AAAEAAMAAQAAAAAAAAD+/wIAAQAAAAAAAAD9/wgAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_ng7rt")
+
 [node name="LeverTracks" type="TileMapLayer" parent="." unique_id=1420242806]
 z_index = 2
 tile_set = SubResource("TileSet_ng7rt")
@@ -359,13 +380,13 @@ tile_set = SubResource("TileSet_3628d")
 [node name="Wall" type="TileMapLayer" parent="." unique_id=803158757]
 z_index = 3
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAAAAEAAQAFAAAAAAAAAAIAAQAGAAAAAAAAAAUAAQAGAAAAAAABAAAAAQAAAAAAAAAAAAYAAQAGAAAAAAAAAAcAAQAGAAAAAAAIAAEAAQACAAAAAAAAAAgAAQAHAAAAAAABAAgAAQAHAAAAAAACAAgAAQAHAAAAAAADAAgAAQAHAAAAAAAEAAgAAQAHAAAAAAAFAAgAAQAHAAAAAAAGAAgAAQAHAAAAAAAHAAgAAQAHAAAAAAAIAAgAAQAHAAAAAAAAAAAAAQAEAAAAAAACAAAAAQABAAAAAAADAAAAAQAAAAAAAAAEAAAAAQABAAAAAAAGAAAAAQABAAAAAAAHAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAABAAEAAQADAAAAAAAHAAEAAQADAAAAAAAGAAEAAQACAAAAAAAFAAEAAQADAAAAAAADAAEAAQADAAAAAAACAAEAAQACAAAAAAAEAAEAAQACAAAAAAAJAAAAAQAKAAAAAAAJAAEAAQAJAAAAAAAIAAAAAQABAAAAAAAJAAIAAQAIAAAAAAAJAAMAAQAMAAAAAAAJAAUAAQAIAAAAAAAJAAYAAQAIAAAAAAAJAAcAAQAIAAAAAAAJAAgAAQAHAAAAAAAAAAMAAQALAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAEAAQASAAAAAAAAAAIAAQAGAAAAAAAAAAUAAQAGAAAAAAABAAAAAQAPAAAAAAAAAAYAAQAGAAAAAAAAAAcAAQAHAAAAAAAIAAEAAQACAAAAAAAAAAgAAQANAAAAAAABAAgAAQANAAAAAAACAAgAAQANAAAAAAADAAgAAQANAAAAAAAEAAgAAQANAAAAAAAFAAgAAQANAAAAAAAGAAgAAQANAAAAAAAHAAgAAQANAAAAAAAIAAgAAQANAAAAAAAAAAAAAQAOAAAAAAACAAAAAQABAAAAAAADAAAAAQAAAAAAAAAEAAAAAQABAAAAAAAGAAAAAQAQAAAAAAAHAAAAAQARAAAAAAAFAAAAAQAAAAAAAAABAAEAAQATAAAAAAAHAAEAAQAVAAAAAAAGAAEAAQAUAAAAAAAFAAEAAQADAAAAAAADAAEAAQADAAAAAAACAAEAAQACAAAAAAAEAAEAAQACAAAAAAAJAAAAAQAKAAAAAAAJAAEAAQAJAAAAAAAIAAAAAQABAAAAAAAJAAIAAQAIAAAAAAAJAAMAAQAMAAAAAAAJAAUAAQAIAAAAAAAJAAYAAQAIAAAAAAAJAAcAAQAHAAAAAAAJAAgAAQANAAAAAAAAAAMAAQALAAAAAAABAAcAAQAHAAAAAAACAAcAAQAHAAAAAAADAAcAAQAHAAAAAAAEAAcAAQAHAAAAAAAFAAcAAQAHAAAAAAAGAAcAAQAHAAAAAAAHAAcAAQAHAAAAAAAIAAcAAQAHAAAAAAA=")
 tile_set = SubResource("TileSet_6amc0")
 
 [node name="Obstacles" type="TileMapLayer" parent="." unique_id=956508609]
 z_index = 3
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAEAAUAAgAMAAAAAAAEAAQAAgANAAAAAAAEAAMAAgAJAAAAAAA=")
+tile_map_data = PackedByteArray("AAAEAAUAAgAMAAAAAAAEAAQAAgANAAAAAAAEAAMAAgAJAAAAAAD9/wgAAgADAAAAAAALAAEAAgAKAAAAAAAMAAEAAgALAAAAAAD+/wIAAgAHAAAAAAA=")
 tile_set = SubResource("TileSet_6amc0")
 
 [node name="Portals" type="TileMapLayer" parent="." unique_id=1177583044]
@@ -390,6 +411,7 @@ layer = 2
 follow_viewport_enabled = true
 
 [node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("17_irw6p")]
+visible = false
 z_index = 10
 offset_left = -154.0
 offset_top = -17.0
