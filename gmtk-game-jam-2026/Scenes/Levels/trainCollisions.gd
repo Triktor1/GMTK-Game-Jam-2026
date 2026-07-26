@@ -117,9 +117,9 @@ func pullAdyacentLever(tile: Vector2i, id: int) -> void:
 			var atlas = obstaclesMap.get_cell_atlas_coords(pos)
 			var alternative = obstaclesMap.get_cell_alternative_tile(pos)
 			if id == 0:
-				obstaclesMap.set_cell(pos, 1, atlas, alternative)
+				obstaclesMap.set_cell(pos, id, atlas, alternative ^ TileSetAtlasSource.TRANSFORM_FLIP_V)
 			elif id == 1:
-				obstaclesMap.set_cell(pos, 0, atlas, alternative)
+				obstaclesMap.set_cell(pos, id, atlas, alternative ^ TileSetAtlasSource.TRANSFORM_FLIP_V)
 			else: #Invierte horizontalmente el sprite
 				obstaclesMap.set_cell(pos, id, atlas, alternative ^ TileSetAtlasSource.TRANSFORM_FLIP_H)
 	
