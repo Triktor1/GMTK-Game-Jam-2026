@@ -4,19 +4,23 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2fnm6"]
 atlas = ExtResource("1_2fnm6")
-region = Rect2(128, 0, 32, 32)
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k64xw"]
 atlas = ExtResource("1_2fnm6")
-region = Rect2(160, 0, 32, 32)
+region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ix74"]
 atlas = ExtResource("1_2fnm6")
-region = Rect2(192, 0, 32, 32)
+region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_21fuk"]
 atlas = ExtResource("1_2fnm6")
-region = Rect2(224, 0, 32, 32)
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vefo3"]
+atlas = ExtResource("1_2fnm6")
+region = Rect2(288, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_77et8"]
 atlas = ExtResource("1_2fnm6")
@@ -36,19 +40,23 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yryw0"]
 atlas = ExtResource("1_2fnm6")
-region = Rect2(256, 0, 32, 32)
+region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wlj8c"]
 atlas = ExtResource("1_2fnm6")
-region = Rect2(288, 0, 32, 32)
+region = Rect2(352, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ml6e7"]
 atlas = ExtResource("1_2fnm6")
-region = Rect2(320, 0, 32, 32)
+region = Rect2(384, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nnk3s"]
 atlas = ExtResource("1_2fnm6")
-region = Rect2(352, 0, 32, 32)
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2ecr"]
+atlas = ExtResource("1_2fnm6")
+region = Rect2(128, 0, 32, 32)
 
 [resource]
 animations = [{
@@ -67,6 +75,14 @@ animations = [{
 }],
 "loop": 1,
 "name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vefo3")
+}],
+"loop": 1,
+"name": &"down-horizontal",
 "speed": 5.0
 }, {
 "frames": [{
@@ -101,5 +117,13 @@ animations = [{
 }],
 "loop": 1,
 "name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2ecr")
+}],
+"loop": 1,
+"name": &"up-horizontal",
 "speed": 5.0
 }]
