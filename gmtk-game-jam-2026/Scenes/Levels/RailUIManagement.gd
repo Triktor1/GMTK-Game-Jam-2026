@@ -56,11 +56,11 @@ func _ready() ->void:
 	EventBus.connect_signal("ReachedEnd",reachedEnd)
 	
 	RailImage = "[img=64x64]" + railUiIm.resource_path + "[/img]"
-	ReachEndImage = "[img=32x32]" + reachEndUiIm.resource_path + "[/img]"
-	PassengerImage = "[img=32x32]" + passengerUiIm.resource_path + "[/img]"
-	CargoImage = "[img=32x32]" + cargoUiIm.resource_path + "[/img]"
+	ReachEndImage = "[img=128x64]" + reachEndUiIm.resource_path + "[/img]"
+	PassengerImage = "[img=64x64]" + passengerUiIm.resource_path + "[/img]"
+	CargoImage = "[img=64x64]" + cargoUiIm.resource_path + "[/img]"
 	if ReachEndObjective:
-		reachEndLabel.text = ReachEndImage + "[color=#white]" + "Reach the end!" + "[/color]"
+		reachEndLabel.text = RailImage + ReachEndImage
 	passengerUpdate()
 	cargoUpdate()
 	
@@ -83,9 +83,9 @@ func railPlaced()-> void:
 	if railNum == 0: EventBus.emit("withoutTracks", [])
 
 func reachedEnd () -> void:
-	if ReachEndObjective:
+	if ReachEndObjective && !ReachEndComplete:
 		ReachEndComplete = true
-		reachEndLabel.text = ReachEndImage + "[color=#" + Color(0.847, 0.706, 0.0, 1.0).to_html()  + "]"+ "Reach the end!" + "[/color]"
+		reachEndLabel.text = RailImage + "[color=#" + Color(0.847, 0.706, 0.0, 1.0).to_html()  + "]"+ ReachEndImage + "[/color]"
 		checkObjectives()
 	
 
@@ -169,12 +169,12 @@ func checkObjectives() -> void:
 		if ReachEndComplete:
 			if activeObjectivesNum == completedObjectives && !HasAlreadyLost:
 				win_signal.emit()
-		else:
-			EventBus.emit("withoutTracks", [])
-			pass
+			else:
+				EventBus.emit("explode", [])
+				pass
 	else:
 		if activeObjectivesNum == completedObjectives:
 			if !HasAlreadyLost:
 				win_signal.emit()
 			else:
-				EventBus.emit("withoutTracks", [])
+				EventBus.emit("explode", [])
