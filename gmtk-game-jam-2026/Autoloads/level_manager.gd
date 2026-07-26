@@ -8,13 +8,19 @@ var levels:Array[String]=[
 	"res://Scenes/Levels/level_2.tscn",
 	"res://Scenes/Levels/level_3.tscn",
 	"res://Scenes/Levels/level_4.tscn",
-	"res://Scenes/Levels/level_5.tscn"
+	"res://Scenes/Levels/level_5.tscn",
+	"res://Scenes/Levels/level_6.tscn",
+	"res://Scenes/Levels/level_7.tscn",
+	"res://Scenes/Levels/level_8.tscn",
+	"res://Scenes/Levels/level_13.tscn",
+	"res://Scenes/Levels/level_14.tscn",
+	"res://Scenes/Levels/end_scene.tscn"
 ]
 
 func won(lvl:int):
 	current_level=lvl
 	if lvl>max_level:
-		max_level=lvl
+		max_level=lvl+1
 
 
 func next_level():

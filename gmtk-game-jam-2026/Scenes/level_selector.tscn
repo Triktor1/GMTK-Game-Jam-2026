@@ -48,8 +48,9 @@ offset_right = -16.0
 offset_bottom = -332.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/h_separation = 90
-columns = 5
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 30
+columns = 6
 script = ExtResource("1_yk0gq")
 scale_from = 1
 duration = 0.3
@@ -116,6 +117,97 @@ text = "Level 5"
 scene_to_load = "5"
 
 [node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/GridContainer/LevelButton5" unique_id=478097640]
+script = ExtResource("4_b8t80")
+metadata/_custom_type_script = "uid://xiow4n8f6cmo"
+
+[node name="LevelButton6" parent="CanvasLayer/GridContainer" unique_id=687183338 instance=ExtResource("1_22lal")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oto5v")
+theme_override_styles/normal = ExtResource("4_jgeg8")
+theme_override_styles/pressed = ExtResource("4_jgeg8")
+theme_override_styles/hover = ExtResource("4_jgeg8")
+text = "Level 6"
+scene_to_load = "6"
+
+[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/GridContainer/LevelButton6" unique_id=364199869]
+script = ExtResource("4_b8t80")
+metadata/_custom_type_script = "uid://xiow4n8f6cmo"
+
+[node name="LevelButton7" parent="CanvasLayer/GridContainer" unique_id=114671758 instance=ExtResource("1_22lal")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oto5v")
+theme_override_styles/normal = ExtResource("4_jgeg8")
+theme_override_styles/pressed = ExtResource("4_jgeg8")
+theme_override_styles/hover = ExtResource("4_jgeg8")
+text = "Level 7"
+scene_to_load = "7"
+
+[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/GridContainer/LevelButton7" unique_id=341190704]
+script = ExtResource("4_b8t80")
+metadata/_custom_type_script = "uid://xiow4n8f6cmo"
+
+[node name="LevelButton8" parent="CanvasLayer/GridContainer" unique_id=1323789041 instance=ExtResource("1_22lal")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oto5v")
+theme_override_styles/normal = ExtResource("4_jgeg8")
+theme_override_styles/pressed = ExtResource("4_jgeg8")
+theme_override_styles/hover = ExtResource("4_jgeg8")
+text = "Level 8"
+scene_to_load = "8"
+
+[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/GridContainer/LevelButton8" unique_id=833137389]
+script = ExtResource("4_b8t80")
+metadata/_custom_type_script = "uid://xiow4n8f6cmo"
+
+[node name="LevelButton9" parent="CanvasLayer/GridContainer" unique_id=253650595 instance=ExtResource("1_22lal")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oto5v")
+theme_override_styles/normal = ExtResource("4_jgeg8")
+theme_override_styles/pressed = ExtResource("4_jgeg8")
+theme_override_styles/hover = ExtResource("4_jgeg8")
+text = "Level 9"
+scene_to_load = "9"
+
+[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/GridContainer/LevelButton9" unique_id=313187151]
+script = ExtResource("4_b8t80")
+metadata/_custom_type_script = "uid://xiow4n8f6cmo"
+
+[node name="LevelButton10" parent="CanvasLayer/GridContainer" unique_id=2078836321 instance=ExtResource("1_22lal")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oto5v")
+theme_override_styles/normal = ExtResource("4_jgeg8")
+theme_override_styles/pressed = ExtResource("4_jgeg8")
+theme_override_styles/hover = ExtResource("4_jgeg8")
+text = "Level 10"
+scene_to_load = "10"
+
+[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/GridContainer/LevelButton10" unique_id=1092041110]
+script = ExtResource("4_b8t80")
+metadata/_custom_type_script = "uid://xiow4n8f6cmo"
+
+[node name="LevelButton11" parent="CanvasLayer/GridContainer" unique_id=165714465 instance=ExtResource("1_22lal")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oto5v")
+theme_override_styles/normal = ExtResource("4_jgeg8")
+theme_override_styles/pressed = ExtResource("4_jgeg8")
+theme_override_styles/hover = ExtResource("4_jgeg8")
+text = "Level 11"
+scene_to_load = "11"
+
+[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/GridContainer/LevelButton11" unique_id=1172467182]
+script = ExtResource("4_b8t80")
+metadata/_custom_type_script = "uid://xiow4n8f6cmo"
+
+[node name="LevelButton12" parent="CanvasLayer/GridContainer" unique_id=1408623465 instance=ExtResource("1_22lal")]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oto5v")
+theme_override_styles/normal = ExtResource("4_jgeg8")
+theme_override_styles/pressed = ExtResource("4_jgeg8")
+theme_override_styles/hover = ExtResource("4_jgeg8")
+text = "Level 12"
+scene_to_load = "12"
+
+[node name="ButtonEffectsComponent" type="Node2D" parent="CanvasLayer/GridContainer/LevelButton12" unique_id=336637823]
 script = ExtResource("4_b8t80")
 metadata/_custom_type_script = "uid://xiow4n8f6cmo"
 
