@@ -38,6 +38,7 @@ var CargoImage : String
 var ReachEndComplete : bool = false
 var PassengerComplete : bool = false
 var CargoComplete : bool = false
+var HasAlreadyLost : bool = false
 
 
 signal win_signal
@@ -91,18 +92,18 @@ func reachedEnd () -> void:
 func passengerPicked( passengerNum : int) -> void:
 	currentPassengers += passengerNum
 	passengerUpdate()
+	checkObjectives()
 
 func cargoPicked() -> void:
 	currentCargo += 1
 	cargoUpdate()
+	checkObjectives()
 
 func passengerUpdate() -> void:
 	
 	var currentColor = Color(1 , 1 , 1 , 1)
 	
 	if PassengerObjective:
-		
-		
 		if currentPassengers >= requiredPassengerNum:
 			# Color and objective
 			if !passengerExactNum || (passengerExactNum && currentPassengers == requiredPassengerNum):
@@ -111,6 +112,7 @@ func passengerUpdate() -> void:
 			elif passengerExactNum && currentPassengers > requiredPassengerNum:
 				currentColor = Color(1.0, 0.0, 0.0, 1.0)
 				PassengerComplete = false
+				HasAlreadyLost = true
 			 
 		#Text
 		if passengerExactNum:
@@ -132,7 +134,7 @@ func cargoUpdate() -> void:
 			elif cargoExactNum && currentCargo > requiredCargoNum:
 				currentColor = Color(1.0, 0.0, 0.0, 1.0)
 				CargoComplete = false
-			 
+				HasAlreadyLost = true
 		#Text
 		if cargoExactNum:
 			cargoLabel.text= CargoImage + "[color=#" + currentColor.to_html() + "]"  + str(currentCargo) + "/" + str(requiredCargoNum) + "[font_size=15] (Pick only " + str(requiredCargoNum) + "!) [/font_size]" + "[/color]"
@@ -161,7 +163,18 @@ func checkObjectives() -> void:
 		if CargoComplete:
 			completedObjectives += 1
 	
-	#Both conditions activate the end level menu, 
-	if (ReachEndObjective && ReachEndComplete) ||(!ReachEndObjective && activeObjectivesNum == completedObjectives):
-		EventBus.emit("EndLevel" , [passengerExactNum , PassengerObjective , currentPassengers , cargoExactNum , CargoObjective , currentCargo])
-		win_signal.emit()
+	#Level end
+	
+	if ReachEndObjective:
+		if ReachEndComplete:
+			if activeObjectivesNum == completedObjectives && !HasAlreadyLost:
+				win_signal.emit()
+		else:
+			EventBus.emit("withoutTracks", [])
+			pass
+	else:
+		if activeObjectivesNum == completedObjectives:
+			if !HasAlreadyLost:
+				win_signal.emit()
+			else:
+				EventBus.emit("withoutTracks", [])
