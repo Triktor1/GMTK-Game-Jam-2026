@@ -391,13 +391,14 @@ offset_left = 10.0
 offset_top = 49.0
 offset_right = 1162.0
 offset_bottom = 697.0
-railNum = 39
+railNum = 19
 PassengerObjective = true
 requiredCargoNum = 0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=953348130]
 process_mode = 3
 layer = 2
+visible = false
 follow_viewport_enabled = true
 
 [node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("18_ujfmd")]
