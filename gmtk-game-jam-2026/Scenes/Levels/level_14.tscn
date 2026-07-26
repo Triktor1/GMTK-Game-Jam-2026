@@ -403,6 +403,7 @@ requiredCargoNum = 3
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1214478366]
 process_mode = 3
 layer = 2
+visible = false
 follow_viewport_enabled = true
 
 [node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("19_fq2yn")]
