@@ -291,7 +291,7 @@ func onLever() -> bool :
 	
 	var tile_data = tilemapLevers.get_cell_tile_data(currTile)
 	if not tile_data: return false
-	
+	AudioManager.play("LeverVagon")
 	var textureAtlas = tilemapLevers.get_cell_atlas_coords(currTile)
 	
 	if textureAtlas != Vector2i(5,0):
@@ -304,7 +304,7 @@ func createCargo() -> void:
 	if myCargo:
 		myCargo.createCargo()
 		return
-	
+	AudioManager.play("Connect")
 	EventBus.emit("CargoPicked")
 	
 	#Init Cargo
@@ -362,7 +362,7 @@ func onPassenger() -> bool:
 	tilemapPassengers.erase_cell(currTile)
 	EventBus.emit("getPassenger", [currTile])
 	tilemapTracks.set_cell(currTile, 0, textureAtlas, degrees)
-	
+	AudioManager.play("PassengerOn")
 	return true
 
 func explode() -> void:
@@ -370,6 +370,8 @@ func explode() -> void:
 	sprite.stop()
 	exploded = true
 	print("EXPLODE")
+	if not isCargo:
+		AudioManager.play("Death")
 	if myCargo:
 		await get_tree().create_timer(0.15).timeout
 		myCargo.explode()
@@ -455,7 +457,7 @@ func onPortal() -> bool:
 			nextPortal = tile
 			break
 	if nextPortal == Vector2i(-1,-1): return false
-	
+	AudioManager.play("Portal")
 	global_position = tilemapPortals.map_to_local(nextPortal)
 	currTile = nextPortal
 	var atcoo = tilemapPortals.get_cell_atlas_coords(nextPortal)
