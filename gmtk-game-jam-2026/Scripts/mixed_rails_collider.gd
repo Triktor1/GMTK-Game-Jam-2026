@@ -34,6 +34,10 @@ func onTrack() -> bool :
 			if train.currDir == Vector2i(0, -1): train.changeDir(Vector2i(-1,0), true)
 			elif train.currDir == Vector2i(1, 0): train.changeDir(Vector2i(0,1), true)
 			else: train.explode()
+		
+		if tile_data.flip_h:
+			train.changeDir(Vector2i(train.currDir.x, -train.currDir.y), true)
+	
 	elif textureAtlas == Vector2i(6,0):
 		if (train.currDir.x != 0 and degrees == 90) or (train.currDir.y != 0 and degrees == 0): train.explode()
 		elif (train.currDir.x != 0 and (degrees == 0 or degrees == 180)) or (train.currDir.y != 0 and (degrees == 90 or degrees == 270)): train.changeDir(train.currDir, true)
