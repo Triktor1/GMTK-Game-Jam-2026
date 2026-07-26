@@ -8,6 +8,8 @@ func _ready() -> void:
 		EventBus.emit("play_transition", ["level_transition_out"])
 		get_tree().remove_meta("from_pause")
 
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
