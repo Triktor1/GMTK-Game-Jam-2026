@@ -388,7 +388,7 @@ z_index = 2
 tile_set = SubResource("TileSet_ipr37")
 
 [node name="WinTrack" type="TileMapLayer" parent="." unique_id=660847547]
-z_index = 3
+z_index = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAANAAUAAwAFAAAAAAA=")
 tile_set = SubResource("TileSet_mypyk")

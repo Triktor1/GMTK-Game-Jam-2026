@@ -293,7 +293,7 @@ tile_set = SubResource("TileSet_d0d85")
 
 [node name="Shadows" type="TileMapLayer" parent="." unique_id=1818734358]
 z_index = 2
-tile_map_data = PackedByteArray("AAACAAUACAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAACAAUACAAAAAAAAAABAAcACAAAAAAAAAABAAEACAAAAAAAAAA=")
 tile_set = SubResource("TileSet_d0d85")
 
 [node name="Train" type="Node2D" parent="." unique_id=282765247 node_paths=PackedStringArray("tilemapTracks", "tilemapCargos", "tilemapLevers", "tilemapPassengers", "tilemapWin", "sprite")]
@@ -345,7 +345,7 @@ tile_set = SubResource("TileSet_d0d85")
 [node name="Obstacles" type="TileMapLayer" parent="." unique_id=1211902075]
 z_index = 3
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAFAAQAAgAMAAAAAAAFAAMAAgANAAAAAAACAAUAAgAJAAAAAAAEAAcABgACAAAAAAAIAAMABgABAAAAAAA=")
+tile_map_data = PackedByteArray("AAAFAAQAAgAMAAAAAAAFAAMAAgANAAAAAAACAAUAAgAJAAAAAAAEAAcABgACAAAAAAAIAAMABgABAAAAAAAHAAEAAgAKAAAAAAAIAAEAAgALAAAAAAABAAEAAgABAAAAABABAAcAAgAEAAAAAAA=")
 tile_set = SubResource("TileSet_d0d85")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=963407567]
@@ -366,6 +366,7 @@ visible = false
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=708354877]
 process_mode = 3
 layer = 2
+visible = false
 follow_viewport_enabled = true
 
 [node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("20_rcyh2")]
