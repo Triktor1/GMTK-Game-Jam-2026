@@ -280,10 +280,10 @@ tile_set = SubResource("TileSet_5j0xs")
 
 [node name="PassengersTracks" type="TileMapLayer" parent="." unique_id=2088070458]
 z_index = 2
-tile_map_data = PackedByteArray("AAACAAcAAwAFAAAAAAADAAUAAwAFAAAAAAACAAIAAwAFAAAAAAAGAAUAAwAFAAAAAAAIAAMAAwAFAAAAAGAFAAcAAwAFAAAAAAA=")
+tile_map_data = PackedByteArray("AAACAAcAAwAFAAAAAAADAAUAAwAFAAAAAAACAAIAAwAFAAAAAAAGAAUAAwAFAAAAAAAIAAMAAwAFAAAAAFAFAAcAAwAFAAAAAAA=")
 tile_set = SubResource("TileSet_vnlkl")
 
-[node name="PassengersTracks2" type="TileMapLayer" parent="." unique_id=1636994802]
+[node name="Shadows" type="TileMapLayer" parent="." unique_id=1636994802]
 z_index = 2
 tile_map_data = PackedByteArray("AAAGAAYACAAAAAAAAAAFAAQACAAAAAAAAAA=")
 tile_set = SubResource("TileSet_vnlkl")
@@ -358,7 +358,6 @@ offset_left = 10.0
 offset_top = 49.0
 offset_right = 1162.0
 offset_bottom = 697.0
-railNum = 19
 PassengerObjective = true
 requiredPassengerNum = 5
 
