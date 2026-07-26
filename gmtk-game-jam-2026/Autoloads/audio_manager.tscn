@@ -1,10 +1,30 @@
 [gd_scene format=3 uid="uid://cbn8bflkc4tym"]
 
 [ext_resource type="Script" uid="uid://7s05qduq3tu0" path="res://Autoloads/audio_manager.gd" id="1_ue73k"]
+[ext_resource type="AudioStream" uid="uid://dwrwvdi2t0vsw" path="res://Assets/Sounds/connect_vagon.mp3" id="2_5psad"]
+[ext_resource type="AudioStream" uid="uid://bj8kel5eb2qcf" path="res://Assets/Sounds/death.mp3" id="3_apnpw"]
+[ext_resource type="AudioStream" uid="uid://dwx2sh130i3df" path="res://Assets/Sounds/leavevagon.mp3" id="4_h43j6"]
+[ext_resource type="AudioStream" uid="uid://rc03lwb40m7l" path="res://Assets/Sounds/passenger_on.mp3" id="5_amsdr"]
+[ext_resource type="AudioStream" uid="uid://csyi10ndqf4gg" path="res://Assets/Sounds/portal.mp3" id="6_jpqn3"]
 
 [node name="AudioManager" type="Node" unique_id=947853879]
 script = ExtResource("1_ue73k")
 
 [node name="Clips" type="Node" parent="." unique_id=560044531]
+
+[node name="Connect" type="AudioStreamPlayer" parent="Clips" unique_id=1342039242]
+stream = ExtResource("2_5psad")
+
+[node name="Death" type="AudioStreamPlayer" parent="Clips" unique_id=1284088602]
+stream = ExtResource("3_apnpw")
+
+[node name="LeverVagon" type="AudioStreamPlayer" parent="Clips" unique_id=409246051]
+stream = ExtResource("4_h43j6")
+
+[node name="PassengerOn" type="AudioStreamPlayer" parent="Clips" unique_id=1822301043]
+stream = ExtResource("5_amsdr")
+
+[node name="Portal" type="AudioStreamPlayer" parent="Clips" unique_id=12787094]
+stream = ExtResource("6_jpqn3")
 
 [node name="OneShots" type="Node" parent="." unique_id=851170696]
