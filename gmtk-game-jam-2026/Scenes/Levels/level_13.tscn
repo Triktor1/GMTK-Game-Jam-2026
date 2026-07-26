@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="17_ma5ch"]
 [ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="18_3rabp"]
 [ext_resource type="PackedScene" uid="uid://qc45y82fn63y" path="res://Scenes/pause_menu.tscn" id="19_t1ek4"]
+[ext_resource type="PackedScene" uid="uid://ckatcq3ckytgb" path="res://Scenes/win_scene.tscn" id="21_0revk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0revk"]
 texture = ExtResource("1_fw6w6")
@@ -392,7 +393,6 @@ offset_right = 1162.0
 offset_bottom = 697.0
 railNum = 16
 ReachEndObjective = false
-passengerExactNum = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2099961179]
 process_mode = 3
@@ -411,3 +411,11 @@ mouse_filter = 2
 
 [node name="pause_menu" parent="." unique_id=1116311543 instance=ExtResource("19_t1ek4")]
 visible = false
+
+[node name="WinScene" parent="." unique_id=64850322 node_paths=PackedStringArray("level_ui") instance=ExtResource("21_0revk")]
+offset_left = 576.0
+offset_top = 324.0
+offset_right = 576.0
+offset_bottom = 324.0
+lvl_num = 11
+level_ui = NodePath("../LevelUI")
