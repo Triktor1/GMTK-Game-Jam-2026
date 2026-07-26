@@ -7,8 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://rc03lwb40m7l" path="res://Assets/Sounds/passenger_on.mp3" id="5_amsdr"]
 [ext_resource type="AudioStream" uid="uid://csyi10ndqf4gg" path="res://Assets/Sounds/portal.mp3" id="6_jpqn3"]
 
-[node name="AudioManager" type="Node" unique_id=947853879]
+[node name="AudioManager" type="Node" unique_id=947853879 node_paths=PackedStringArray("clips", "one_shots")]
 script = ExtResource("1_ue73k")
+clips = NodePath("Clips")
+one_shots = NodePath("OneShots")
 
 [node name="Clips" type="Node" parent="." unique_id=560044531]
 
