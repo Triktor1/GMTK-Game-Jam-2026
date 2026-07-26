@@ -34,7 +34,7 @@ func _ready() -> void:
 	currTile = iniTilePos
 	currDir = direction
 	lastTile=currTile
-	lastDir = currDir
+	lastDir = direction
 	nextTile = currTile + currDir
 	canChangeDir = true
 	saveDir = Vector2i(0,0)
@@ -114,7 +114,6 @@ func changeDir(newDir: Vector2i, track:bool = false) -> void:
 	#We know player cant change Direction until the next tile, so we can put the next track
 	#Also changes the train sprite and resets saved direction
 	if newDir != currDir: global_position = tilemapTracks.map_to_local(currTile)
-	
 	lastDir = currDir
 	currDir = newDir
 	
@@ -136,12 +135,39 @@ func changeDir(newDir: Vector2i, track:bool = false) -> void:
 # Changes the train sprite based on the trains direction
 func change_sprite() -> void:
 	if (currDir.y == -1):
-		sprite.play("up")
+		if lastDir.x == 1 || lastDir.x == -1: sprite.play("up-horizontal")
+		if lastDir.x == -1: sprite.flip_h = true
+		await get_tree().create_timer(speed/300.0).timeout
+		if get_tree():
+			sprite.flip_h = false
+			sprite.play("up")
 	elif (currDir.y == 1):
-		sprite.play("down")
-	else:
+		if lastDir.x == 1 || lastDir.x == -1: sprite.play("down-horizontal")
+		if lastDir.x == 1: sprite.flip_h = true
+		await get_tree().create_timer(speed/300.0).timeout
+		if get_tree():
+			sprite.flip_h = false
+			sprite.play("down")
+	elif currDir.x == 1:
+		if lastDir.y == 1:
+			sprite.flip_h = true
+			sprite.play("down-horizontal")
+		if lastDir.y == -1:
+			sprite.play("up-horizontal")
+			sprite.flip_h = false
+		await get_tree().create_timer(speed/300.0).timeout
+		sprite.flip_h = false
 		sprite.play("horizontal")
-		sprite.flip_h = currDir.x == -1
+	elif currDir.x == -1:
+		if lastDir.y == 1:
+			sprite.play("down-horizontal")
+			sprite.flip_h = false
+		if lastDir.y == -1:
+			sprite.play("up-horizontal")
+			sprite.flip_h = true
+		await get_tree().create_timer(speed/300.0).timeout
+		sprite.flip_h = true
+		sprite.play("horizontal")
 
 #Updates a track to make it curve
 #based on the last direction and the new one
