@@ -81,6 +81,7 @@ func reachedEnd () -> void:
 		ReachEndComplete = true
 		reachEndLabel.text = ReachEndImage + "[color=#" + Color(0.847, 0.706, 0.0, 1.0).to_html()  + "]"+ "Reach the end!" + "[/color]"
 		checkObjectives()
+	
 
 func passengerPicked( passengerNum : int) -> void:
 	currentPassengers += passengerNum
@@ -96,6 +97,7 @@ func passengerUpdate() -> void:
 	
 	if PassengerObjective:
 		
+		
 		if currentPassengers >= requiredPassengerNum:
 			# Color and objective
 			if !passengerExactNum || (passengerExactNum && currentPassengers == requiredPassengerNum):
@@ -110,7 +112,8 @@ func passengerUpdate() -> void:
 			passengersLabel.text= PassengerImage + "[color=#" + currentColor.to_html() + "]"  + str(currentPassengers) + "/" + str(requiredPassengerNum) + "[font_size=15] (Pick only " + str(requiredPassengerNum) + "!) [/font_size]" + "[/color]"
 		else:
 			passengersLabel.text= PassengerImage + "[color=#" + currentColor.to_html() + "]"  + str(currentPassengers) + "/" + str(requiredPassengerNum) + "[/color]"
-
+	else:
+		passengersLabel.visible = false
 func cargoUpdate() -> void:
 	
 	var currentColor = Color(1 , 1 , 1 , 1)
@@ -130,7 +133,9 @@ func cargoUpdate() -> void:
 			cargoLabel.text= CargoImage + "[color=#" + currentColor.to_html() + "]"  + str(currentCargo) + "/" + str(requiredCargoNum) + "[font_size=15] (Pick only " + str(requiredCargoNum) + "!) [/font_size]" + "[/color]"
 		else:
 			cargoLabel.text= CargoImage + "[color=#" + currentColor.to_html() + "]"  + str(currentCargo) + "/" + str(requiredCargoNum) + "[/color]"
-
+	else:
+		cargoLabel.visible = false
+	
 #THIS FUNCTION IS CALLED WHEN THE LEVEL SHOULD BE OVER, AND IT CHECKS IF THE PLAYER WON OR LOST
 func checkObjectives() -> void:
 	

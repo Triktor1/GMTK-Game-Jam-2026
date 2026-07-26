@@ -16,16 +16,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_gw16p")
 railLabel = NodePath("levelUI/RailLabel")
-reachEndLabel = NodePath("levelUI/ReachEndLabel")
-passengersLabel = NodePath("levelUI/PassengerLabel")
-cargoLabel = NodePath("levelUI/CargoLabel")
+reachEndLabel = NodePath("levelUI/VBoxContainer/ReachEndLabel")
+passengersLabel = NodePath("levelUI/VBoxContainer/PassengerLabel")
+cargoLabel = NodePath("levelUI/VBoxContainer/CargoLabel")
 railUiIm = ExtResource("2_u4a2s")
 reachEndUiIm = ExtResource("2_u4a2s")
 passengerUiIm = ExtResource("3_2qe5m")
 cargoUiIm = ExtResource("3_2qe5m")
 railNum = 20
-PassengerObjective = true
 CargoObjective = true
+passengerExactNum = true
 requiredPassengerNum = 2
 requiredCargoNum = 10
 
@@ -44,42 +44,39 @@ vertical_alignment = 1
 script = ExtResource("2_4mllq")
 target_property = "text"
 
-[node name="ReachEndLabel" type="RichTextLabel" parent="levelUI" unique_id=84507185 node_paths=PackedStringArray("target")]
-offset_left = 19.0
-offset_top = 32.0
-offset_right = 305.585
-offset_bottom = 107.0
-pivot_offset = Vector2(105.5, 37.5)
+[node name="VBoxContainer" type="VBoxContainer" parent="levelUI" unique_id=1405752263]
+offset_left = 22.0
+offset_top = 19.0
+offset_right = 284.0
+offset_bottom = 492.0
+
+[node name="ReachEndLabel" type="RichTextLabel" parent="levelUI/VBoxContainer" unique_id=84507185 node_paths=PackedStringArray("target")]
+layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
+fit_content = true
 vertical_alignment = 1
 script = ExtResource("2_4mllq")
 target = NodePath(".")
 target_property = "text"
 rot_degrees = 0
 
-[node name="PassengerLabel" type="RichTextLabel" parent="levelUI" unique_id=387309645 node_paths=PackedStringArray("target")]
-offset_left = 19.0
-offset_top = 111.0
-offset_right = 305.585
-offset_bottom = 186.0
-pivot_offset = Vector2(105.5, 37.5)
+[node name="PassengerLabel" type="RichTextLabel" parent="levelUI/VBoxContainer" unique_id=387309645 node_paths=PackedStringArray("target")]
+layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
+fit_content = true
 vertical_alignment = 1
 script = ExtResource("2_4mllq")
 target = NodePath(".")
 target_property = "text"
 rot_degrees = 0
 
-[node name="CargoLabel" type="RichTextLabel" parent="levelUI" unique_id=1978236909 node_paths=PackedStringArray("target")]
-offset_left = 19.0
-offset_top = 180.48001
-offset_right = 305.585
-offset_bottom = 255.48013
-pivot_offset = Vector2(105.5, 37.500057)
+[node name="CargoLabel" type="RichTextLabel" parent="levelUI/VBoxContainer" unique_id=1978236909 node_paths=PackedStringArray("target")]
+layout_mode = 2
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
+fit_content = true
 vertical_alignment = 1
 script = ExtResource("2_4mllq")
 target = NodePath(".")
