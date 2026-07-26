@@ -59,8 +59,8 @@ func _ready() ->void:
 	ReachEndImage = "[img=32x32]" + reachEndUiIm.resource_path + "[/img]"
 	PassengerImage = "[img=32x32]" + passengerUiIm.resource_path + "[/img]"
 	CargoImage = "[img=32x32]" + cargoUiIm.resource_path + "[/img]"
-	
-	reachEndLabel.text = ReachEndImage + "[color=#white]" + "Reach the end!" + "[/color]"
+	if ReachEndObjective:
+		reachEndLabel.text = ReachEndImage + "[color=#white]" + "Reach the end!" + "[/color]"
 	passengerUpdate()
 	cargoUpdate()
 	

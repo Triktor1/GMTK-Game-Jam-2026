@@ -25,7 +25,6 @@ passengerUiIm = ExtResource("3_2qe5m")
 cargoUiIm = ExtResource("3_2qe5m")
 railNum = 20
 ReachEndObjective = true
-PassengerObjective = true
 passengerExactNum = true
 requiredPassengerNum = 2
 requiredCargoNum = 10
