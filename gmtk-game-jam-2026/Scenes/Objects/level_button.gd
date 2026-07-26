@@ -12,6 +12,9 @@ const LEVEL_5:String="res://Scenes/Levels/level_5.tscn"
 const LEVEL_6:String="res://Scenes/Levels/level_6.tscn"
 const LEVEL_7:String="res://Scenes/Levels/level_7.tscn"
 const LEVEL_8:String="res://Scenes/Levels/level_8.tscn"
+const LEVEL_9:String="res://Scenes/Levels/Level_10.tscn"
+const LEVEL_10:String="res://Scenes/Levels/Level_13.tscn"
+const LEVEL_11:String="res://Scenes/Levels/Level_14.tscn"
 
 func _ready() -> void:
 	pressed.connect(_load_scene)
@@ -39,13 +42,11 @@ func _load_scene():
 			"8":
 				level=LEVEL_8
 			"9":
-				level=""
+				level=LEVEL_9
 			"10":
-				level=""
+				level=LEVEL_10
 			"11":
-				level=""
-			"12":
-				level=""
+				level=LEVEL_11
 			
 		if level!="":
 			get_tree().set_meta("from_level", true)

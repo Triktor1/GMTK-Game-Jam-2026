@@ -437,5 +437,5 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 0.0
 offset_bottom = 0.0
-lvl_num = 12
+lvl_num = 11
 level_ui = NodePath("../LevelUI")
