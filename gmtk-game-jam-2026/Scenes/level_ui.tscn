@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://jdsuucorsaiy" path="res://Scripts/auto_tween_property.gd" id="2_4mllq"]
 [ext_resource type="Texture2D" uid="uid://bglv13pagck8y" path="res://Assets/Placeholders/RailUI.png" id="2_u4a2s"]
 [ext_resource type="Texture2D" uid="uid://dqq14cn4olh4d" path="res://Assets/Placeholders/PassengerUI.png" id="3_2qe5m"]
+[ext_resource type="FontFile" uid="uid://bp0voh20n6bhw" path="res://Assets/Fonts/Rubik-Black.ttf" id="4_2qe5m"]
 
 [node name="LevelUI" type="Control" unique_id=1736655561 node_paths=PackedStringArray("railLabel", "reachEndLabel", "passengersLabel", "cargoLabel")]
 layout_mode = 3
@@ -25,23 +26,24 @@ passengerUiIm = ExtResource("3_2qe5m")
 cargoUiIm = ExtResource("3_2qe5m")
 railNum = 20
 ReachEndObjective = true
-passengerExactNum = true
 requiredPassengerNum = 2
 requiredCargoNum = 10
 
 [node name="levelUI" type="CanvasLayer" parent="." unique_id=2066591075]
 
-[node name="RailLabel" type="RichTextLabel" parent="levelUI" unique_id=90153445]
+[node name="RailLabel" type="RichTextLabel" parent="levelUI" unique_id=90153445 node_paths=PackedStringArray("target")]
 offset_left = 928.0
 offset_top = 14.0
 offset_right = 1112.0
 offset_bottom = 165.0
 pivot_offset = Vector2(92, 75.5)
+theme_override_fonts/normal_font = ExtResource("4_2qe5m")
 theme_override_font_sizes/normal_font_size = 45
 bbcode_enabled = true
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_4mllq")
+target = NodePath(".")
 target_property = "text"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="levelUI" unique_id=1405752263]
@@ -52,7 +54,8 @@ offset_bottom = 492.0
 
 [node name="ReachEndLabel" type="RichTextLabel" parent="levelUI/VBoxContainer" unique_id=84507185 node_paths=PackedStringArray("target")]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
+theme_override_fonts/normal_font = ExtResource("4_2qe5m")
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 fit_content = true
 vertical_alignment = 1
@@ -63,7 +66,8 @@ rot_degrees = 0
 
 [node name="PassengerLabel" type="RichTextLabel" parent="levelUI/VBoxContainer" unique_id=387309645 node_paths=PackedStringArray("target")]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
+theme_override_fonts/normal_font = ExtResource("4_2qe5m")
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 fit_content = true
 vertical_alignment = 1
@@ -74,7 +78,8 @@ rot_degrees = 0
 
 [node name="CargoLabel" type="RichTextLabel" parent="levelUI/VBoxContainer" unique_id=1978236909 node_paths=PackedStringArray("target")]
 layout_mode = 2
-theme_override_font_sizes/normal_font_size = 30
+theme_override_fonts/normal_font = ExtResource("4_2qe5m")
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 fit_content = true
 vertical_alignment = 1
