@@ -252,6 +252,7 @@ tile_set = SubResource("TileSet_jip10")
 
 [node name="Tracks" type="TileMapLayer" parent="." unique_id=2002258341]
 z_index = 2
+tile_map_data = PackedByteArray("AAAJAAQAAAAFAAAAAAA=")
 tile_set = SubResource("TileSet_7h8th")
 
 [node name="LeverTracks" type="TileMapLayer" parent="." unique_id=30148429]
@@ -270,7 +271,7 @@ tile_set = SubResource("TileSet_ts3wb")
 [node name="WinTrack" type="TileMapLayer" parent="." unique_id=2007989175]
 z_index = 3
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAKAAQAAwAFAAAAAAA=")
+tile_map_data = PackedByteArray("AAAJAAQAAwAFAAAAAAA=")
 tile_set = SubResource("TileSet_ts3wb")
 
 [node name="Train" type="Node2D" parent="." unique_id=1748949514 node_paths=PackedStringArray("tilemapTracks", "tilemapCargos", "tilemapLevers", "tilemapPassengers", "sprite")]
@@ -336,6 +337,7 @@ offset_bottom = 697.0
 ReachEndObjective = true
 PassengerObjective = true
 CargoObjective = false
+passengerExactNum = false
 
 [node name="pause_menu" parent="." unique_id=1116311543 instance=ExtResource("6_u40f0")]
 visible = false

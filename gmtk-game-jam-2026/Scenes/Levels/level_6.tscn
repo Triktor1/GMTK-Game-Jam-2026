@@ -249,16 +249,17 @@ tile_set = SubResource("TileSet_wfdgf")
 
 [node name="Tracks" type="TileMapLayer" parent="." unique_id=2097695173]
 z_index = 2
+tile_map_data = PackedByteArray("AAAJAAYAAAAFAAAAAAAEAAUAAAAGAAAAAFAIAAUAAAAGAAAAAEA=")
 tile_set = SubResource("TileSet_5j0xs")
 
 [node name="LeverTracks" type="TileMapLayer" parent="." unique_id=19592179]
 z_index = 2
-tile_map_data = PackedByteArray("AAAEAAUAAAAQAAAAAAAIAAUAAAARAAAAAAA=")
+tile_map_data = PackedByteArray("AAAGAAIAAAAFAAAAAAA=")
 tile_set = SubResource("TileSet_5j0xs")
 
 [node name="PassengersTracks" type="TileMapLayer" parent="." unique_id=2088070458]
 z_index = 2
-tile_map_data = PackedByteArray("AAACAAcAAwAFAAAAAAADAAUAAwAFAAAAAAACAAIAAwAFAAAAAAAGAAUAAwAFAAAAAAAGAAcAAwAFAAAAAAAIAAMAAwAFAAAAAGA=")
+tile_map_data = PackedByteArray("AAACAAcAAwAFAAAAAAADAAUAAwAFAAAAAAACAAIAAwAFAAAAAAAGAAUAAwAFAAAAAAAIAAMAAwAFAAAAAGAFAAcAAwAFAAAAAAA=")
 tile_set = SubResource("TileSet_vnlkl")
 
 [node name="CargosTracks" type="TileMapLayer" parent="." unique_id=1252227483]
@@ -268,7 +269,7 @@ tile_set = SubResource("TileSet_vnlkl")
 [node name="WinTrack" type="TileMapLayer" parent="." unique_id=975640197]
 z_index = 3
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAKAAYAAwAFAAAAAAA=")
+tile_map_data = PackedByteArray("AAAJAAYAAwAFAAAAAAA=")
 tile_set = SubResource("TileSet_vnlkl")
 
 [node name="Train" type="Node2D" parent="." unique_id=103309182 node_paths=PackedStringArray("tilemapTracks", "tilemapCargos", "tilemapLevers", "tilemapPassengers", "sprite")]
@@ -277,7 +278,7 @@ y_sort_enabled = true
 script = ExtResource("10_vlj4u")
 speed = 40
 direction = Vector2i(1, 0)
-iniTilePos = Vector2i(-1, 4)
+iniTilePos = Vector2i(-1, 3)
 tilemapTracks = NodePath("../Tracks")
 tilemapCargos = NodePath("../CargosTracks")
 tilemapLevers = NodePath("../LeverTracks")
@@ -299,7 +300,7 @@ obstaclesMap = NodePath("../../Obstacles")
 wallsMap = NodePath("../../Wall")
 passegersMap = NodePath("../../PassengersSprites")
 train = NodePath("..")
-win_track = NodePath("")
+win_track = NodePath("../../WinTrack")
 
 [node name="MixedRails" type="Node2D" parent="Train" unique_id=765881238]
 script = ExtResource("15_0isdn")
@@ -307,7 +308,7 @@ script = ExtResource("15_0isdn")
 [node name="PassengersSprites" type="TileMapLayer" parent="." unique_id=826168417]
 z_index = 3
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAFAAMAAAAFAAEAAAAGAAwAAAAQAAAAAAAEAA0AAAABAAEAAAAFAA0AAAAAAAEAAAAMAA0AAAAFAAEAAAANAA0AAAAVAAAAAAANAAkAAAAUAAAAAAAPAAYAAAAJAAAAAAAPAAcAAAAJAAEAAAA=")
+tile_map_data = PackedByteArray("AAAFAAMAAAAFAAEAAAAGAAwAAAAQAAAAAAAEAA0AAAABAAEAAAAFAA0AAAAAAAEAAAAPAAYAAAAJAAAAAAAPAAcAAAAJAAEAAAAMAAkAAAAUAAAAAAALAA0AAAAVAAAAAAAKAA0AAAAFAAEAAAA=")
 tile_set = SubResource("TileSet_rhb8s")
 
 [node name="Wall" type="TileMapLayer" parent="." unique_id=1421569019]
@@ -319,7 +320,7 @@ tile_set = SubResource("TileSet_vnlkl")
 [node name="Obstacles" type="TileMapLayer" parent="." unique_id=1197056710]
 z_index = 3
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAACAAQAAgAQAAAAAAADAAQAAgARAAAAAAACAAMAAgAOAAAAAAADAAMAAgAPAAAAAAAFAAQAAgAAAAAAAAAGAAQABgAAAAAAAAAFAAMAAgAKAAAAAAAGAAMAAgALAAAAAAAFAAYAAgAJAAAAAAAGAAYABgAAAAAAAAACAAYABgAAAAAAAAADAAYABgACAAAAAAAHAAMABgABAAAAAAACAAEABgAAAAAAAAAGAAEABwACAAAAAAA=")
+tile_map_data = PackedByteArray("AAACAAQAAgAQAAAAAAADAAQAAgARAAAAAAACAAMAAgAOAAAAAAADAAMAAgAPAAAAAAAFAAQAAgAAAAAAAAAGAAQABgAAAAAAAAAFAAMAAgAKAAAAAAAGAAMAAgALAAAAAAAFAAYABgAAAAAAAAACAAYABgAAAAAAAAADAAYABgACAAAAAAAHAAMABgABAAAAAAACAAEABgAAAAAAAAAGAAEABwACAAAAAAAGAAYAAgAJAAAAAAA=")
 tile_set = SubResource("TileSet_vnlkl")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=84934179]
@@ -334,10 +335,11 @@ offset_bottom = 697.0
 ReachEndObjective = true
 PassengerObjective = true
 CargoObjective = false
+requiredPassengerNum = 5
 
 [node name="pause_menu" parent="." unique_id=1116311543 instance=ExtResource("17_rtata")]
 visible = false
 
 [node name="WinScene" parent="." unique_id=64850322 node_paths=PackedStringArray("level_ui") instance=ExtResource("18_3gwol")]
-lvl_num = 2
-level_ui = NodePath("")
+lvl_num = 6
+level_ui = NodePath("../LevelUI")

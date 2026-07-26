@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://6k3g6fgr26eh" path="res://Scenes/cargo.tscn" id="11_rcyh2"]
 [ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="15_341pv"]
 [ext_resource type="Script" uid="uid://d1c64slyc1qyx" path="res://Scripts/mixed_rails_collider.gd" id="16_r8neg"]
+[ext_resource type="PackedScene" uid="uid://ckatcq3ckytgb" path="res://Scenes/win_scene.tscn" id="19_r8neg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wnlxl"]
 texture = ExtResource("1_x1k1j")
@@ -65,16 +66,16 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_3m4x7")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_seteq"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_khr6i"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvd0d"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r8neg"]
 resource_name = "Placeholder"
-texture = SubResource("CompressedTexture2D_seteq")
+texture = SubResource("CompressedTexture2D_khr6i")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gupo0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rcyh2"]
 texture = ExtResource("2_x1k1j")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -91,7 +92,7 @@ texture_region_size = Vector2i(32, 32)
 11:0/0 = 0
 12:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3l8qv"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_341pv"]
 texture = ExtResource("2_4ahh4")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -113,7 +114,7 @@ texture_region_size = Vector2i(32, 32)
 16:0/0 = 0
 17:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_teul3"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jgaqf"]
 texture = ExtResource("1_yy6i0")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -123,7 +124,7 @@ texture_region_size = Vector2i(32, 32)
 4:0/0 = 0
 5:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6qnit"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8ve8p"]
 texture = ExtResource("7_anjjd")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -139,19 +140,19 @@ texture_region_size = Vector2i(32, 32)
 10:0/0 = 0
 11:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e4pux"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q2kiq"]
 texture = ExtResource("8_ocbj8")
 texture_region_size = Vector2i(32, 32)
 0:1/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_isixn"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wvd0d"]
 texture = ExtResource("9_r8neg")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rcyh2"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gupo0"]
 texture = ExtResource("10_ocbj8")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
@@ -160,14 +161,14 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSet" id="TileSet_d0d85"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_wvd0d")
-sources/1 = SubResource("TileSetAtlasSource_gupo0")
-sources/2 = SubResource("TileSetAtlasSource_3l8qv")
-sources/3 = SubResource("TileSetAtlasSource_teul3")
-sources/4 = SubResource("TileSetAtlasSource_6qnit")
-sources/5 = SubResource("TileSetAtlasSource_e4pux")
-sources/6 = SubResource("TileSetAtlasSource_isixn")
-sources/7 = SubResource("TileSetAtlasSource_rcyh2")
+sources/0 = SubResource("TileSetAtlasSource_r8neg")
+sources/1 = SubResource("TileSetAtlasSource_rcyh2")
+sources/2 = SubResource("TileSetAtlasSource_341pv")
+sources/3 = SubResource("TileSetAtlasSource_jgaqf")
+sources/4 = SubResource("TileSetAtlasSource_8ve8p")
+sources/5 = SubResource("TileSetAtlasSource_q2kiq")
+sources/6 = SubResource("TileSetAtlasSource_wvd0d")
+sources/7 = SubResource("TileSetAtlasSource_gupo0")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ykav4"]
 texture = ExtResource("8_ocbj8")
@@ -250,6 +251,7 @@ tile_set = SubResource("TileSet_8ve8p")
 
 [node name="Tracks" type="TileMapLayer" parent="." unique_id=1516980442]
 z_index = 2
+tile_map_data = PackedByteArray("AAACAAAAAAABAAAAAAADAAAAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_q2kiq")
 
 [node name="LeverTracks" type="TileMapLayer" parent="." unique_id=1998039644]
@@ -258,11 +260,17 @@ tile_set = SubResource("TileSet_q2kiq")
 
 [node name="PassengersTracks" type="TileMapLayer" parent="." unique_id=501057452]
 z_index = 2
-tile_map_data = PackedByteArray("AAAHAAMAAwAFAAAAAGAEAAYAAwAAAAAAAFA=")
+tile_map_data = PackedByteArray("AAAHAAMAAwAFAAAAAFAEAAYAAwAAAAAAAFA=")
 tile_set = SubResource("TileSet_d0d85")
 
 [node name="CargosTracks" type="TileMapLayer" parent="." unique_id=1433799608]
 z_index = 2
+tile_set = SubResource("TileSet_d0d85")
+
+[node name="WinTrack" type="TileMapLayer" parent="." unique_id=1944126329]
+z_index = 3
+y_sort_enabled = true
+tile_map_data = PackedByteArray("AAACAAAAAwABAAAAAAADAAAAAwABAAAAAAA=")
 tile_set = SubResource("TileSet_d0d85")
 
 [node name="Train" type="Node2D" parent="." unique_id=282765247 node_paths=PackedStringArray("tilemapTracks", "tilemapCargos", "tilemapLevers", "tilemapPassengers", "sprite")]
@@ -287,12 +295,13 @@ texture = ExtResource("3_x1k1j")
 sprite_frames = ExtResource("4_4ahh4")
 animation = &"up"
 
-[node name="Collider" type="Node2D" parent="Train" unique_id=1739327250 node_paths=PackedStringArray("obstaclesMap", "wallsMap", "passegersMap", "train")]
+[node name="Collider" type="Node2D" parent="Train" unique_id=1739327250 node_paths=PackedStringArray("obstaclesMap", "wallsMap", "passegersMap", "train", "win_track")]
 script = ExtResource("5_dl55b")
 obstaclesMap = NodePath("../../Obstacles")
 wallsMap = NodePath("../../Wall")
 passegersMap = NodePath("../../PassengersTracks")
 train = NodePath("..")
+win_track = NodePath("../../WinTrack")
 
 [node name="MixedRails" type="Node2D" parent="Train" unique_id=2010091035]
 script = ExtResource("16_r8neg")
@@ -324,6 +333,14 @@ offset_left = 10.0
 offset_top = 49.0
 offset_right = 1162.0
 offset_bottom = 697.0
+ReachEndObjective = true
+PassengerObjective = true
+CargoObjective = false
+passengerExactNum = false
 
 [node name="pause_menu" parent="." unique_id=1116311543 instance=ExtResource("6_osqx1")]
 visible = false
+
+[node name="WinScene" parent="." unique_id=64850322 node_paths=PackedStringArray("level_ui") instance=ExtResource("19_r8neg")]
+lvl_num = 3
+level_ui = NodePath("../LevelUI")
