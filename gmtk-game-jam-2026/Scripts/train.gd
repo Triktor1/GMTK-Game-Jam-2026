@@ -30,6 +30,7 @@ func _ready() -> void:
 	if !isCargo:
 		EventBus.connect_signal("explode", explode)
 		EventBus.connect_signal("withoutTracks", noT)
+	EventBus.connect_signal("ReachedEnd",_stop)
 	currTile = iniTilePos
 	currDir = direction
 	lastTile=currTile
@@ -361,3 +362,6 @@ func explode() -> void:
 		EventBus.emit("play_transition", ["restart_animation"])
 		await get_tree().create_timer(1).timeout
 		get_tree().reload_current_scene()
+
+func _stop():
+	speed=0
