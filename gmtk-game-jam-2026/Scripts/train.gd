@@ -184,7 +184,7 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 			return
 		# If there isn´t any track, we create the tile data.
 		if !tile_data :
-			tilemapTracks.set_cell(tile, 0, Vector2i(0, 0))
+			tilemapTracks.set_cell(tile, 0, Vector2i(22, 0))
 			tile_data = tilemapTracks.get_cell_tile_data(tile)
 			EventBus.emit("PlacedRail" , [])
 		
@@ -200,9 +200,14 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 			180: alternative_id = TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V
 			270: alternative_id = TileSetAtlasSource.TRANSFORM_FLIP_V | TileSetAtlasSource.TRANSFORM_TRANSPOSE
 			_: alternative_id = 0 
-		
-		# Place the new texture on the tileMap
-		tilemapTracks.set_cell(tile, 0, track, alternative_id)
+		if straight:
+			var source := tilemapTracks.tile_set.get_source(0) as TileSetAtlasSource
+			var effect = preload("res://Scenes/Objects/trackAnim.tscn").instantiate()
+			effect.position = tilemapTracks.map_to_local(tile)
+			get_parent().add_child(effect)
+			await effect.setup(source.texture, source.get_tile_texture_region(track), alternative_id)
+			tilemapTracks.set_cell(tile, 0, track, alternative_id)
+		else: tilemapTracks.set_cell(tile, 0, track, alternative_id)
 		if not replace: NextVia = false
 
 func onTrack() -> bool :

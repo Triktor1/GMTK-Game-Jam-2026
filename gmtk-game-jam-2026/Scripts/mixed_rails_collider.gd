@@ -36,5 +36,5 @@ func onTrack() -> bool :
 			else: train.explode()
 	elif textureAtlas == Vector2i(6,0):
 		if (train.currDir.x != 0 and degrees == 90) or (train.currDir.y != 0 and degrees == 0): train.explode()
-		elif (train.currDir.x != 0 and degrees == 0) or (train.currDir.y != 0 and degrees == 90): train.changeDir(train.currDir, true)
+		elif (train.currDir.x != 0 and (degrees == 0 or degrees == 180)) or (train.currDir.y != 0 and (degrees == 90 or degrees == 270)): train.changeDir(train.currDir, true)
 	return true
