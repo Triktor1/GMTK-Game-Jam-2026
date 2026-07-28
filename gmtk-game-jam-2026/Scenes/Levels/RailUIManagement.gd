@@ -65,9 +65,10 @@ func _ready() ->void:
 	cargoUpdate()
 	railLabel.text = RailImage +  "[color=white]" + str(railNum) + "[/color]"
 	
-func setupUI(railNumber : int , 
-passengerRequirement : int , cargoRequirement : int , 
-passengerExactNumber : bool , cargoExactNumber : bool) -> void:
+func setupUI(railNumber : int
+#, passengerRequirement : int , cargoRequirement : int , 
+#passengerExactNumber : bool , cargoExactNumber : bool
+) -> void:
 	railNum = railNumber
 	railLabel.text = str(railNum)
 

@@ -21,7 +21,8 @@ var currDir: Vector2i
 var lastDir: Vector2i
 
 var canChangeDir: bool = true
-var fixDistance = 5
+var fixDistance = 10
+var fixDistanceBehind = 5
 var NextVia = true
 var exploded = false
 var wthoutTracks = false
@@ -45,7 +46,6 @@ func _ready() -> void:
 
 func noT()->void:
 	wthoutTracks=true
-	saveDir=Vector2i(0,0)
 
 func _process(delta: float) -> void:
 	if exploded: return
@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 	# When we recieve a movement input, we want to know if
 	# we can move it inmediatly or not.
 	# If we cant move it inmediatly, we save the input until we arrive the next tile
-	if input_vector != Vector2.ZERO and !wthoutTracks and currTile != iniTilePos:
+	if input_vector != Vector2.ZERO and !exploded and currTile != iniTilePos:
 		if input_vector.x == 0 and abs(input_vector.y) != abs(currDir.y):
 			saveDir = Vector2i(0, input_vector.y)
 		elif input_vector.y == 0 and abs(input_vector.x) != abs(currDir.x):
@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 	# Updates current and next Tiles
 	# Allow the player to change direction
 	# Allow to put the next track
-	if distanceNext < fixDistance:
+	if distanceNext < fixDistanceBehind:
 		lastTile = currTile
 		currTile = nextTile
 		nextTile = currTile + currDir
@@ -170,47 +170,52 @@ func try_change_track(tile: Vector2i) -> void:
 
 #If we can put a new track, we put it, or on case we need to replace a straight track with a curve one
 #we not count it like a new track, so we allow placing other track at the same tile.
-func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = false):
+func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = false) -> void:
 	if not NextVia: return
 	
-	var tile_data = tilemapTracks.get_cell_tile_data(tile)
-	if not tile_data and tilemapCargos: tile_data = tilemapCargos.get_cell_tile_data(tile)
-	if not tile_data and tilemapLevers: tile_data = tilemapLevers.get_cell_tile_data(tile)
-	if not tile_data and tilemapPassengers: tile_data = tilemapPassengers.get_cell_tile_data(tile)
-	if not tile_data and tilemapPortals: tile_data = tilemapPortals.get_cell_tile_data(tile)
-	if not tile_data and tilemapWin: tile_data = tilemapWin.get_cell_tile_data(tile)
+	var maps: Array = [tilemapTracks, tilemapCargos, tilemapLevers, tilemapPassengers, tilemapPortals, tilemapWin]
+	var tile_data = null
+	var tile_map = null
+	for map in maps:
+		if map:
+			tile_map = map
+			tile_data = tile_map.get_cell_tile_data(tile)
+			if not tile_data: tile_map = null
+			else: break
 	
-	if !tile_data or replace:
-		if wthoutTracks:
-			explode()
-			return
-		# If there isn´t any track, we create the tile data.
-		if !tile_data :
-			tilemapTracks.set_cell(tile, 0, Vector2i(22, 0))
-			tile_data = tilemapTracks.get_cell_tile_data(tile)
-			EventBus.emit("PlacedRail" , [])
-		
-		# Choose the track type
-		var track : Vector2i
-		if straight:  track = Vector2i(5, 0)
-		else: track = Vector2i(0, 0)
-		
-		# Rotates the texture
-		var alternative_id: int = 0
-		match degrees:
-			90:  alternative_id = TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_TRANSPOSE
-			180: alternative_id = TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V
-			270: alternative_id = TileSetAtlasSource.TRANSFORM_FLIP_V | TileSetAtlasSource.TRANSFORM_TRANSPOSE
-			_: alternative_id = 0 
-		if straight:
-			var source := tilemapTracks.tile_set.get_source(0) as TileSetAtlasSource
-			var effect = preload("res://Scenes/Objects/trackAnim.tscn").instantiate()
-			effect.position = tilemapTracks.map_to_local(tile)
-			get_parent().add_child(effect)
-			await effect.setup(source.texture, source.get_tile_texture_region(track), alternative_id)
-			tilemapTracks.set_cell(tile, 0, track, alternative_id)
-		else: tilemapTracks.set_cell(tile, 0, track, alternative_id)
-		if not replace: NextVia = false
+	if tile_data and not replace: return
+	if wthoutTracks and (not tile_map or (tile_map and !tile_map.get_cell_tile_data(tile+currDir))) and not replace:
+		explode()
+		return
+
+	# If there isn´t any track, we create the tile data.
+	if not replace :
+		tilemapTracks.set_cell(tile, 0, Vector2i(22, 0))
+		tile_data = tilemapTracks.get_cell_tile_data(tile)
+		EventBus.emit("PlacedRail" , [])
+	
+	# Choose the track type
+	var track : Vector2i
+	if straight:  track = Vector2i(5, 0)
+	else: track = Vector2i(0, 0)
+	
+	# Rotates the texture
+	var alternative_id: int = 0
+	match degrees:
+		90:  alternative_id = TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_TRANSPOSE
+		180: alternative_id = TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V
+		270: alternative_id = TileSetAtlasSource.TRANSFORM_FLIP_V | TileSetAtlasSource.TRANSFORM_TRANSPOSE
+		_: alternative_id = 0 
+	if straight:
+		var source := tilemapTracks.tile_set.get_source(0) as TileSetAtlasSource
+		var effect = preload("res://Scenes/Objects/trackAnim.tscn").instantiate()
+		effect.position = tilemapTracks.map_to_local(tile)
+		get_parent().add_child(effect)
+		await effect.setup(source.texture, source.get_tile_texture_region(track), alternative_id)
+		tilemapTracks.set_cell(tile, 0, track, alternative_id)
+	else: tilemapTracks.set_cell(tile, 0, track, alternative_id)
+	
+	if not replace: NextVia = false
 
 func onTrack() -> bool :
 	if not NextVia: return false
@@ -367,6 +372,7 @@ func onPassenger() -> bool:
 
 func explode() -> void:
 	currDir = Vector2i(0,0)
+	saveDir = Vector2i(0,0)
 	sprite.stop()
 	exploded = true
 	print("EXPLODE")
