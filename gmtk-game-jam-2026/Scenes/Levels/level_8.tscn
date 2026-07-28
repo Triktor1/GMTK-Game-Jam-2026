@@ -19,7 +19,9 @@
 [ext_resource type="Script" uid="uid://d1c64slyc1qyx" path="res://Scripts/mixed_rails_collider.gd" id="15_l1is2"]
 [ext_resource type="PackedScene" uid="uid://c3iotgd2wtk3g" path="res://Scenes/level_ui.tscn" id="16_feviu"]
 [ext_resource type="PackedScene" uid="uid://qc45y82fn63y" path="res://Scenes/pause_menu.tscn" id="17_eeh2q"]
+[ext_resource type="PackedScene" uid="uid://ckatcq3ckytgb" path="res://Scenes/win_scene.tscn" id="18_oov7e"]
 [ext_resource type="AudioStream" uid="uid://cvmmlksb2upxh" path="res://Assets/Music/Steam-theme.mp3" id="19_6a1eu"]
+[ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="22_51riq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nivuq"]
 texture = ExtResource("1_63fij")
@@ -371,3 +373,22 @@ visible = false
 stream = ExtResource("19_6a1eu")
 volume_db = -10.0
 autoplay = true
+
+[node name="WinScene" parent="." unique_id=64850322 node_paths=PackedStringArray("level_ui") instance=ExtResource("18_oov7e")]
+lvl_num = 8
+level_ui = NodePath("../LevelUI")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1223507254]
+process_mode = 3
+layer = 2
+follow_viewport_enabled = true
+
+[node name="SceneTransitions" parent="CanvasLayer" unique_id=1497086813 instance=ExtResource("22_51riq")]
+z_index = 10
+offset_left = -154.0
+offset_top = -17.0
+offset_right = -710.44446
+offset_bottom = -330.0
+scale = Vector2(0.515, 0.515)
+offset_transform_position = Vector2(340, 0)
+mouse_filter = 2
