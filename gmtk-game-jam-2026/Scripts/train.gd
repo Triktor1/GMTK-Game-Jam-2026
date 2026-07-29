@@ -111,6 +111,8 @@ func _process(delta: float) -> void:
 # or if the player has already changed the direction on the same tile
 func changeDir(newDir: Vector2i, track:bool = false, portal:bool = false) -> void:
 	if not canChangeDir or (newDir.x == 0 and newDir.y == 0): return
+	if currDir == newDir or currDir == -newDir: return
+	
 	if tilemapPortals and tilemapPortals.get_cell_tile_data(currTile) and not portal: return
 	#To change direction, we update last directon and current direction
 	#Relocate the train
@@ -129,10 +131,10 @@ func changeDir(newDir: Vector2i, track:bool = false, portal:bool = false) -> voi
 		var degrees: int = 0
 		if currDir.y != 0: degrees = 90
 		put_track(currTile, true, degrees)
+		saveDir = Vector2i(0,0)
 	
 	change_sprite()
 	#Resets saved direction
-	saveDir = Vector2i(0,0)
 	canChangeDir = false
 	#Updates the next tile based on the new direction
 	nextTile = currTile + currDir
@@ -184,7 +186,7 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 			else: break
 	
 	if tile_data and not replace: return
-	if wthoutTracks and (not tile_map or (tile_map and !tile_map.get_cell_tile_data(tile+currDir))) and not replace:
+	if wthoutTracks and (not tile_data or (tile_map and !tile_map.get_cell_tile_data(tile+currDir))) and not replace:
 		explode()
 		return
 
@@ -220,23 +222,6 @@ func put_track(tile: Vector2i, straight: bool, degrees: int, replace:bool = fals
 func onTrack() -> bool :
 	if not NextVia: return false
 	
-	var tile_map = tilemapTracks
-	var tile_data = tile_map.get_cell_tile_data(currTile)
-	if not tile_data:
-		tile_map = tilemapCargos
-		if tile_map: tile_data = tile_map.get_cell_tile_data(currTile)
-		if not tile_data:
-			tile_map = tilemapLevers
-			if tile_map: tile_data = tile_map.get_cell_tile_data(currTile)
-			if not tile_data :
-				tile_map = tilemapPassengers
-				if tile_map: tile_data = tile_map.get_cell_tile_data(currTile)
-				if not tile_data :
-					tile_map = tilemapWin
-					if tile_map: tile_data = tile_map.get_cell_tile_data(currTile)
-					if not tile_data :
-						return false
-			
 	var i := 0
 	while i < get_child_count():
 		var child = get_child(i)
@@ -245,35 +230,79 @@ func onTrack() -> bool :
 			break
 		i += 1
 	
-	var textureAtlas = tile_map.get_cell_atlas_coords(currTile)
-	var degrees: int = tile_map.get_cell_alternative_tile(currTile)
+	if not crash(currTile, currDir): changeDir(nextDir(currTile, currDir), true)
+	else: explode()
+	
+	return true
+
+func crash(tile: Vector2i, dir: Vector2i) -> bool:
+	var maps: Array = [tilemapTracks, tilemapCargos, tilemapLevers, tilemapPassengers, tilemapWin]
+	var tile_map = null
+	var tile_data = null
+	for map in maps:
+		if map:
+			tile_map = map
+			tile_data = tile_map.get_cell_tile_data(tile)
+			if not tile_data: tile_map = null
+			else: break 
+			
+	if not tile_data: return false
+	
+	var textureAtlas = tile_map.get_cell_atlas_coords(tile)
+	var degrees: int = tile_map.get_cell_alternative_tile(tile)
 	match degrees:
 		TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_TRANSPOSE: degrees = 90
 		TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V: degrees = 180
 		TileSetAtlasSource.TRANSFORM_FLIP_V | TileSetAtlasSource.TRANSFORM_TRANSPOSE: degrees = 270
 		_: degrees = 0
 	
+	if textureAtlas == Vector2i(5,0):
+		if dir.x != 0 and degrees == 90: return true
+		elif dir.y != 0 and degrees == 0: return true
+		else: return false
+	elif textureAtlas == Vector2i(0,0):
+		if degrees == 0 and dir != Vector2i(1,0) and dir != Vector2i(0,1): return true
+		elif degrees == 90 and dir != Vector2i(-1, 0) and dir != Vector2i(0, 1): return true
+		elif degrees == 180 and dir != Vector2i(-1, 0) and dir != Vector2i(0, -1): return true
+		elif degrees == 270 and dir != Vector2i(1, 0) and dir != Vector2i(0, -1): return true
+		else: return false
+	else:
+		return false
+
+func nextDir(tile: Vector2i, dir: Vector2i) -> Vector2i:
+	var maps: Array = [tilemapTracks, tilemapCargos, tilemapLevers, tilemapPassengers, tilemapWin]
+	var tile_map = null
+	var tile_data = null
+	for map in maps:
+		if map:
+			tile_map = map
+			tile_data = tile_map.get_cell_tile_data(tile)
+			if not tile_data: tile_map = null
+			else: break 
+	if not tile_data: return Vector2i(0, 0)
+	
+	var textureAtlas = tile_map.get_cell_atlas_coords(tile)
+	var degrees: int = tile_map.get_cell_alternative_tile(tile)
+	match degrees:
+		TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_TRANSPOSE: degrees = 90
+		TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V: degrees = 180
+		TileSetAtlasSource.TRANSFORM_FLIP_V | TileSetAtlasSource.TRANSFORM_TRANSPOSE: degrees = 270
+		_: degrees = 0
+		
+	
+	var nDir = Vector2i(0,0)
 	if textureAtlas == Vector2i(0,0):
-		if degrees == 0:
-			if currDir == Vector2i(0, 1): changeDir(Vector2i(-1,0), true)
-			elif currDir == Vector2i(1, 0): changeDir(Vector2i(0,-1), true)
-			else: explode()
-		elif degrees == 90:
-			if currDir == Vector2i(0, 1): changeDir(Vector2i(1,0), true)
-			elif currDir == Vector2i(-1, 0): changeDir(Vector2i(0,-1), true)
-			else: explode()
-		elif degrees == 180:
-			if currDir == Vector2i(0, -1): changeDir(Vector2i(1,0), true)
-			elif currDir == Vector2i(-1, 0): changeDir(Vector2i(0,1), true)
-			else: explode()
-		else:
-			if currDir == Vector2i(0, -1): changeDir(Vector2i(-1,0), true)
-			elif currDir == Vector2i(1, 0): changeDir(Vector2i(0,1), true)
-			else: explode()
-	elif textureAtlas == Vector2i(5,0):
-		if (currDir.x != 0 and degrees == 90) or (currDir.y != 0 and degrees == 0): explode()
-		elif (currDir.x != 0 and degrees == 0) or (currDir.y != 0 and degrees == 90): changeDir(currDir, true)
-	return true
+		if degrees == 0 and dir == Vector2i(0,1): nDir = Vector2i(-1,0)
+		elif degrees == 0 and dir == Vector2i(1, 0): nDir = Vector2i(0,-1)
+		elif degrees == 90 and dir == Vector2i(0, 1): nDir = Vector2i(1,0)
+		elif degrees == 90 and dir == Vector2i(-1, 0): nDir = Vector2i(0,-1)
+		elif degrees == 180 and dir == Vector2i(0, -1): nDir = Vector2i(1,0)
+		elif degrees == 180 and dir == Vector2i(-1, 0): nDir = Vector2i(0,1)
+		elif degrees == 270 and dir == Vector2i(0, -1): nDir = Vector2i(-1,0)
+		elif degrees == 270 and dir == Vector2i(1, 0):nDir = Vector2i(0,1)
+	elif textureAtlas == Vector2i(5,0): nDir = dir
+	
+	return nDir
 
 func onCargo() -> bool :
 	if not tilemapCargos: return false

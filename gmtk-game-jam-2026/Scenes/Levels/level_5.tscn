@@ -483,7 +483,7 @@ tile_set = SubResource("TileSet_xrly6")
 
 [node name="PassengersTracks" type="TileMapLayer" parent="." unique_id=432730624]
 z_index = 2
-tile_map_data = PackedByteArray("AAAKAAIAAwAFAAAAAAABAAUAAwAAAAAAAFAHAAcAAwAFAAAAAAAAAAMAAwABAAAAAAA=")
+tile_map_data = PackedByteArray("AAAKAAIAAwAFAAAAAAABAAUAAwAAAAAAAFAHAAcAAwAFAAAAAAAAAAMAAwAFAAAAAFA=")
 tile_set = SubResource("TileSet_3ji27")
 
 [node name="CargosTracks" type="TileMapLayer" parent="." unique_id=1054043585]
