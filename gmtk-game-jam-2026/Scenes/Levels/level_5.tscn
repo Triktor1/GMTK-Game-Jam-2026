@@ -491,7 +491,7 @@ z_index = 2
 tile_set = SubResource("TileSet_3ji27")
 
 [node name="WinTrack" type="TileMapLayer" parent="." unique_id=1985895297]
-z_index = 3
+z_index = 2
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAAMAAkAAwABAAAAAAA=")
 tile_set = SubResource("TileSet_bt5ee")
