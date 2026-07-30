@@ -111,7 +111,7 @@ func _process(delta: float) -> void:
 # or if the player has already changed the direction on the same tile
 func changeDir(newDir: Vector2i, track:bool = false, portal:bool = false) -> void:
 	if not canChangeDir or (newDir.x == 0 and newDir.y == 0): return
-	if currDir == newDir or currDir == -newDir: return
+	if (currDir == newDir or currDir == -newDir) and not track: return
 	
 	if tilemapPortals and tilemapPortals.get_cell_tile_data(currTile) and not portal: return
 	#To change direction, we update last directon and current direction
@@ -257,8 +257,12 @@ func crash(tile: Vector2i, dir: Vector2i) -> bool:
 		_: degrees = 0
 	
 	if textureAtlas == Vector2i(5,0):
-		if dir.x != 0 and degrees == 90: return true
-		elif dir.y != 0 and degrees == 0: return true
+		if dir.x != 0 and degrees != 0 and degrees != 180: return true
+		elif dir.y != 0 and degrees != 90 and degrees != 270: return true
+		else: return false
+	elif textureAtlas == Vector2i(1,0):
+		if dir.y != 0 and degrees != 0 and degrees != 180: return true
+		elif dir.x != 0 and degrees != 90 and degrees != 270: return true
 		else: return false
 	elif textureAtlas == Vector2i(0,0):
 		if degrees == 0 and dir != Vector2i(1,0) and dir != Vector2i(0,1): return true
@@ -300,7 +304,7 @@ func nextDir(tile: Vector2i, dir: Vector2i) -> Vector2i:
 		elif degrees == 180 and dir == Vector2i(-1, 0): nDir = Vector2i(0,1)
 		elif degrees == 270 and dir == Vector2i(0, -1): nDir = Vector2i(-1,0)
 		elif degrees == 270 and dir == Vector2i(1, 0):nDir = Vector2i(0,1)
-	elif textureAtlas == Vector2i(5,0): nDir = dir
+	elif textureAtlas == Vector2i(5,0) or textureAtlas == Vector2i(1,0): nDir = dir
 	
 	return nDir
 
