@@ -29,5 +29,5 @@ func next_level():
 	EventBus.emit("exit_pause")
 	get_tree().set_meta("from_level", true)
 	EventBus.emit("play_transition", ["level_transition"])
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2.3).timeout
 	get_tree().change_scene_to_file(levels[current_level])
