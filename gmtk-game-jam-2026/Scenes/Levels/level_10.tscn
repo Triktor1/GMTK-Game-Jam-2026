@@ -565,3 +565,5 @@ level_ui = NodePath("../LevelUI")
 stream = ExtResource("21_whtgd")
 volume_db = -10.0
 autoplay = true
+
+[editable path="WinScene"]

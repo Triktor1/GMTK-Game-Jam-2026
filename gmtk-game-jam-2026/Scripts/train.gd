@@ -61,9 +61,9 @@ func _process(delta: float) -> void:
 	# we can move it inmediatly or not.
 	# If we cant move it inmediatly, we save the input until we arrive the next tile
 	if input_vector != Vector2.ZERO and !exploded and currTile != iniTilePos:
-		if input_vector.x == 0 and abs(input_vector.y) != abs(currDir.y):
+		if input_vector.x == 0:
 			saveDir = Vector2i(0, input_vector.y)
-		elif input_vector.y == 0 and abs(input_vector.x) != abs(currDir.x):
+		elif input_vector.y == 0:
 			saveDir = Vector2i(input_vector.x, 0)
 	#When we reach the new Tile
 	# Updates current and next Tiles

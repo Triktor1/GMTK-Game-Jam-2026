@@ -544,7 +544,7 @@ script = ExtResource("16_khr6i")
 [node name="PassengersSprites" type="TileMapLayer" parent="." unique_id=293032404]
 z_index = 3
 y_sort_enabled = true
-tile_map_data = PackedByteArray("AAAPAAsAAAANAAEAAAAXAA4AAAANAAAAAAAPAAYAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAAPAAsAAAANAAEAAAAXAA4AAAANAAAAAAAPAAYAAAAQAAAAAAA=")
 tile_set = SubResource("TileSet_d12sp")
 
 [node name="Wall" type="TileMapLayer" parent="." unique_id=69009138]
@@ -598,3 +598,5 @@ level_ui = NodePath("../LevelUI")
 stream = ExtResource("22_dnyrp")
 volume_db = -10.0
 autoplay = true
+
+[editable path="WinScene"]
