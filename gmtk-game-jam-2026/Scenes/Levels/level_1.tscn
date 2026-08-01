@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://d1c64slyc1qyx" path="res://Scripts/mixed_rails_collider.gd" id="16_7hll7"]
 [ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="17_irw6p"]
 [ext_resource type="Script" uid="uid://cao3dwsir8fdb" path="res://Scripts/levelShower.gd" id="20_pmbdk"]
+[ext_resource type="FontFile" uid="uid://bp0voh20n6bhw" path="res://Assets/Fonts/Rubik-Black.ttf" id="21_ksf1i"]
 [ext_resource type="PackedScene" uid="uid://ckatcq3ckytgb" path="res://Scenes/win_scene.tscn" id="21_nojx8"]
 [ext_resource type="AudioStream" uid="uid://cvmmlksb2upxh" path="res://Assets/Music/Steam-theme.mp3" id="23_ad63i"]
 
@@ -293,6 +294,10 @@ texture = ExtResource("8_3628d")
 [sub_resource type="TileSet" id="TileSet_3628d"]
 sources/0 = SubResource("TileSetAtlasSource_nojx8")
 
+[sub_resource type="LabelSettings" id="LabelSettings_vv00e"]
+font = ExtResource("21_ksf1i")
+font_size = 61
+
 [node name="Level_1" type="Node2D" unique_id=538218094 node_paths=PackedStringArray("showLevelCanvas") groups=["level"]]
 y_sort_enabled = true
 script = ExtResource("1_iixi8")
@@ -420,6 +425,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.46666667)
+
+[node name="Label" type="Label" parent="CanvasLayer2" unique_id=1976332888]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -169.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "PRESS ANY KEY
+TO START"
+label_settings = SubResource("LabelSettings_vv00e")
+horizontal_alignment = 1
+vertical_alignment = 2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=695276836]
 process_mode = 3
