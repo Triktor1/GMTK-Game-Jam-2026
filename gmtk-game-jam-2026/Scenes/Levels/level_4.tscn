@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://ckatcq3ckytgb" path="res://Scenes/win_scene.tscn" id="19_khr6i"]
 [ext_resource type="PackedScene" uid="uid://d3x45r5o4h15l" path="res://Scenes/scene_transitions.tscn" id="20_mnmct"]
 [ext_resource type="AudioStream" uid="uid://cvmmlksb2upxh" path="res://Assets/Music/Steam-theme.mp3" id="22_dnyrp"]
+[ext_resource type="Script" uid="uid://cao3dwsir8fdb" path="res://Scripts/levelShower.gd" id="23_061ob"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eb5oh"]
 texture = ExtResource("1_eb4ip")
@@ -463,8 +464,9 @@ texture = ExtResource("7_mnmct")
 [sub_resource type="TileSet" id="TileSet_d12sp"]
 sources/0 = SubResource("TileSetAtlasSource_hckno")
 
-[node name="Level_4" type="Node2D" unique_id=51243028]
+[node name="Level_4" type="Node2D" unique_id=51243028 node_paths=PackedStringArray("showLevelCanvas")]
 script = ExtResource("1_ecora")
+showLevelCanvas = NodePath("CanvasLayer2")
 
 [node name="FloorShapes" type="TileMapLayer" parent="." unique_id=1628929572]
 position = Vector2(64, 0)
@@ -598,5 +600,18 @@ level_ui = NodePath("../LevelUI")
 stream = ExtResource("22_dnyrp")
 volume_db = -10.0
 autoplay = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=248102228]
+process_mode = 3
+layer = 0
+script = ExtResource("23_061ob")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2" unique_id=487630759]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.46666667)
 
 [editable path="WinScene"]
