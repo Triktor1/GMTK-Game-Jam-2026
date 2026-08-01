@@ -2,8 +2,12 @@ extends Node2D
 #Pause Menu
 #signal paused_game
 
+@export var showLevelCanvas: CanvasLayer
+
 func _ready()->void:
-	get_tree().paused = false
+	if showLevelCanvas: showLevelCanvas.appear()
+	else: get_tree().paused = false
+	
 	y_sort_enabled=true
 	if get_tree().has_meta("from_restart"):
 		await get_tree().process_frame
