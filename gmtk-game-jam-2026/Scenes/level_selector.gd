@@ -15,3 +15,8 @@ func _ready() -> void:
 		button.focus_entered.connect(func():
 			main_menu.focus_neighbor_top = button.get_path())
 	levels[0].grab_focus()
+	
+	if get_tree().has_meta("from_level"):
+		await get_tree().process_frame
+		EventBus.emit("play_transition", ["level_transition_out"])
+		get_tree().remove_meta("from_level")
